@@ -9,7 +9,8 @@ body {
 
 main {
     flex-grow: 1;
-    display: flex; /* Make main a flex container to allow its children to grow */
+    display: flex; /* Add flex to the main container */
+    flex-direction: column; /* Stack its children vertically */
 }
 
 .site-header {
@@ -42,9 +43,9 @@ main {
 
 .catalog-container {
     padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    flex-grow: 1; /* Make the catalog container grow */
+    display: flex; /* Use flexbox for its children */
+    flex-direction: column; /* Stack children vertically */
 }
 
 .category-container {
@@ -53,19 +54,20 @@ main {
     gap: 20px;
 }
 
-/* RENAMED: This is for the 2-column sub-category view */
-.subcategory-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    flex-grow: 1; 
-}
-
-/* NEW: This is for the multi-column product view */
+/* This is for the product tiles view */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+}
+
+/* This is for the subcategory tiles view */
+.subcategory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    flex-grow: 1; /* Make the grid itself grow */
+    align-content: start; /* THIS IS THE FIX: Aligns grid content to the top */
 }
 
 .tile {
@@ -97,12 +99,11 @@ main {
 }
 
 .hidden {
-    display: none;
+    display: none !important; /* Use important to ensure it overrides other styles */
 }
 
 .back-button {
     padding: 10px 20px;
-    margin-bottom: 20px;
     cursor: pointer;
     border-radius: 8px;
     border: none;
@@ -112,6 +113,7 @@ main {
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
+    width: fit-content; /* Ensure button is only as wide as its content */
 }
 
 .back-button:hover {
@@ -200,12 +202,11 @@ main {
 }
 
 @media (max-width: 768px) {
-    .modal-content {
-        grid-template-columns: 1fr;
+    .subcategory-grid {
+        grid-template-columns: 1fr; /* Stack to a single column on mobile */
     }
-
-    /* This now targets both layouts to stack them on mobile */
-    .subcategory-grid, .product-grid {
+    
+    .modal-content {
         grid-template-columns: 1fr;
     }
 }
