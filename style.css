@@ -65,9 +65,10 @@ main {
 .subcategory-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto; /* First row (for the button) has auto height */
+    grid-auto-rows: 1fr; /* Subsequent rows (for tiles) fill remaining space */
     gap: 20px;
     flex-grow: 1; /* Make the grid itself grow */
-    align-content: start; /* THIS IS THE FIX: Aligns grid content to the top */
 }
 
 .tile {
@@ -210,4 +211,5 @@ main {
         grid-template-columns: 1fr;
     }
 }
+
 
