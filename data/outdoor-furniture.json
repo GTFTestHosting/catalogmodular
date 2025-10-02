@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Sofa",
+        "image": "https://images.unsplash.com/photo-1540574163024-58ea3f3b1b58",
+        "description": "A comfortable and stylish sofa for your living room.",
+        "specs": "3-seater, linen fabric, solid wood frame",
+        "shipping": "Weight: 150 lbs, Dimensions: 84x36x34 inches"
+    },
+    {
+        "name": "Bookshelf",
+        "image": "https://images.unsplash.com/photo-1594234033035-9b2e1f705120",
+        "description": "A modern bookshelf to display your collection.",
+        "specs": "Oak wood, 5 shelves",
+        "shipping": "Weight: 75 lbs, Dimensions: 72x36x12 inches"
+    }
+]
