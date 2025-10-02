@@ -6,7 +6,7 @@
         "dataFile": "data/spices_and_peppers/peppers/products.json"
     },
     {
-        "name": "Spices",
+        "name": "Spices & More",
         "image": "images/category-banners/Spices-Subcat-Banner.jpg",
         "type": "products",
         "dataFile": "data/spices_and_peppers/spices/products.json"
