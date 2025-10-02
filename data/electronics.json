@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Laptop",
+        "image": "https://images.unsplash.com/photo-1496181133206-8ce9b88a853",
+        "description": "A high-performance laptop for all your needs.",
+        "specs": "16GB RAM, 512GB SSD, 15.6-inch Display",
+        "shipping": "Weight: 5 lbs, Dimensions: 14x10x1 inches"
+    },
+    {
+        "name": "Smartphone",
+        "image": "https://images.unsplash.com/photo-1580910051074-3eb694886505",
+        "description": "The latest smartphone with a stunning camera.",
+        "specs": "8GB RAM, 128GB Storage, 6.5-inch OLED Display",
+        "shipping": "Weight: 0.5 lbs, Dimensions: 6x3x0.3 inches"
+    }
+]
