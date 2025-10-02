@@ -27,12 +27,12 @@ main {
 }
 
 .logo {
-    height: 50px;
+    height: 100px;
 }
 
 .brand-info h1 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 2.8rem;
     color: #333;
 }
 
