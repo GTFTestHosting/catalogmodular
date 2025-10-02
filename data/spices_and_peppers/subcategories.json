@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Peppers",
+        "image": "https://images.unsplash.com/photo-1600711847896-ea25db3164e5?q=80&w=2070&auto=format&fit=crop",
+        "type": "products",
+        "dataFile": "data/spices_and_peppers/peppers/products.json"
+    },
+    {
+        "name": "Spices",
+        "image": "https://images.unsplash.com/photo-1508736321629-67a7383d49e1?q=80&w=2070&auto=format&fit=crop",
+        "type": "products",
+        "dataFile": "data/spices_and_peppers/spices/products.json"
+    }
+]
