@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Corn Tortillas",
+        "image": "https://images.unsplash.com/photo-1598142982937-675836152865?q=80&w=2070&auto=format&fit=crop",
+        "type": "products",
+        "dataFile": "data/corn/products.json"
+    },
+    {
+        "name": "Flour Tortillas",
+        "image": "https://images.unsplash.com/photo-1627907222543-1111a2523272?q=80&w=1974&auto=format&fit=crop",
+        "type": "products",
+        "dataFile": "data/flour/products.json"
+    },
+    {
+        "name": "Spices & Peppers",
+        "image": "https://images.unsplash.com/photo-1599974579688-85933a35b130?q=80&w=2070&auto=format&fit=crop",
+        "type": "subcategories",
+        "dataFile": "data/spices_and_peppers/subcategories.json"
+    },
+    {
+        "name": "Other Products",
+        "image": "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?q=80&w=2071&auto=format&fit=crop",
+        "type": "products",
+        "dataFile": "data/other/products.json"
+    }
+]
+
