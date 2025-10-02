@@ -40,7 +40,6 @@ main {
     color: #666;
 }
 
-/* MODIFIED: This container now also uses flexbox to manage its children's height */
 .catalog-container {
     padding: 20px;
     flex-grow: 1;
@@ -54,12 +53,19 @@ main {
     gap: 20px;
 }
 
-/* MODIFIED: Changed to a 2-column grid that grows to fill space */
-.grid-container {
+/* RENAMED: This is for the 2-column sub-category view */
+.subcategory-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Enforces a 2-column layout */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    flex-grow: 1; /* Allows this container to fill available vertical space */
+    flex-grow: 1; 
+}
+
+/* NEW: This is for the multi-column product view */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 .tile {
@@ -198,8 +204,8 @@ main {
         grid-template-columns: 1fr;
     }
 
-    /* ADDED: Reverts to a single column on mobile screens */
-    .grid-container {
+    /* This now targets both layouts to stack them on mobile */
+    .subcategory-grid, .product-grid {
         grid-template-columns: 1fr;
     }
 }
