@@ -8,10 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function displayCategoryLevel(filePath) {
         mainCategoriesContainer.classList.add('hidden');
-        
-        // Set the correct class for the sub-category layout
         subCategoriesContainer.className = 'subcategory-grid';
-
         subCategoriesContainer.innerHTML = '<h2>Loading...</h2>';
 
         try {
@@ -19,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Could not load data.');
             const items = await response.json();
 
-            subCategoriesContainer.innerHTML = ''; 
+            subCategoriesContainer.innerHTML = '';
 
             if (navigationHistory.length > 0) {
                 const backButton = createBackButton();
@@ -33,11 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.innerHTML = `<h2>${item.name}</h2>`;
                 
                 tile.onclick = () => {
-                    navigationHistory.push(filePath); 
+                    navigationHistory.push(filePath);
                     if (item.type === 'subcategories') {
-                        displayCategoryLevel(item.dataFile); 
+                        displayCategoryLevel(item.dataFile);
                     } else {
-                        displayProductLevel(item.dataFile); 
+                        displayProductLevel(item.dataFile);
                     }
                 };
                 subCategoriesContainer.appendChild(tile);
@@ -49,27 +46,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function displayProductLevel(filePath) {
+    async function displayProductLevel(manifestFilePath) {
         mainCategoriesContainer.classList.add('hidden');
-
-        // Set the correct class for the product layout
         subCategoriesContainer.className = 'product-grid';
-
         subCategoriesContainer.innerHTML = '<h2>Loading...</h2>';
 
         try {
-            const response = await fetch(filePath);
-            if (!response.ok) throw new Error('Could not load products.');
-            const products = await response.json();
+            const manifestResponse = await fetch(manifestFilePath);
+            if (!manifestResponse.ok) throw new Error('Could not load product manifest.');
+            const productPaths = await manifestResponse.json();
 
-            subCategoriesContainer.innerHTML = ''; 
-
+            subCategoriesContainer.innerHTML = '';
             const backButton = createBackButton();
             subCategoriesContainer.appendChild(backButton);
 
-            if (products.length === 0) {
+            if (productPaths.length === 0) {
                  subCategoriesContainer.innerHTML += `<p style="grid-column: 1 / -1; text-align: center;">No products in this category yet.</p>`;
+                 return;
             }
+
+            const productPromises = productPaths.map(path =>
+                fetch(path).then(res => {
+                    if (!res.ok) throw new Error(`Failed to load product: ${path}`);
+                    return res.json();
+                })
+            );
+
+            const products = await Promise.all(productPromises);
 
             products.forEach(product => {
                 const tile = document.createElement('div');
@@ -85,35 +88,29 @@ document.addEventListener('DOMContentLoaded', () => {
             subCategoriesContainer.innerHTML = `<p>Error loading products.</p>`;
         }
     }
-    
+
     function createBackButton() {
-        // Create a wrapper div that will span the grid columns
         const wrapper = document.createElement('div');
         wrapper.style.gridColumn = '1 / -1';
-
         const backButton = document.createElement('button');
         backButton.textContent = 'Back';
         backButton.className = 'back-button';
         backButton.onclick = goBack;
-
-        // Place the button inside the wrapper
         wrapper.appendChild(backButton);
-        
-        // Return the wrapper, not the button directly
         return wrapper;
     }
 
     function goBack() {
         const lastPath = navigationHistory.pop();
         if (lastPath) {
-            if(lastPath === 'data/categories.json') {
+            if (lastPath === 'data/categories.json') {
                 initializeCatalog();
             } else {
                 displayCategoryLevel(lastPath);
             }
         }
     }
-    
+
     function showProductDetails(product) {
         modal.style.display = 'block';
         document.getElementById('modal-img').src = product.image;
@@ -127,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.onclick = (event) => { if (event.target == modal) { modal.style.display = 'none'; } };
 
     async function initializeCatalog() {
-        navigationHistory = []; 
-        subCategoriesContainer.className = 'hidden'; // Ensure it starts hidden
+        navigationHistory = [];
+        subCategoriesContainer.className = 'hidden';
         mainCategoriesContainer.classList.remove('hidden');
         mainCategoriesContainer.innerHTML = '<h2>Loading...</h2>';
 
@@ -137,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Could not load categories.');
             const categories = await response.json();
 
-            mainCategoriesContainer.innerHTML = ''; 
+            mainCategoriesContainer.innerHTML = '';
 
             categories.forEach(category => {
                 const tile = document.createElement('div');
