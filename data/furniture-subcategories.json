@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Indoor Furniture",
+        "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7",
+        "type": "products",
+        "dataFile": "data/indoor-furniture.json"
+    },
+    {
+        "name": "Outdoor Furniture",
+        "image": "https://images.unsplash.com/photo-1594002238356-05c2509b5329",
+        "type": "products",
+        "dataFile": "data/outdoor-furniture.json"
+    }
+]
