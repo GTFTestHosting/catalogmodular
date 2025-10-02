@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Catalog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-content">
+            <img src="https://via.placeholder.com/150x50.png?text=Your+Logo" alt="Company Logo" class="logo">
+            <div class="brand-info">
+                <h1>Your Company</h1>
+                <p>High-Quality Products & Solutions</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="catalog-container">
+            <div id="main-categories" class="category-container">
+                <!-- Categories will be loaded by JavaScript -->
+            </div>
+            <div id="sub-categories" class="grid-container hidden">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+        </div>
+
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <img id="modal-img" src="" alt="Product Image">
+                <div id="modal-text">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-description"></p>
+                    <h3>Specifications</h3>
+                    <p id="modal-specs"></p>
+                    <h3>Shipping Information</h3>
+                    <p id="modal-shipping"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Your Company Name. All Rights Reserved.</p>
+        <p>Contact us: <a href="mailto:info@yourcompany.com">info@yourcompany.com</a></p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
