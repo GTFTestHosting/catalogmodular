@@ -3,13 +3,13 @@
         "name": "Electronics",
         "image": "https://images.unsplash.com/photo-1526738549149-8e07eca6c147",
         "type": "products",
-        "dataFile": "data/electronics.json"
+        "dataFile": "data/electronics/products.json"
     },
     {
         "name": "Furniture",
         "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc",
         "type": "subcategories",
-        "dataFile": "data/furniture-subcategories.json"
+        "dataFile": "data/furniture/subcategories.json"
     },
     {
         "name": "Clothing",
