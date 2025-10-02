@@ -87,12 +87,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function createBackButton() {
+        // Create a wrapper div that will span the grid columns
+        const wrapper = document.createElement('div');
+        wrapper.style.gridColumn = '1 / -1';
+
         const backButton = document.createElement('button');
         backButton.textContent = 'Back';
         backButton.className = 'back-button';
-        backButton.style.gridColumn = '1 / -1';
         backButton.onclick = goBack;
-        return backButton;
+
+        // Place the button inside the wrapper
+        wrapper.appendChild(backButton);
+        
+        // Return the wrapper, not the button directly
+        return wrapper;
     }
 
     function goBack() {
