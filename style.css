@@ -9,6 +9,7 @@ body {
 
 main {
     flex-grow: 1;
+    display: flex; /* Make main a flex container to allow its children to grow */
 }
 
 .site-header {
@@ -39,8 +40,12 @@ main {
     color: #666;
 }
 
+/* MODIFIED: This container now also uses flexbox to manage its children's height */
 .catalog-container {
     padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .category-container {
@@ -49,10 +54,12 @@ main {
     gap: 20px;
 }
 
+/* MODIFIED: Changed to a 2-column grid that grows to fill space */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* Enforces a 2-column layout */
     gap: 20px;
+    flex-grow: 1; /* Allows this container to fill available vertical space */
 }
 
 .tile {
@@ -190,4 +197,10 @@ main {
     .modal-content {
         grid-template-columns: 1fr;
     }
+
+    /* ADDED: Reverts to a single column on mobile screens */
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
 }
+
