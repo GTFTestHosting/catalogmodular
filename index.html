@@ -10,22 +10,27 @@
 
     <header class="site-header">
         <div class="header-content">
-            <img src="images/logos/GTF-Logo.png" alt="Company Logo" class="logo">
+            <img src="https://via.placeholder.com/150x50.png?text=Your+Logo" alt="Company Logo" class="logo">
             <div class="brand-info">
-                <h1 style="color:#ff5919">Graciana Tortila Factory</h1>
-                <p>Product Catalog 2025</p>
+                <h1 data-lang-key="companyTitle">Your Company</h1>
+                <p data-lang-key="companySubtitle">High-Quality Products & Solutions</p>
             </div>
+        </div>
+        <!-- NEW: Language Toggle Switch -->
+        <div class="lang-toggle">
+            <span>EN</span>
+            <label class="switch">
+                <input type="checkbox" id="lang-toggle-checkbox">
+                <span class="slider round"></span>
+            </label>
+            <span>ES</span>
         </div>
     </header>
 
     <main>
         <div class="catalog-container">
-            <div id="main-categories" class="category-container">
-                <!-- Categories will be loaded by JavaScript -->
-            </div>
-            <div id="sub-categories" class="grid-container hidden">
-                <!-- Products will be loaded by JavaScript -->
-            </div>
+            <div id="main-categories" class="category-container"></div>
+            <div id="sub-categories"></div>
         </div>
 
         <div id="product-modal" class="modal">
@@ -35,9 +40,9 @@
                 <div id="modal-text">
                     <h2 id="modal-title"></h2>
                     <p id="modal-description"></p>
-                    <h3>Specifications</h3>
+                    <h3 data-lang-key="modalSpecs">Specifications</h3>
                     <p id="modal-specs"></p>
-                    <h3>Shipping Information</h3>
+                    <h3 data-lang-key="modalShipping">Shipping Information</h3>
                     <p id="modal-shipping"></p>
                 </div>
             </div>
@@ -45,8 +50,8 @@
     </main>
 
     <footer class="site-footer">
-        <p>&copy; 2025 Graciana Tortilla Factory. All Rights Reserved.</p>
-        <p>Contact us: <a href="mailto:info@yourcompany.com">support@gracianatortilla.com</a></p>
+        <p data-lang-key="footerRights">&copy; 2025 Your Company Name. All Rights Reserved.</p>
+        <p><span data-lang-key="footerContact">Contact us:</span> <a href="mailto:info@yourcompany.com">info@yourcompany.com</a></p>
     </footer>
 
     <script src="script.js" defer></script>
