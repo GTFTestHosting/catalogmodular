@@ -3,25 +3,24 @@
         "name": "Corn Tortillas",
         "image": "images/category-banners/Corn-Banner.jpg",
         "type": "products",
-        "dataFile": "data/corn/products.json"
+        "dataFile": "data/en/corn/products.json" 
     },
     {
         "name": "Flour Tortillas",
         "image": "images/category-banners/Flour-Banner.jpg",
         "type": "products",
-        "dataFile": "data/flour/products.json"
+        "dataFile": "data/en/flour/products.json" 
     },
     {
         "name": "Spices & Peppers",
         "image": "images/category-banners/Spices-Banner.jpg",
         "type": "subcategories",
-        "dataFile": "data/spices_and_peppers/subcategories.json"
+        "dataFile": "data/en/spices_and_peppers/subcategories.json" 
     },
     {
         "name": "Other Products",
         "image": "images/category-banners/Other-Banner.jpg",
         "type": "products",
-        "dataFile": "data/other/products.json"
+        "dataFile": "data/en/other/products.json" 
     }
 ]
-
