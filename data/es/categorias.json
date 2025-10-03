@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Productos de Maiz",
+        "image": "images/category-banners/Corn-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/es/corn/products.json" 
+    },
+    {
+        "name": "Productos de Harina",
+        "image": "images/category-banners/Flour-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/es/flour/products.json" 
+    },
+    {
+        "name": "Especias y Chiles",
+        "image": "images/category-banners/Spices-Banner.jpg",
+        "type": "subcategories",
+        "dataFile": "data/es/spices_and_peppers/subcategories.json" 
+    },
+    {
+        "name": "Otros Productos",
+        "image": "images/category-banners/Other-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/es/other/products.json" 
+    }
+]
