@@ -100,7 +100,9 @@ input:checked + .slider:before {
 /* Catalog Container Styles */
 .catalog-container {
     padding: 20px;
-    flex-grow: 1; /* This remains to fill vertical space */
+    flex-grow: 1; 
+    display: flex; /* CRITICAL: Make this a flex container */
+    flex-direction: column; /* To stack its children vertically */
 }
 
 /* This is for the main, vertically stacked categories */
@@ -113,13 +115,15 @@ input:checked + .slider:before {
 /* This is for the subcategory tiles view */
 .subcategory-grid {
     display: grid;
-    /* CHANGE IS HERE: This is now flexible instead of fixed to 2 columns */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* The flexible, modular column definition */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* The button row will have its natural height */
     grid-template-rows: auto; 
+    /* Make all subsequent tile rows expand to fill vertical space */
     grid-auto-rows: 1fr;
     gap: 20px;
-    flex-grow: 1;
-    width: 100%; /* ADD THIS LINE: Forces the grid to take up full available width */
+    /* This tells the grid to grow and fill the .catalog-container */
+    flex-grow: 1; 
 }
 
 /* This is for the final product tiles view */
