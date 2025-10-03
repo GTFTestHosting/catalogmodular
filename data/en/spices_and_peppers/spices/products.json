@@ -1,3 +1,19 @@
 [
-    "data/en/spices_and_peppers/spices/cumin.json"
+    "data/en/spices_and_peppers/spices/cumin.json",
+    "data/en/spices_and_peppers/spices/cumin_seeds.json",
+    "data/en/spices_and_peppers/spices/bay_leaves.json",
+    "data/en/spices_and_peppers/spices/cayenne.json",
+    "data/en/spices_and_peppers/spices/cinnamon.json",
+    "data/en/spices_and_peppers/spices/clove.json",
+    "data/en/spices_and_peppers/spices/garlic_salt.json",
+    "data/en/spices_and_peppers/spices/granulated_garlic.json",
+    "data/en/spices_and_peppers/spices/granulated_onion.json",
+    "data/en/spices_and_peppers/spices/ground_black_pepper.json",
+    "data/en/spices_and_peppers/spices/ground_white_pepper.json",
+    "data/en/spices_and_peppers/spices/ground_california.json",
+    "data/en/spices_and_peppers/spices/paprika.json",
+    "data/en/spices_and_peppers/spices/ground_cumin.json",
+    "data/en/spices_and_peppers/spices/oregano.json",
+    "data/en/spices_and_peppers/spices/parsley.json",
+    "data/en/spices_and_peppers/spices/star_anis.json"
 ]

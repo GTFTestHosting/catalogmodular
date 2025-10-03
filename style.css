@@ -121,6 +121,7 @@ input:checked + .slider:before {
     grid-auto-rows: 1fr;
     gap: 20px;
     flex-grow: 1;
+    width: 100%; /* ADD THIS LINE: Forces the grid to take up full available width */
 }
 
 /* This is for the final product tiles view */

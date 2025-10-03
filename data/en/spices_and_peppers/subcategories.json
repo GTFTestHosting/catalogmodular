@@ -6,9 +6,15 @@
         "dataFile": "data/en/spices_and_peppers/peppers/products.json"
     },
     {
-        "name": "Spices & More",
+        "name": "Spices",
         "image": "images/category-banners/Spices-Subcat-Banner.jpg",
         "type": "products",
         "dataFile": "data/en/spices_and_peppers/spices/products.json"
+    },
+    {
+        "name": "Nuts, Seeds, & More",
+        "image": "images/category-banners/Spices-Subcat-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/spices_and_peppers/nuts_seeds/products.json"
     }
 ]
