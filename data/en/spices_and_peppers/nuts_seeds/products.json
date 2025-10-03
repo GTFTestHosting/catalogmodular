@@ -1,3 +1,25 @@
 [
-    "data/en/spices_and_peppers/nuts_seeds/cumin.json"
+    "data/en/spices_and_peppers/nuts_seeds/almonds.json",
+    "data/en/spices_and_peppers/nuts_seeds/walnuts.json",
+    "data/en/spices_and_peppers/nuts_seeds/chopped_walnuts.json",
+    "data/en/spices_and_peppers/nuts_seeds/salted_peanuts.json",
+    "data/en/spices_and_peppers/nuts_seeds/spicy_peanuts.json",
+    "data/en/spices_and_peppers/nuts_seeds/arbol_peanuts.json",
+    "data/en/spices_and_peppers/nuts_seeds/habanero_peanuts.json",
+    "data/en/spices_and_peppers/nuts_seeds/habas.json",
+    "data/en/spices_and_peppers/nuts_seeds/spicy_habas.json",
+    "data/en/spices_and_peppers/nuts_seeds/garbanzo.json",
+    "data/en/spices_and_peppers/nuts_seeds/lentils.json",
+    "data/en/spices_and_peppers/nuts_seeds/sesame.json",
+    "data/en/spices_and_peppers/nuts_seeds/pumpkin_seeds.json",
+    "data/en/spices_and_peppers/nuts_seeds/pepita.json",
+    "data/en/spices_and_peppers/nuts_seeds/coconut.json",
+    "data/en/spices_and_peppers/nuts_seeds/sprinkles.json",
+    "data/en/spices_and_peppers/nuts_seeds/prunes.json",
+    "data/en/spices_and_peppers/nuts_seeds/raisins.json",
+    "data/en/spices_and_peppers/nuts_seeds/tamarind.json",
+    "data/en/spices_and_peppers/nuts_seeds/hibiscus.json",
+    "data/en/spices_and_peppers/nuts_seeds/mango.json",
+    "data/en/spices_and_peppers/nuts_seeds/square_pasta.json",
+    "data/en/spices_and_peppers/nuts_seeds/wheel_pasta.json"
 ]
