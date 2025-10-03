@@ -101,8 +101,8 @@ input:checked + .slider:before {
 .catalog-container {
     padding: 20px;
     flex-grow: 1; 
-    /* REMOVED: display:flex and flex-direction. This is the key fix. */
-    /* By making this a standard block container, we remove the sizing conflict. */
+    display: flex;
+    flex-direction: column;
 }
 
 /* This is for the main, vertically stacked categories */
@@ -121,7 +121,7 @@ input:checked + .slider:before {
     grid-auto-rows: 1fr;
     gap: 20px;
     /* Explicitly set height to fill its parent container */
-    height: 100%;
+    flex-grow: 1;
 }
 
 /* This is for the final product tiles view */
@@ -278,6 +278,16 @@ input:checked + .slider:before {
     }
     .modal-content {
         grid-template-columns: 1fr;
+    }
+}
+
+/* NEW: Desktop-specific layout for subcategories */
+@media (min-width: 1024px) {
+    .subcategory-grid {
+        /* This rule uses a percentage-based min-width for columns on large screens, */
+        /* which forces them to be relative to the parent and fill the space. */
+        /* A value of 30% allows for 3 columns with gaps. */
+        grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     }
 }
 
