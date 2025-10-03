@@ -115,9 +115,10 @@ input:checked + .slider:before {
 /* This is for the subcategory tiles view */
 .subcategory-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto; /* First row (button) is auto height */
-    grid-auto-rows: 1fr; /* Subsequent rows (tiles) fill remaining space */
+    /* CHANGE IS HERE: This is now flexible instead of fixed to 2 columns */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-rows: auto; 
+    grid-auto-rows: 1fr;
     gap: 20px;
     flex-grow: 1;
 }
