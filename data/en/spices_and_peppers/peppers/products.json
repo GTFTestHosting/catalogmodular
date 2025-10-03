@@ -1,10 +1,10 @@
 [
-    "data/spices_and_peppers/peppers/guajillo.json",
-    "data/spices_and_peppers/peppers/arbol.json",
-    "data/spices_and_peppers/peppers/toasted_arbol.json",
-    "data/spices_and_peppers/peppers/japanese.json",
-    "data/spices_and_peppers/peppers/ancho.json",
-    "data/spices_and_peppers/peppers/california.json",
-    "data/spices_and_peppers/peppers/morita.json",
-    "data/spices_and_peppers/peppers/mulato.json"
+    "data/en/spices_and_peppers/peppers/guajillo.json",
+    "data/en/spices_and_peppers/peppers/arbol.json",
+    "data/en/spices_and_peppers/peppers/toasted_arbol.json",
+    "data/en/spices_and_peppers/peppers/japanese.json",
+    "data/en/spices_and_peppers/peppers/ancho.json",
+    "data/en/spices_and_peppers/peppers/california.json",
+    "data/en/spices_and_peppers/peppers/morita.json",
+    "data/en/spices_and_peppers/peppers/mulato.json"
 ]
