@@ -9,7 +9,7 @@ body {
 
 main {
     flex-grow: 1;
-    display: flex; /* Add flex to allow child to grow */
+    display: flex; 
     flex-direction: column;
 }
 
@@ -19,7 +19,7 @@ main {
     padding: 15px 30px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border-bottom: 1px solid #ddd;
-    display: flex; /* Use flexbox for alignment */
+    display: flex; 
     align-items: center;
 }
 .header-content {
@@ -100,9 +100,7 @@ input:checked + .slider:before {
 /* Catalog Container Styles */
 .catalog-container {
     padding: 20px;
-    flex-grow: 1; /* Allows this container to grow */
-    display: flex;
-    flex-direction: column;
+    flex-grow: 1; /* This remains to fill vertical space */
 }
 
 /* This is for the main, vertically stacked categories */
