@@ -9,55 +9,106 @@ body {
 
 main {
     flex-grow: 1;
-    display: flex; /* Add flex to the main container */
-    flex-direction: column; /* Stack its children vertically */
+    display: flex; /* Add flex to allow child to grow */
+    flex-direction: column;
 }
 
+/* Header Styles */
 .site-header {
     background-color: #ffffff;
     padding: 15px 30px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border-bottom: 1px solid #ddd;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center;
 }
-
 .header-content {
     display: flex;
     align-items: center;
     gap: 20px;
 }
-
 .logo {
-    height: 100px;
+    height: 50px;
 }
-
 .brand-info h1 {
     margin: 0;
-    font-size: 2.8rem;
+    font-size: 1.8rem;
     color: #333;
 }
-
 .brand-info p {
     margin: 0;
     color: #666;
 }
 
-.catalog-container {
-    padding: 20px;
-    flex-grow: 1; /* Make the catalog container grow */
-    display: flex; /* Use flexbox for its children */
-    flex-direction: column; /* Stack children vertically */
+/* NEW: Language Toggle Styles */
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto; /* Pushes the toggle to the far right */
+}
+.lang-toggle span {
+    font-weight: bold;
+    color: #555;
+    font-family: sans-serif;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #2196F3;
+}
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
 }
 
+
+/* Catalog Container Styles */
+.catalog-container {
+    padding: 20px;
+    flex-grow: 1; /* Allows this container to grow */
+    display: flex;
+    flex-direction: column;
+}
+
+/* This is for the main, vertically stacked categories */
 .category-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-/* This is for the product tiles view */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
@@ -65,11 +116,19 @@ main {
 .subcategory-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto; /* First row (for the button) has auto height */
-    grid-auto-rows: 1fr; /* Subsequent rows (for tiles) fill remaining space */
+    grid-template-rows: auto; /* First row (button) is auto height */
+    grid-auto-rows: 1fr; /* Subsequent rows (tiles) fill remaining space */
     gap: 20px;
-    flex-grow: 1; /* Make the grid itself grow */
+    flex-grow: 1;
 }
+
+/* This is for the final product tiles view */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
 
 .tile {
     background-size: cover;
@@ -100,7 +159,7 @@ main {
 }
 
 .hidden {
-    display: none !important; /* Use important to ensure it overrides other styles */
+    display: none;
 }
 
 .back-button {
@@ -114,7 +173,8 @@ main {
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
-    width: fit-content; /* Ensure button is only as wide as its content */
+    display: inline-block; /* Prevents it from stretching full width */
+    width: auto;
 }
 
 .back-button:hover {
@@ -122,6 +182,7 @@ main {
     transform: scale(1.02);
 }
 
+/* Footer Styles */
 .site-footer {
     display: flex;
     flex-direction: column;
@@ -132,24 +193,22 @@ main {
     text-align: center;
     padding: 20px;
 }
-
 .site-footer p {
     margin: 5px 0;
 }
-
 .site-footer a {
     color: #fff;
     text-decoration: none;
 }
-
 .site-footer a:hover {
     text-decoration: underline;
 }
 
+/* Modal styles */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     left: 0;
     top: 0;
     width: 100%;
@@ -202,14 +261,21 @@ main {
     border-radius: 8px;
 }
 
+/* Responsive styles for mobile */
 @media (max-width: 768px) {
-    .subcategory-grid {
-        grid-template-columns: 1fr; /* Stack to a single column on mobile */
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
     }
-    
+    .lang-toggle {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .subcategory-grid {
+        grid-template-columns: 1fr;
+    }
     .modal-content {
         grid-template-columns: 1fr;
     }
 }
-
 
