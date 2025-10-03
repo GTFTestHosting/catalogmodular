@@ -101,8 +101,8 @@ input:checked + .slider:before {
 .catalog-container {
     padding: 20px;
     flex-grow: 1; 
-    /* REMOVED: The display:flex and flex-direction properties have been removed */
-    /* This allows child elements to behave as normal block elements */
+    display: flex; /* ADD THIS BACK: Makes this a flex container */
+    flex-direction: column; /* To correctly manage its children's height */
 }
 
 /* This is for the main, vertically stacked categories */
@@ -122,8 +122,8 @@ input:checked + .slider:before {
     /* Make all subsequent tile rows expand to fill vertical space */
     grid-auto-rows: 1fr;
     gap: 20px;
-    /* This tells the grid to grow and fill the .catalog-container */
-    height: 100%; /* Use height instead of flex-grow */
+    /* This tells the grid to expand vertically to fill its parent */
+    flex-grow: 1;
 }
 
 /* This is for the final product tiles view */
