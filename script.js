@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             items.forEach(item => {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
-                tile.style.backgroundImage = `url(${item.image})`;
+                tile.style.backgroundImage=uˋrl("{item.image}")`;
                 tile.innerHTML = `<h2>${item.name}</h2>`;
                 
                 tile.onclick = () => {
