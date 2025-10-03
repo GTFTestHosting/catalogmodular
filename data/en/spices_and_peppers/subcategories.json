@@ -13,7 +13,7 @@
     },
     {
         "name": "Nuts, Seeds, & More",
-        "image": "images/category-banners/Spices-Subcat-Banner.jpg",
+        "image": "images/category-banners/Nuts-and-More-Banner.jpg",
         "type": "products",
         "dataFile": "data/en/spices_and_peppers/nuts_seeds/products.json"
     }
