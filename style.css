@@ -40,7 +40,7 @@ main {
     color: #666;
 }
 
-/* NEW: Language Toggle Styles */
+/* Language Toggle Styles */
 .lang-toggle {
     display: flex;
     align-items: center;
@@ -101,8 +101,8 @@ input:checked + .slider:before {
 .catalog-container {
     padding: 20px;
     flex-grow: 1; 
-    display: flex; /* ADD THIS BACK: Makes this a flex container */
-    flex-direction: column; /* To correctly manage its children's height */
+    /* REMOVED: display:flex and flex-direction. This is the key fix. */
+    /* By making this a standard block container, we remove the sizing conflict. */
 }
 
 /* This is for the main, vertically stacked categories */
@@ -115,15 +115,13 @@ input:checked + .slider:before {
 /* This is for the subcategory tiles view */
 .subcategory-grid {
     display: grid;
-    /* The flexible, modular column definition */
+    /* The flexible, modular column definition will now work correctly */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* The button row will have its natural height */
     grid-template-rows: auto; 
-    /* Make all subsequent tile rows expand to fill vertical space */
     grid-auto-rows: 1fr;
     gap: 20px;
-    /* This tells the grid to expand vertically to fill its parent */
-    flex-grow: 1;
+    /* Explicitly set height to fill its parent container */
+    height: 100%;
 }
 
 /* This is for the final product tiles view */
@@ -177,7 +175,7 @@ input:checked + .slider:before {
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-block; /* Prevents it from stretching full width */
+    display: inline-block; 
     width: auto;
 }
 
