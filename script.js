@@ -4,11 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('product-modal');
     const closeModal = document.querySelector('.close-button');
 
+    // Navigation history to handle the "Back" button functionality
     let navigationHistory = [];
 
+    // Fetches and displays a list of categories (or sub-categories)
     async function displayCategoryLevel(filePath) {
         mainCategoriesContainer.classList.add('hidden');
-        subCategoriesContainer.className = 'subcategory-grid';
+        subCategoriesContainer.classList.remove('hidden');
+        subCategoriesContainer.className = 'subcategory-grid'; // Use the subcategory layout
         subCategoriesContainer.innerHTML = '<h2>Loading...</h2>';
 
         try {
@@ -16,21 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Could not load data.');
             const items = await response.json();
 
-            subCategoriesContainer.innerHTML = '';
+            subCategoriesContainer.innerHTML = ''; // Clear loading
 
+            // Add back button only if there is history
             if (navigationHistory.length > 0) {
-                const backButton = createBackButton();
-                subCategoriesContainer.appendChild(backButton);
+                const backButtonContainer = createBackButton();
+                subCategoriesContainer.appendChild(backButtonContainer);
             }
 
             items.forEach(item => {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
-                tile.style.backgroundImage=uˋrl("{item.image}")`;
+                // FIX: Added quotes around the image URL to handle special characters
+                tile.style.backgroundImage = `url("${item.image}")`;
                 tile.innerHTML = `<h2>${item.name}</h2>`;
-                
+
                 tile.onclick = () => {
-                    navigationHistory.push(filePath);
+                    navigationHistory.push(filePath); // Save current level before moving to the next
                     if (item.type === 'subcategories') {
                         displayCategoryLevel(item.dataFile);
                     } else {
@@ -46,38 +51,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Fetches and displays the final list of products from a manifest file
     async function displayProductLevel(manifestFilePath) {
         mainCategoriesContainer.classList.add('hidden');
-        subCategoriesContainer.className = 'product-grid';
+        subCategoriesContainer.classList.remove('hidden');
+        subCategoriesContainer.className = 'product-grid'; // Use the product layout
         subCategoriesContainer.innerHTML = '<h2>Loading...</h2>';
 
         try {
             const manifestResponse = await fetch(manifestFilePath);
-            if (!manifestResponse.ok) throw new Error('Could not load product manifest.');
-            const productPaths = await manifestResponse.json();
+            if (!manifestResponse.ok) throw new Error(`Could not load product manifest: ${manifestFilePath}`);
+            const productFiles = await manifestResponse.json();
 
-            subCategoriesContainer.innerHTML = '';
-            const backButton = createBackButton();
-            subCategoriesContainer.appendChild(backButton);
-
-            if (productPaths.length === 0) {
-                 subCategoriesContainer.innerHTML += `<p style="grid-column: 1 / -1; text-align: center;">No products in this category yet.</p>`;
-                 return;
-            }
-
-            const productPromises = productPaths.map(path =>
-                fetch(path).then(res => {
-                    if (!res.ok) throw new Error(`Failed to load product: ${path}`);
-                    return res.json();
-                })
-            );
-
+            // Fetch all individual product JSON files concurrently
+            const productPromises = productFiles.map(file => fetch(file).then(res => res.json()));
             const products = await Promise.all(productPromises);
+
+            subCategoriesContainer.innerHTML = ''; // Clear loading
+
+            // Always add a back button on the product level
+            const backButtonContainer = createBackButton();
+            subCategoriesContainer.appendChild(backButtonContainer);
+
+            if (products.length === 0) {
+                subCategoriesContainer.innerHTML += `<p style="grid-column: 1 / -1; text-align: center;">No products in this category yet.</p>`;
+            }
 
             products.forEach(product => {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
-                tile.style.backgroundImage = `url(${product.image})`;
+                // FIX: Added quotes around the image URL to handle special characters
+                tile.style.backgroundImage = `url("${product.image}")`;
                 tile.innerHTML = `<h2>${product.name}</h2>`;
                 tile.onclick = () => showProductDetails(product);
                 subCategoriesContainer.appendChild(tile);
@@ -89,17 +93,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function to create a styled "Back" button inside a container
     function createBackButton() {
-        const wrapper = document.createElement('div');
-        wrapper.style.gridColumn = '1 / -1';
+        const container = document.createElement('div');
+        container.style.gridColumn = '1 / -1'; // Ensure container spans the full width
+        
         const backButton = document.createElement('button');
         backButton.textContent = 'Back';
         backButton.className = 'back-button';
         backButton.onclick = goBack;
-        wrapper.appendChild(backButton);
-        return wrapper;
+        
+        container.appendChild(backButton);
+        return container;
     }
 
+    // Handles the "Back" button click
     function goBack() {
         const lastPath = navigationHistory.pop();
         if (lastPath) {
@@ -111,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Shows the product detail modal
     function showProductDetails(product) {
         modal.style.display = 'block';
         document.getElementById('modal-img').src = product.image;
@@ -120,12 +129,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
 
+    // Event listeners for closing the modal
     closeModal.onclick = () => { modal.style.display = 'none'; };
     window.onclick = (event) => { if (event.target == modal) { modal.style.display = 'none'; } };
 
+    // This is the main function that kicks everything off
     async function initializeCatalog() {
         navigationHistory = [];
-        subCategoriesContainer.className = 'hidden';
+        subCategoriesContainer.classList.add('hidden');
         mainCategoriesContainer.classList.remove('hidden');
         mainCategoriesContainer.innerHTML = '<h2>Loading...</h2>';
 
@@ -139,15 +150,16 @@ document.addEventListener('DOMContentLoaded', () => {
             categories.forEach(category => {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
-                tile.style.backgroundImage = `url(${category.image})`;
+                // FIX: Added quotes around the image URL to handle special characters
+                tile.style.backgroundImage = `url("${category.image}")`;
                 tile.innerHTML = `<h2>${category.name}</h2>`;
                 tile.onclick = () => {
-                     navigationHistory.push('data/categories.json');
-                     if (category.type === 'subcategories') {
+                    navigationHistory.push('data/categories.json');
+                    if (category.type === 'subcategories') {
                         displayCategoryLevel(category.dataFile);
-                     } else {
+                    } else {
                         displayProductLevel(category.dataFile);
-                     }
+                    }
                 };
                 mainCategoriesContainer.appendChild(tile);
             });
@@ -157,6 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Start the application
     initializeCatalog();
 });
-
