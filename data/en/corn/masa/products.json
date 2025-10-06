@@ -1,10 +1,10 @@
 [
-    "data/en/corn/taco/5lbs_masa_w.json",
-    "data/en/corn/taco/5lbs_masa_y.json",
-    "data/en/corn/taco/5lbs_masa_b.json",
-    "data/en/corn/taco/10lbs_masa_w.json",
-    "data/en/corn/taco/10lbs_masa_y.json",
-    "data/en/corn/taco/5lbs_masa_prep.json",
-    "data/en/corn/taco/5lbs_masa_unprep.json",
-    "data/en/corn/taco/5lbs_nixtamal.json"
+    "data/en/corn/masa/5lbs_masa_w.json",
+    "data/en/corn/masa/5lbs_masa_y.json",
+    "data/en/corn/masa/5lbs_masa_b.json",
+    "data/en/corn/masa/10lbs_masa_w.json",
+    "data/en/corn/masa/10lbs_masa_y.json",
+    "data/en/corn/masa/5lbs_masa_prep.json",
+    "data/en/corn/masa/5lbs_masa_unprep.json",
+    "data/en/corn/masa/5lbs_nixtamal.json"
 ]

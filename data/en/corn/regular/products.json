@@ -1,10 +1,10 @@
 [
-    "data/en/corn/taco/family_w.json",
-    "data/en/corn/taco/family_y.json",
-    "data/en/corn/taco/reg_5dz.json",
-    "data/en/corn/taco/fiesta_w.json",
-    "data/en/corn/taco/fiesta_y.json",
-    "data/en/corn/taco/90ct.11oz.json",
-    "data/en/corn/taco/10inch.json",
-    "data/en/corn/taco/6inch_personalized.json"
+    "data/en/corn/regular/family_w.json",
+    "data/en/corn/regular/family_y.json",
+    "data/en/corn/regular/reg_5dz.json",
+    "data/en/corn/regular/fiesta_w.json",
+    "data/en/corn/regular/fiesta_y.json",
+    "data/en/corn/regular/90ct.11oz.json",
+    "data/en/corn/regular/10inch.json",
+    "data/en/corn/regular/6inch_personalized.json"
 ]
