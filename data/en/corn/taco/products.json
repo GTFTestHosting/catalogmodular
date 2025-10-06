@@ -1,12 +1,15 @@
-[
-    "data/en/corn/taco/4w.json",
-    "data/en/corn/taco/4y.json",
-    "data/en/corn/taco/corina_w.json",
-    "data/en/corn/taco/corina_y.json",
-    "data/en/corn/taco/4.5w.json",
-    "data/en/corn/taco/4.5y.json",
-    "data/en/corn/taco/5w.json",
-    "data/en/corn/taco/5y.json",
-    "data/en/corn/taco/5.5w.json",
-    "data/en/corn/taco/5.5y.json"
-]
+{
+    "basePath": "data/en/corn/taco/",
+    "files": [
+        "4w.json",
+        "4y.json",
+        "corina_w.json",
+        "corina_y.json",
+        "4.5w.json",
+        "4.5y.json",
+        "5w.json",
+        "5y.json",
+        "5.5w.json",
+        "5.5y.json"
+    ]
+}

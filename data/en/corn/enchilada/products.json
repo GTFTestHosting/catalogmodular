@@ -1,6 +1,9 @@
-[
-    "data/en/corn/enchilada/enchilada_reg_w.json",
-    "data/en/corn/enchilada/enchilada_reg.json",
-    "data/en/corn/enchilada/enchilada_heavy_w.json",
-    "data/en/corn/enchilada/enchilada_heavy_y.json"
-]
+{
+    "basePath": "data/en/corn/enchilada/",
+    "files": [
+        "enchilada_reg_w.json",
+        "enchilada_reg.json",
+        "enchilada_heavy_w.json",
+        "enchilada_heavy_y.json"
+    ]
+}

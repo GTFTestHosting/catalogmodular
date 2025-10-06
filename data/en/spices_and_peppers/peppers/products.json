@@ -1,16 +1,19 @@
-[
-    "data/en/spices_and_peppers/peppers/guajillo.json",
-    "data/en/spices_and_peppers/peppers/arbol.json",
-    "data/en/spices_and_peppers/peppers/toasted_arbol.json",
-    "data/en/spices_and_peppers/peppers/japanese.json",
-    "data/en/spices_and_peppers/peppers/ancho.json",
-    "data/en/spices_and_peppers/peppers/california.json",
-    "data/en/spices_and_peppers/peppers/morita.json",
-    "data/en/spices_and_peppers/peppers/mulato.json",
-    "data/en/spices_and_peppers/peppers/nuevo_mex.json",
-    "data/en/spices_and_peppers/peppers/pasilla.json",
-    "data/en/spices_and_peppers/peppers/costeno.json",
-    "data/en/spices_and_peppers/peppers/puya.json",
-    "data/en/spices_and_peppers/peppers/piquin.json",
-    "data/en/spices_and_peppers/peppers/pepper_flakes.json"
-]
+{
+    "basePath": "data/en/spices_and_peppers/peppers/",
+    "files": [
+        "guajillo.json",
+        "arbol.json",
+        "toasted_arbol.json",
+        "japanese.json",
+        "ancho.json",
+        "california.json",
+        "morita.json",
+        "mulato.json",
+        "nuevo_mex.json",
+        "pasilla.json",
+        "costeno.json",
+        "puya.json",
+        "piquin.json",
+        "pepper_flakes.json"
+    ]
+}

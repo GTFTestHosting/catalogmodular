@@ -1,18 +1,21 @@
-[
-    "data/en/corn/chip/chip_reg_w.json",
-    "data/en/corn/chip/chip_reg_y.json",
-    "data/en/corn/chip/chip_heavy.json",
-    "data/en/corn/chip/chip_5dz_w.json",
-    "data/en/corn/chip/chip_5dz_red.json",
-    "data/en/corn/chip/chip_5dz_green.json",
-    "data/en/corn/chip/chip_5dz_blue.json",
-    "data/en/corn/chip/1054.json",    
-    "data/en/corn/chip/1060.json",
-    "data/en/corn/chip/1060s.json",
-    "data/en/corn/chip/1065.json",
-    "data/en/corn/chip/1066.json",
-    "data/en/corn/chip/1067.json",
-    "data/en/corn/chip/1087.json",
-    "data/en/corn/chip/1088.json",
-    "data/en/corn/chip/1099.json"
-]
+{
+    "basePath": "data/en/corn/chip/",
+    "files": [
+        "chip_reg_w.json",
+        "chip_reg_y.json",
+        "chip_heavy.json",
+        "chip_5dz_w.json",
+        "chip_5dz_red.json",
+        "chip_5dz_green.json",
+        "chip_5dz_blue.json",
+        "1054.json",
+        "1060.json",
+        "1060s.json",
+        "1065.json",
+        "1066.json",
+        "1067.json",
+        "1087.json",
+        "1088.json",
+        "1099.json"
+    ]
+}

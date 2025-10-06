@@ -1,10 +1,13 @@
-[
-    "data/en/corn/regular/family_w.json",
-    "data/en/corn/regular/family_y.json",
-    "data/en/corn/regular/reg_5dz.json",
-    "data/en/corn/regular/fiesta_w.json",
-    "data/en/corn/regular/fiesta_y.json",
-    "data/en/corn/regular/90ct.11oz.json",
-    "data/en/corn/regular/10inch.json",
-    "data/en/corn/regular/6inch_personalized.json"
-]
+{
+    "basePath": "data/en/corn/regular/",
+    "files": [
+        "family_w.json",
+        "family_y.json",
+        "reg_5dz.json",
+        "fiesta_w.json",
+        "fiesta_y.json",
+        "90ct.11oz.json",
+        "10inch.json",
+        "6inch_personalized.json"
+    ]
+}

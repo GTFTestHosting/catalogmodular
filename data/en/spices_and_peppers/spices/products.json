@@ -1,20 +1,23 @@
-[
-    "data/en/spices_and_peppers/spices/cumin.json",
-    "data/en/spices_and_peppers/spices/ground_cumin.json",
-    "data/en/spices_and_peppers/spices/bay_leaves.json",
-    "data/en/spices_and_peppers/spices/cayenne.json",
-    "data/en/spices_and_peppers/spices/clove.json",
-    "data/en/spices_and_peppers/spices/whole_black_pepper.json",
-    "data/en/spices_and_peppers/spices/cinnamon.json",
-    "data/en/spices_and_peppers/spices/garlic_salt.json",
-    "data/en/spices_and_peppers/spices/granulated_garlic.json",
-    "data/en/spices_and_peppers/spices/granulated_onion.json",
-    "data/en/spices_and_peppers/spices/ground_black_pepper.json",
-    "data/en/spices_and_peppers/spices/ground_white_pepper.json",
-    "data/en/spices_and_peppers/spices/ground_california.json",
-    "data/en/spices_and_peppers/spices/paprika.json",
-    "data/en/spices_and_peppers/spices/oregano.json",
-    "data/en/spices_and_peppers/spices/parsley.json",
-    "data/en/spices_and_peppers/spices/minced_onion.json",
-    "data/en/spices_and_peppers/spices/star_anise.json"
-]
+{
+    "basePath": "data/en/spices_and_peppers/spices/",
+    "files": [
+        "cumin.json",
+        "ground_cumin.json",
+        "bay_leaves.json",
+        "cayenne.json",
+        "clove.json",
+        "whole_black_pepper.json",
+        "cinnamon.json",
+        "garlic_salt.json",
+        "granulated_garlic.json",
+        "granulated_onion.json",
+        "ground_black_pepper.json",
+        "ground_white_pepper.json",
+        "ground_california.json",
+        "paprika.json",
+        "oregano.json",
+        "parsley.json",
+        "minced_onion.json",
+        "star_anise.json"
+    ]
+}

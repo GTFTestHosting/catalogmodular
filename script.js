@@ -10,12 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLanguage = 'en';
     let translations = {};
     let navigationHistory = [];
-    let currentViewFunction = null; // Remembers the last view to refresh it
+    let currentViewFunction = null; 
     let currentViewPath = '';
 
     // ---CORE TRANSLation FUNCTIONS---
 
-    // Loads a language JSON file from the /lang/ directory
     async function loadLanguage(lang) {
         const response = await fetch(`lang/${lang}.json`);
         translations = await response.json();
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         applyStaticTranslations();
     }
 
-    // Applies translations to static text on the page
     function applyStaticTranslations() {
         document.querySelectorAll('[data-lang-key]').forEach(elem => {
             const key = elem.getAttribute('data-lang-key');
@@ -35,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---DYNAMIC CONTENT DISPLAY FUNCTIONS---
 
-    // Displays a level of categories (handles main and sub-categories)
     async function displayCategoryLevel(filePath) {
         currentViewFunction = () => displayCategoryLevel(filePath);
         currentViewPath = filePath;
@@ -58,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 tile.style.backgroundImage = `url("${item.image}")`;
-                tile.innerHTML = `<h2>${item.name}</h2>`; // Name comes from translated JSON
+                tile.innerHTML = `<h2>${item.name}</h2>`; 
                 tile.onclick = () => {
                     navigationHistory.push(filePath);
                     const nextPath = item.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
@@ -76,7 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Displays the final product grid
+    // --- THIS IS THE UPDATED FUNCTION ---
+    // Displays the final product grid using the new manifest structure
     async function displayProductLevel(manifestFilePath) {
         currentViewFunction = () => displayProductLevel(manifestFilePath);
         currentViewPath = manifestFilePath;
@@ -87,12 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
         subCategoriesContainer.className = 'product-grid';
 
         try {
+            // 1. Fetch the manifest file
             const manifestResponse = await fetch(manifestFilePath);
-            const productFiles = await manifestResponse.json();
-            
-            const translatedProductFiles = productFiles.map(file => file.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`));
+            if (!manifestResponse.ok) throw new Error(`Could not load product manifest: ${manifestFilePath}`);
+            const manifest = await manifestResponse.json();
 
-            const productPromises = translatedProductFiles.map(file => fetch(file).then(res => res.json()));
+            // 2. Get the base path and the list of filenames
+            const basePath = manifest.basePath;
+            const files = manifest.files;
+
+            // 3. Construct the full path for each file and fetch them all
+            const productPromises = files.map(file => fetch(basePath + file).then(res => res.json()));
             const products = await Promise.all(productPromises);
 
             subCategoriesContainer.innerHTML = '';
@@ -155,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const newLang = langToggle.checked ? 'es' : 'en';
         await loadLanguage(newLang);
         
-        // Refresh the current view with the new language
         if (currentViewFunction) {
             const translatedPath = currentViewPath.replace('data/en/', `data/${newLang}/`).replace('data/es/', `data/${newLang}/`);
             if (currentViewPath.endsWith('categories.json')) {
