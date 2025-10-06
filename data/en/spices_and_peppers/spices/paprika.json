@@ -1,7 +1,7 @@
   {
     "name": "Paprika",
-    "image": "images/spices/reg_spices/Paprika.png",
+    "image": "images/spices/reg-spices/Paprika.png",
     "description": "Sweet, smoky and mild. Low spice. Used in stews, adobos, and rubs.",
-    "specs": "Powdered form, packed in oz. or lbs.",
+    "specs": "Powdered form, packaged in oz. or lbs.",
     "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
   }

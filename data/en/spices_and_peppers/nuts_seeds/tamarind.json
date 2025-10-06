@@ -1,7 +1,7 @@
   {
     "name": "Tamarind",
-    "image": "images/spices/reg_spices/Tamarindo.png",
+    "image": "images/spices/reg-spices/Tamarindo.png",
     "description": "Tangy, sour-sweet pulp. Used in aguas frescas, candies, and sauces.",
-    "specs": "Whole pods, packed in oz. or lbs.",
+    "specs": "Whole pods, packaged in oz. or lbs.",
     "shipping": "Weight: 2 lbs. | 5 lbs."
   }

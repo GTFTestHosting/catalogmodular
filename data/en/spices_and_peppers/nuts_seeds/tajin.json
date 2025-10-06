@@ -1,7 +1,7 @@
 {
   "name": "Tajin",
-  "image": "images/spices/reg_spices/Tajin.png",
+  "image": "images/spices/reg-spices/Tajin.png",
   "description": "Zesty blend of chile, lime, and salt. Tangy and mildly spicy. Sprinkled on fruits, snacks, and drinks like micheladas and mangonadas.",
-  "specs": "Powdered form, available in oz. or lbs.",
+  "specs": "Powdered form, packaged in oz. or lbs.",
   "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
 }
