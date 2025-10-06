@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentViewFunction = null; 
     let currentViewPath = '';
 
-    // ---CORE TRANSLation FUNCTIONS---
+    // ---CORE TRANSLATION FUNCTIONS---
 
     async function loadLanguage(lang) {
         const response = await fetch(`lang/${lang}.json`);
@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const nextPath = item.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
                     if (item.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
-                        // Preload the next level's images
                         preloadSubcategoryImages(nextPath);
                     } else {
                         displayProductLevel(nextPath);
@@ -98,10 +97,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             products.forEach(product => {
                 const tile = document.createElement('div');
-                tile.className = 'tile';
-                tile.style.backgroundImage = `url("${product.image}")`;
-                tile.innerHTML = `<h2>${product.name}</h2>`;
-                tile.onclick = () => showProductDetails(product);
+
+                if (product.type === 'promo-panel') {
+                    // It's a special promo panel
+                    tile.className = 'promo-panel';
+                    if (product.style) {
+                        tile.classList.add(`promo-${product.style}`);
+                    }
+                    if (product.backgroundColor) tile.style.backgroundColor = product.backgroundColor;
+                    if (product.textColor) tile.style.color = product.textColor;
+                    
+                    let content = '';
+                    if (product.title) content += `<h3>${product.title}</h3>`;
+                    if (product.text) content += `<p>${product.text}</p>`;
+                    tile.innerHTML = content;
+
+                } else {
+                    // It's a regular product tile
+                    tile.className = 'tile';
+                    tile.style.backgroundImage = `url("${product.image}")`;
+                    tile.innerHTML = `<h2>${product.name}</h2>`;
+                    tile.onclick = () => showProductDetails(product);
+                }
+                
                 subCategoriesContainer.appendChild(tile);
             });
         } catch (error) {
@@ -110,9 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // --- NEW PRELOADING FUNCTIONS ---
+    // --- PRELOADING FUNCTIONS ---
 
-    // Fetches a subcategory file and preloads images for all product lists within it
     async function preloadSubcategoryImages(subcategoryFilePath) {
         try {
             const response = await fetch(subcategoryFilePath);
@@ -129,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Preloads all images listed in a given product manifest file
     async function preloadImagesForManifest(manifestFilePath) {
         try {
             const manifestResponse = await fetch(manifestFilePath);
@@ -170,13 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function goBack() {
         const lastPath = navigationHistory.pop();
         if (lastPath) {
-            // This is the fix: We get the filename from the path.
-            const pathSegments = lastPath.split('/');
-            const fileName = pathSegments[pathSegments.length - 1];
-
-            // Now we check if the filename is *exactly* 'categories.json'.
-            // This correctly differentiates it from 'subcategories.json'.
-            if (fileName === 'categories.json') {
+            // Check if the path is the root categories file
+            if (lastPath === `data/${currentLanguage}/categories.json`) {
                 initializeCatalog();
             } else {
                 displayCategoryLevel(lastPath);
@@ -244,7 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const nextPath = category.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
                     if (category.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
-                        // Preload the next level's images
                         preloadSubcategoryImages(nextPath);
                     } else {
                         displayProductLevel(nextPath);

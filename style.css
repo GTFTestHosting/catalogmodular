@@ -119,28 +119,30 @@ input:checked + .slider:before { transform: translateX(20px); }
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
+    /* NEW: This tells the grid to be smart about filling empty spots */
+    grid-auto-flow: dense;
 }
 
-/* --- The Tile (Most Important) --- */
+/* --- The Tile (Product Images) --- */
 .tile {
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 0; /* Padding is now handled by the content wrapper */
+    padding: 0;
     border-radius: 16px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     min-height: 280px;
     display: flex;
     box-shadow: var(--card-shadow);
-    overflow: hidden; /* Ensures gradient doesn't leak */
-    position: relative; /* For the overlay */
+    overflow: hidden;
+    position: relative;
 }
 .tile:hover {
     transform: translateY(-8px);
     box-shadow: var(--card-shadow-hover);
 }
-.tile::after { /* The modern gradient overlay */
+.tile::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -154,11 +156,52 @@ input:checked + .slider:before { transform: translateX(20px); }
     font-weight: 600;
     width: 100%;
     text-align: left;
-    align-self: flex-end; /* Pushes text to the bottom */
+    align-self: flex-end;
     z-index: 1;
     line-height: 1.4;
-    background: none; /* Remove the old solid background */
+    background: none;
 }
+
+/* --- NEW: Promo Panel Styles --- */
+.promo-panel {
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 280px; /* Match the tile height by default */
+}
+.promo-panel:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--card-shadow-hover);
+}
+.promo-panel h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+.promo-panel p {
+    font-size: 1rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0;
+}
+
+/* --- NEW: Promo Panel Size Modifiers --- */
+.promo-panel.promo-wide {
+    grid-column: span 2;
+}
+.promo-panel.promo-tall {
+    grid-row: span 2;
+}
+.promo-panel.promo-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
 
 .hidden { display: none; }
 
@@ -210,7 +253,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     z-index: 100;
     inset: 0;
     overflow: auto;
-    background-color: rgba(31, 41, 55, 0.7); /* Darker, modern backdrop */
+    background-color: rgba(31, 41, 55, 0.7);
     backdrop-filter: blur(4px);
 }
 .modal-content {
@@ -281,6 +324,10 @@ input:checked + .slider:before { transform: translateX(20px); }
         grid-template-columns: 1fr;
         padding: 24px;
         margin: 10% auto;
+    }
+    .promo-panel.promo-wide,
+    .promo-panel.promo-large {
+        grid-column: span 1; /* Disable spanning on mobile to prevent layout breaks */
     }
 }
 
