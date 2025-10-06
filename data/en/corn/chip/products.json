@@ -1,3 +1,18 @@
 [
-    "data/en/corn/taco/4w.json"
+    "data/en/corn/taco/chip_reg_w.json",
+    "data/en/corn/taco/chip_reg_y.json",
+    "data/en/corn/taco/chip_heavy.json",
+    "data/en/corn/taco/chip_5dz_w.json",
+    "data/en/corn/taco/chip_5dz_red.json",
+    "data/en/corn/taco/chip_5dz_green.json",
+    "data/en/corn/taco/chip_5dz_blue.json",
+    "data/en/corn/taco/1054.json",    
+    "data/en/corn/taco/1060.json",
+    "data/en/corn/taco/1060s.json",
+    "data/en/corn/taco/1065.json",
+    "data/en/corn/taco/1066.json",
+    "data/en/corn/taco/1067.json",
+    "data/en/corn/taco/1087.json",
+    "data/en/corn/taco/1088.json",
+    "data/en/corn/taco/1099.json"
 ]
