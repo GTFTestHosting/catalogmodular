@@ -26,13 +26,15 @@ main {
     flex-direction: column;
 }
 
-/* --- Header --- */
+/* --- Header Styles --- */
 .site-header {
     background-color: #ffffff;
     padding: 24px 40px;
     border-bottom: 1px solid var(--border-color);
     display: flex; 
     align-items: center;
+    /* Add a transition for smoother resizing */
+    transition: padding 0.3s ease;
 }
 .header-content {
     display: flex;
@@ -335,8 +337,26 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 /* --- Responsive Overrides --- */
 @media (max-width: 768px) {
-    .site-header { padding: 16px 24px; }
+    /* UPDATED: Stack header items vertically on mobile for more space */
+    .site-header { 
+        padding: 16px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px; /* Add space between the brand and the toggle */
+    }
+    
+    .header-content {
+        /* No changes needed here, the parent controls the layout */
+    }
+    
+    /* UPDATED: Adjust toggle margin for the new stacked layout */
+    .lang-toggle {
+        margin-left: 0; /* Remove auto margin */
+        margin-top: 0;  /* Spacing is handled by the parent's 'gap' property */
+    }
+
     .catalog-container { padding: 24px; }
+    
     .back-button-container.is-floating {
         padding: 12px 24px;
         margin: 0 -24px 4px -24px;
