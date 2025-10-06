@@ -2,7 +2,7 @@
     {
         "name": "Corn Tortillas",
         "image": "images/category-banners/Corn-Banner.jpg",
-        "type": "products",
+        "type": "subcategories",
         "dataFile": "data/en/corn/subcategories.json" 
     },
     {
