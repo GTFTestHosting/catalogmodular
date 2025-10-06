@@ -15,13 +15,13 @@
         "name": "Tortillas for Enchiladas",
         "image": "images/category-banners/Spices-Subcat-Banner.jpg",
         "type": "products",
-        "dataFile": "data/en/corn/enchiladas/products.json"
+        "dataFile": "data/en/corn/enchilada/products.json"
     },
     {
         "name": "Chips",
         "image": "images/category-banners/Nuts-and-More-Banner.jpg",
         "type": "products",
-        "dataFile": "data/en/corn/chips/products.json"
+        "dataFile": "data/en/corn/chip/products.json"
     },
     {
         "name": "Masa",
