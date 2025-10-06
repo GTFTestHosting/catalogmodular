@@ -1,10 +1,23 @@
+/* --- Modern Resets & Global Styles --- */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #1f2937;
+    --primary-color: #4f46e5;
+    --border-color: #e5e7eb;
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --card-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+}
+
 body {
-    font-family: sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 main {
@@ -13,12 +26,11 @@ main {
     flex-direction: column;
 }
 
-/* Header Styles */
+/* --- Header --- */
 .site-header {
     background-color: #ffffff;
-    padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-bottom: 1px solid #ddd;
+    padding: 24px 40px;
+    border-bottom: 1px solid var(--border-color);
     display: flex; 
     align-items: center;
 }
@@ -32,261 +44,248 @@ main {
 }
 .brand-info h1 {
     margin: 0;
-    font-size: 1.8rem;
-    color: #333;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
 }
 .brand-info p {
     margin: 0;
-    color: #666;
+    color: #6b7280;
+    font-size: 0.9rem;
 }
 
-/* Language Toggle Styles */
+/* --- Language Toggle --- */
 .lang-toggle {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-left: auto; /* Pushes the toggle to the far right */
+    gap: 12px;
+    margin-left: auto;
 }
 .lang-toggle span {
-    font-weight: bold;
-    color: #555;
-    font-family: sans-serif;
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.9rem;
 }
 .switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 28px;
+    width: 44px;
+    height: 24px;
 }
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+.switch input { display: none; }
 .slider {
     position: absolute;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background-color: #ccc;
     transition: .4s;
+    border-radius: 24px;
 }
 .slider:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
-    left: 4px;
-    bottom: 4px;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
     background-color: white;
     transition: .4s;
-}
-input:checked + .slider {
-    background-color: #2196F3;
-}
-input:checked + .slider:before {
-    transform: translateX(22px);
-}
-.slider.round {
-    border-radius: 34px;
-}
-.slider.round:before {
     border-radius: 50%;
 }
+input:checked + .slider { background-color: var(--primary-color); }
+input:checked + .slider:before { transform: translateX(20px); }
 
-
-/* Catalog Container Styles */
+/* --- Catalog Containers --- */
 .catalog-container {
-    padding: 20px;
+    padding: 40px;
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
 }
-
-/* This is for the main, vertically stacked categories */
 .category-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
 }
-
-/* This is for the subcategory tiles view */
 .subcategory-grid {
     display: grid;
-    /* The flexible, modular column definition will now work correctly */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-template-rows: auto; 
     grid-auto-rows: 1fr;
-    gap: 20px;
-    /* Explicitly set height to fill its parent container */
+    gap: 24px;
     flex-grow: 1;
 }
-
-/* This is for the final product tiles view */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 24px;
 }
 
-
+/* --- The Tile (Most Important) --- */
 .tile {
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 0; /* Padding is now handled by the content wrapper */
+    border-radius: 16px;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    min-height: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 280px;
     display: flex;
-    align-items: flex-end;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: var(--card-shadow);
+    overflow: hidden; /* Ensures gradient doesn't leak */
+    position: relative; /* For the overlay */
 }
-
 .tile:hover {
-    transform: scale(1.02);
+    transform: translateY(-8px);
+    box-shadow: var(--card-shadow-hover);
 }
-
+.tile::after { /* The modern gradient overlay */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+    pointer-events: none;
+}
 .tile h2 {
     margin: 0;
-    font-size: 1.5rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 5px;
+    padding: 24px;
+    font-size: 1.25rem;
+    font-weight: 600;
     width: 100%;
-    text-align: center;
+    text-align: left;
+    align-self: flex-end; /* Pushes text to the bottom */
+    z-index: 1;
+    line-height: 1.4;
+    background: none; /* Remove the old solid background */
 }
 
-.hidden {
-    display: none;
-}
+.hidden { display: none; }
 
+/* --- Back Button --- */
 .back-button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 12px;
     border: none;
-    background-color: #333;
+    background-color: var(--primary-color);
     color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: var(--card-shadow);
     transition: background-color 0.3s ease, transform 0.3s ease;
     display: inline-block; 
     width: auto;
 }
-
 .back-button:hover {
-    background-color: #555;
-    transform: scale(1.02);
+    background-color: #4338ca;
+    transform: translateY(-2px);
 }
 
-/* Footer Styles */
+/* --- Footer --- */
 .site-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #222;
-    color: #ccc;
+    background-color: #fff;
+    border-top: 1px solid var(--border-color);
+    color: #6b7280;
     text-align: center;
-    padding: 20px;
+    padding: 40px 20px;
+    font-size: 0.9rem;
 }
-.site-footer p {
-    margin: 5px 0;
-}
+.site-footer p { margin: 5px 0; }
 .site-footer a {
-    color: #fff;
+    color: var(--primary-color);
     text-decoration: none;
+    font-weight: 500;
 }
-.site-footer a:hover {
-    text-decoration: underline;
-}
+.site-footer a:hover { text-decoration: underline; }
 
-/* Modal styles */
+/* --- Modal --- */
 .modal {
     display: none;
     position: fixed;
     z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     overflow: auto;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(31, 41, 55, 0.7); /* Darker, modern backdrop */
+    backdrop-filter: blur(4px);
 }
-
 .modal-content {
     position: relative;
-    background-color: #fefefe;
+    background-color: #ffffff;
     margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    padding: 32px;
+    width: 90%;
     max-width: 800px;
-    border-radius: 8px;
+    border-radius: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 32px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
-
 .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    color: #333;
-    font-size: 28px;
-    font-weight: bold;
+    top: 20px;
+    right: 20px;
+    color: #6b7280;
+    font-size: 24px;
     cursor: pointer;
     z-index: 10;
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 32px;
-    height: 32px;
+    background-color: var(--bg-color);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
 }
-
 .close-button:hover {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--border-color);
+    color: var(--text-color);
 }
-
 #modal-img {
     width: 100%;
-    border-radius: 8px;
+    height: auto;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+#modal-text h2 {
+    margin-top: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+#modal-text h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-top: 24px;
+}
+#modal-text p {
+    color: #6b7280;
+    line-height: 1.6;
 }
 
-/* Responsive styles for mobile */
+/* --- Responsive Overrides --- */
 @media (max-width: 768px) {
-    .header-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .lang-toggle {
-        margin-left: 0;
-        margin-top: 10px;
-    }
-    .subcategory-grid {
-        grid-template-columns: 1fr;
-    }
+    .site-header { padding: 16px 24px; }
+    .catalog-container { padding: 24px; }
+    .subcategory-grid, .product-grid { gap: 16px; }
+    .tile { min-height: 220px; }
     .modal-content {
         grid-template-columns: 1fr;
+        padding: 24px;
+        margin: 10% auto;
     }
 }
 
-/* NEW: Desktop-specific layout for subcategories */
 @media (min-width: 1024px) {
     .subcategory-grid {
-        /* This rule uses a percentage-based min-width for columns on large screens, */
-        /* which forces them to be relative to the parent and fill the space. */
-        /* A value of 30% allows for 3 columns with gaps. */
         grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     }
 }
