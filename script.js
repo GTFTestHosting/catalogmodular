@@ -73,8 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- THIS IS THE UPDATED FUNCTION ---
-    // Displays the final product grid using the new manifest structure
     async function displayProductLevel(manifestFilePath) {
         currentViewFunction = () => displayProductLevel(manifestFilePath);
         currentViewPath = manifestFilePath;
@@ -85,16 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
         subCategoriesContainer.className = 'product-grid';
 
         try {
-            // 1. Fetch the manifest file
             const manifestResponse = await fetch(manifestFilePath);
-            if (!manifestResponse.ok) throw new Error(`Could not load product manifest: ${manifestFilePath}`);
             const manifest = await manifestResponse.json();
-
-            // 2. Get the base path and the list of filenames
             const basePath = manifest.basePath;
             const files = manifest.files;
 
-            // 3. Construct the full path for each file and fetch them all
             const productPromises = files.map(file => fetch(basePath + file).then(res => res.json()));
             const products = await Promise.all(productPromises);
 
@@ -128,12 +121,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return container;
     }
 
+    // --- THIS IS THE CORRECTED FUNCTION ---
     function goBack() {
+        // 1. Get the path of the previous screen from our history.
         const lastPath = navigationHistory.pop();
+
+        // 2. Make sure there is a path to go back to.
         if (lastPath) {
+            // 3. Check if the path we want to go back to is the main menu file.
+            // The endsWith check correctly identifies the top-level categories file.
             if (lastPath.endsWith('categories.json')) {
+                // If it is, call the function to display the main menu.
                 initializeCatalog();
             } else {
+                // If it's any other file, it must be a subcategory level.
+                // Call the function to display that specific subcategory screen.
                 displayCategoryLevel(lastPath);
             }
         }
@@ -163,7 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentViewPath.endsWith('categories.json')) {
                  initializeCatalog();
             } else {
-                currentViewFunction = () => (subCategoriesContainer.className === 'product-grid' ? displayProductLevel(translatedPath) : displayCategoryLevel(translatedPath));
+                // This logic determines which function to call to refresh the view
+                const isProductView = subCategoriesContainer.className === 'product-grid';
+                currentViewFunction = () => (isProductView ? displayProductLevel(translatedPath) : displayCategoryLevel(translatedPath));
                 currentViewFunction();
             }
         }
@@ -173,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.onclick = (event) => { if (event.target == modal) { modal.style.display = 'none'; } };
 
     async function initializeCatalog() {
-        navigationHistory = [];
+        navigationHistory = []; // Reset history only for the main menu
         const categoriesPath = `data/${currentLanguage}/categories.json`;
         currentViewFunction = initializeCatalog;
         currentViewPath = categoriesPath;
