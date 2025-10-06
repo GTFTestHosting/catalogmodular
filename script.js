@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const nextPath = item.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
                     if (item.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
+                        // Preload the next level's images
+                        preloadSubcategoryImages(nextPath);
                     } else {
                         displayProductLevel(nextPath);
                     }
@@ -107,6 +109,50 @@ document.addEventListener('DOMContentLoaded', () => {
             subCategoriesContainer.innerHTML = `<p>Error loading products.</p>`;
         }
     }
+    
+    // --- NEW PRELOADING FUNCTIONS ---
+
+    // Fetches a subcategory file and preloads images for all product lists within it
+    async function preloadSubcategoryImages(subcategoryFilePath) {
+        try {
+            const response = await fetch(subcategoryFilePath);
+            if (!response.ok) return;
+            const subItems = await response.json();
+            subItems.forEach(item => {
+                if (item.type === 'products') {
+                    const translatedDataFile = item.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
+                    preloadImagesForManifest(translatedDataFile);
+                }
+            });
+        } catch (error) {
+            console.warn(`Could not preload subcategory images for ${subcategoryFilePath}`, error);
+        }
+    }
+
+    // Preloads all images listed in a given product manifest file
+    async function preloadImagesForManifest(manifestFilePath) {
+        try {
+            const manifestResponse = await fetch(manifestFilePath);
+            if (!manifestResponse.ok) return;
+            const manifest = await manifestResponse.json();
+
+            const basePath = manifest.basePath;
+            const files = manifest.files;
+
+            const productPromises = files.map(file => fetch(basePath + file).then(res => res.json()));
+            const products = await Promise.all(productPromises);
+
+            products.forEach(product => {
+                if (product.image) {
+                    const img = new Image();
+                    img.src = product.image;
+                }
+            });
+        } catch (error) {
+            console.warn(`Preloading failed for ${manifestFilePath}:`, error);
+        }
+    }
+
 
     // ---HELPER FUNCTIONS---
 
@@ -121,21 +167,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return container;
     }
 
-    // --- THIS IS THE CORRECTED FUNCTION ---
     function goBack() {
-        // 1. Get the path of the previous screen from our history.
         const lastPath = navigationHistory.pop();
-
-        // 2. Make sure there is a path to go back to.
         if (lastPath) {
-            // 3. Check if the path we want to go back to is the main menu file.
-            // The endsWith check correctly identifies the top-level categories file.
-            if (lastPath.endsWith('categories.json')) {
-                // If it is, call the function to display the main menu.
+            // This is the fix: We get the filename from the path.
+            const pathSegments = lastPath.split('/');
+            const fileName = pathSegments[pathSegments.length - 1];
+
+            // Now we check if the filename is *exactly* 'categories.json'.
+            // This correctly differentiates it from 'subcategories.json'.
+            if (fileName === 'categories.json') {
                 initializeCatalog();
             } else {
-                // If it's any other file, it must be a subcategory level.
-                // Call the function to display that specific subcategory screen.
                 displayCategoryLevel(lastPath);
             }
         }
@@ -165,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentViewPath.endsWith('categories.json')) {
                  initializeCatalog();
             } else {
-                // This logic determines which function to call to refresh the view
                 const isProductView = subCategoriesContainer.className === 'product-grid';
                 currentViewFunction = () => (isProductView ? displayProductLevel(translatedPath) : displayCategoryLevel(translatedPath));
                 currentViewFunction();
@@ -177,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.onclick = (event) => { if (event.target == modal) { modal.style.display = 'none'; } };
 
     async function initializeCatalog() {
-        navigationHistory = []; // Reset history only for the main menu
+        navigationHistory = [];
         const categoriesPath = `data/${currentLanguage}/categories.json`;
         currentViewFunction = initializeCatalog;
         currentViewPath = categoriesPath;
@@ -202,6 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const nextPath = category.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
                     if (category.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
+                        // Preload the next level's images
+                        preloadSubcategoryImages(nextPath);
                     } else {
                         displayProductLevel(nextPath);
                     }
