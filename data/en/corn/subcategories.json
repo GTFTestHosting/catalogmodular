@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Tortillas for Tacos",
+        "image": "images/category-banners/Pepper-Subcat-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/corn/taco/products.json"
+    },
+    {
+        "name": "Regular Tortillas",
+        "image": "images/category-banners/Spices-Subcat-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/corn/regular/products.json"
+    },
+    {
+        "name": "Tortillas for Enchiladas",
+        "image": "images/category-banners/Spices-Subcat-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/corn/enchiladas/products.json"
+    },
+    {
+        "name": "Chips",
+        "image": "images/category-banners/Nuts-and-More-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/corn/chips/products.json"
+    },
+    {
+        "name": "Masa",
+        "image": "images/category-banners/Spices-Subcat-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/corn/masa/products.json"
+    }
+]
