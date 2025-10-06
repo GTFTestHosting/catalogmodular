@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLanguage = 'en';
     let translations = {};
     let navigationHistory = [];
-    let currentViewFunction = null; 
+    let currentViewFunction = null;
     let currentViewPath = '';
 
     // ---CORE TRANSLATION FUNCTIONS---
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 tile.style.backgroundImage = `url("${item.image}")`;
-                tile.innerHTML = `<h2>${item.name}</h2>`; 
+                tile.innerHTML = `<h2>${item.name}</h2>`;
                 tile.onclick = () => {
                     navigationHistory.push(filePath);
                     const nextPath = item.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
@@ -99,27 +99,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tile = document.createElement('div');
 
                 if (product.type === 'promo-panel') {
-                    // It's a special promo panel
                     tile.className = 'promo-panel';
                     if (product.style) {
                         tile.classList.add(`promo-${product.style}`);
                     }
                     if (product.backgroundColor) tile.style.backgroundColor = product.backgroundColor;
                     if (product.textColor) tile.style.color = product.textColor;
-                    
+
                     let content = '';
                     if (product.title) content += `<h3>${product.title}</h3>`;
                     if (product.text) content += `<p>${product.text}</p>`;
                     tile.innerHTML = content;
 
                 } else {
-                    // It's a regular product tile
                     tile.className = 'tile';
                     tile.style.backgroundImage = `url("${product.image}")`;
                     tile.innerHTML = `<h2>${product.name}</h2>`;
                     tile.onclick = () => showProductDetails(product);
                 }
-                
+
                 subCategoriesContainer.appendChild(tile);
             });
         } catch (error) {
@@ -127,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             subCategoriesContainer.innerHTML = `<p>Error loading products.</p>`;
         }
     }
-    
+
     // --- PRELOADING FUNCTIONS ---
 
     async function preloadSubcategoryImages(subcategoryFilePath) {
@@ -174,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createBackButton() {
         const container = document.createElement('div');
+        container.className = 'back-button-container'; // Class for sticky behavior
         container.style.gridColumn = '1 / -1';
         const backButton = document.createElement('button');
         backButton.textContent = translations.backButton || 'Back';
@@ -186,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function goBack() {
         const lastPath = navigationHistory.pop();
         if (lastPath) {
-            // Check if the path is the root categories file
             if (lastPath === `data/${currentLanguage}/categories.json`) {
                 initializeCatalog();
             } else {
@@ -198,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLoadingMessage(container) {
         container.innerHTML = `<h2>${translations.loading || 'Loading...'}</h2>`;
     }
-    
+
     function showProductDetails(product) {
         modal.style.display = 'block';
         document.getElementById('modal-img').src = product.image;
@@ -207,17 +205,32 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-specs').textContent = product.specs;
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
-    
+
     // ---INITIALIZATION AND EVENT LISTENERS---
-    
+
+    // NEW: Add a scroll listener to the window to handle the floating back button
+    function handleScroll() {
+        const backButtonContainer = document.querySelector('.back-button-container');
+        if (backButtonContainer) {
+            // Add the floating class when user scrolls down more than a small amount (e.g., 20px)
+            if (window.scrollY > 20) {
+                backButtonContainer.classList.add('is-floating');
+            } else {
+                backButtonContainer.classList.remove('is-floating');
+            }
+        }
+    }
+    window.addEventListener('scroll', handleScroll);
+
+
     langToggle.addEventListener('change', async () => {
         const newLang = langToggle.checked ? 'es' : 'en';
         await loadLanguage(newLang);
-        
+
         if (currentViewFunction) {
             const translatedPath = currentViewPath.replace('data/en/', `data/${newLang}/`).replace('data/es/', `data/${newLang}/`);
             if (currentViewPath.endsWith('categories.json')) {
-                 initializeCatalog();
+                initializeCatalog();
             } else {
                 const isProductView = subCategoriesContainer.className === 'product-grid';
                 currentViewFunction = () => (isProductView ? displayProductLevel(translatedPath) : displayCategoryLevel(translatedPath));
@@ -273,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadLanguage(currentLanguage);
         initializeCatalog();
     }
-    
+
     startApp();
 });
 

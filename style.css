@@ -119,7 +119,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
-    /* NEW: This tells the grid to be smart about filling empty spots */
     grid-auto-flow: dense;
 }
 
@@ -162,7 +161,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     background: none;
 }
 
-/* --- NEW: Promo Panel Styles --- */
+/* --- Promo Panel Styles --- */
 .promo-panel {
     border-radius: 16px;
     padding: 24px;
@@ -172,7 +171,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     align-items: flex-start;
     box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-height: 280px; /* Match the tile height by default */
+    min-height: 280px; 
 }
 .promo-panel:hover {
     transform: translateY(-8px);
@@ -190,7 +189,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     margin: 0;
 }
 
-/* --- NEW: Promo Panel Size Modifiers --- */
+/* --- Promo Panel Size Modifiers --- */
 .promo-panel.promo-wide {
     grid-column: span 2;
 }
@@ -201,7 +200,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     grid-column: span 2;
     grid-row: span 2;
 }
-
 
 .hidden { display: none; }
 
@@ -224,6 +222,27 @@ input:checked + .slider:before { transform: translateX(20px); }
     background-color: #4338ca;
     transform: translateY(-2px);
 }
+
+/* --- Container for the sticky back button --- */
+.back-button-container {
+    position: sticky;
+    top: -1px; /* Prevents a 1px gap on some browsers */
+    z-index: 50;
+    padding: 20px 0;
+    margin-bottom: -16px; /* Overlap the grid gap for a seamless look */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+}
+
+/* --- Style for when the button becomes "floating" on scroll --- */
+.back-button-container.is-floating {
+    background-color: rgba(248, 249, 250, 0.85); /* Semi-transparent background */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    padding: 16px 40px; /* Match the main container's horizontal padding */
+    margin: 0 -40px 4px -40px; /* Stretch across the full width */
+}
+
 
 /* --- Footer --- */
 .site-footer {
@@ -318,6 +337,10 @@ input:checked + .slider:before { transform: translateX(20px); }
 @media (max-width: 768px) {
     .site-header { padding: 16px 24px; }
     .catalog-container { padding: 24px; }
+    .back-button-container.is-floating {
+        padding: 12px 24px;
+        margin: 0 -24px 4px -24px;
+    }
     .subcategory-grid, .product-grid { gap: 16px; }
     .tile { min-height: 220px; }
     .modal-content {
@@ -327,7 +350,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
     .promo-panel.promo-wide,
     .promo-panel.promo-large {
-        grid-column: span 1; /* Disable spanning on mobile to prevent layout breaks */
+        grid-column: span 1;
     }
 }
 
