@@ -223,8 +223,14 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (item.type === 'products') {
                 const manifestResponse = await fetch(item.dataFile);
                 const manifest = await manifestResponse.json();
-                const productPromises = manifest.files.map(file => fetch(manifest.basePath + file).then(res => res.json()));
-                item.products = await Promise.all(productPromises);
+                // THIS IS THE FIX: Check if manifest and manifest.files exist before trying to map over it.
+                if (manifest && Array.isArray(manifest.files)) {
+                    const productPromises = manifest.files.map(file => fetch(manifest.basePath + file).then(res => res.json()));
+                    item.products = await Promise.all(productPromises);
+                } else {
+                    // If the manifest is empty or malformed, treat this as an empty category.
+                    item.products = [];
+                }
             }
             return item;
         }));
