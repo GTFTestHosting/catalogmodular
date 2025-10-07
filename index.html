@@ -10,10 +10,10 @@
 
     <header class="site-header">
         <div class="header-content">
-            <img src="https://via.placeholder.com/150x50.png?text=Your+Logo" alt="Company Logo" class="logo">
+            <img src="images/GTF-LOGO-BLACK.png" alt="Company Logo" class="logo">
             <div class="brand-info">
-                <h1 data-lang-key="companyTitle">Your Company</h1>
-                <p data-lang-key="companySubtitle">High-Quality Products & Solutions</p>
+                <h1 data-lang-key="companyTitle">Graciana Tortilla Factory</h1>
+                <p data-lang-key="companySubtitle">2025 Product Catalog</p>
             </div>
         </div>
         <div class="lang-toggle">
@@ -24,7 +24,7 @@
             </label>
             <span>ES</span>
         </div>
-        <button id="print-button" class="print-button">Print Catalog</button>
+        <button id="print-button" class="print-button" data-lang-key="printButton">Print Catalog</button>
     </header>
 
     <main>
@@ -32,9 +32,7 @@
             <div id="main-categories" class="category-container"></div>
             <div id="sub-categories"></div>
         </div>
-        
-        <div id="print-view" class="print-container"></div>
-        
+
         <div id="product-modal" class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
@@ -50,10 +48,13 @@
             </div>
         </div>
     </main>
-    
+
+    <!-- The print container is now a direct child of the body, outside of main -->
+    <div id="print-view" class="print-container"></div>
+
     <footer class="site-footer">
-        <p data-lang-key="footerRights">&copy; 2025 Your Company Name. All Rights Reserved.</p>
-        <p><span data-lang-key="footerContact">Contact us:</span> <a href="mailto:info@yourcompany.com">info@yourcompany.com</a></p>
+        <p data-lang-key="footerRights">&copy; 2025 Graciana Tortilla Factory. All Rights Reserved.</p>
+        <p><span data-lang-key="footerContact">Contact us:</span> <a href="mailto:support@gracianatortilla.com">support@gracianatortilla.com</a></p>
     </footer>
 
     <script src="script.js" defer></script>

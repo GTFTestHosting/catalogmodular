@@ -34,7 +34,6 @@ main {
     display: flex; 
     align-items: center;
     flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-    transition: padding 0.3s ease;
 }
 .header-content {
     display: flex;
@@ -56,7 +55,7 @@ main {
     font-size: 0.9rem;
 }
 
-/* --- Language Toggle Styles --- */
+/* --- Language Toggle & Print Button --- */
 .lang-toggle {
     display: flex;
     align-items: center;
@@ -97,7 +96,6 @@ main {
 input:checked + .slider { background-color: var(--primary-color); }
 input:checked + .slider:before { transform: translateX(20px); }
 
-/* --- Print Button --- */
 .print-button {
     margin-left: 20px;
     padding: 8px 16px;
@@ -145,9 +143,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
     grid-auto-flow: dense;
-}
-.print-container {
-    display: none;
 }
 
 /* --- The Tile (Product Images) --- */
@@ -218,12 +213,36 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 
 /* --- Promo Panel Size Modifiers --- */
-.promo-panel.promo-wide { grid-column: span 2; }
-.promo-panel.promo-tall { grid-row: span 2; }
-.promo-panel.promo-large { grid-column: span 2; grid-row: span 2; }
+.promo-panel.promo-wide {
+    grid-column: span 2;
+}
+.promo-panel.promo-tall {
+    grid-row: span 2;
+}
+.promo-panel.promo-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
 .hidden { display: none; }
 
 /* --- Back Button --- */
+.back-button-container {
+    position: sticky;
+    top: -1px;
+    z-index: 50;
+    padding: 20px 0;
+    margin-bottom: -16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+}
+.back-button-container.is-floating {
+    background-color: rgba(248, 249, 250, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    padding: 16px 40px;
+    margin: 0 -40px 4px -40px;
+}
 .back-button {
     padding: 12px 24px;
     cursor: pointer;
@@ -241,22 +260,6 @@ input:checked + .slider:before { transform: translateX(20px); }
 .back-button:hover {
     background-color: #4338ca;
     transform: translateY(-2px);
-}
-.back-button-container {
-    position: sticky;
-    top: -1px;
-    z-index: 50;
-    padding: 20px 0;
-    margin-bottom: -16px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, margin 0.3s ease;
-}
-.back-button-container.is-floating {
-    background-color: rgba(248, 249, 250, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    padding: 16px 40px;
-    margin: 0 -40px 4px -40px;
 }
 
 /* --- Footer --- */
@@ -331,9 +334,27 @@ input:checked + .slider:before { transform: translateX(20px); }
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
-#modal-text h2 { margin-top: 0; font-size: 1.75rem; font-weight: 700; }
-#modal-text h3 { font-size: 1rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-top: 24px; }
-#modal-text p { color: #6b7280; line-height: 1.6; }
+#modal-text h2 {
+    margin-top: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+#modal-text h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-top: 24px;
+}
+#modal-text p {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* --- Print Container --- */
+.print-container {
+    display: none;
+}
 
 /* --- Responsive Overrides --- */
 @media (max-width: 768px) {
@@ -341,12 +362,21 @@ input:checked + .slider:before { transform: translateX(20px); }
         padding: 16px 24px;
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
     }
-    .lang-toggle { margin-left: 0; }
-    .print-button { margin-left: 0; margin-top: 10px; }
+    .lang-toggle {
+        margin-left: 0;
+        margin-top: 16px;
+    }
+    .print-button {
+        margin-left: 0;
+        margin-top: 16px;
+        width: 100%;
+    }
     .catalog-container { padding: 24px; }
-    .back-button-container.is-floating { padding: 12px 24px; margin: 0 -24px 4px -24px; }
+    .back-button-container.is-floating {
+        padding: 12px 24px;
+        margin: 0 -24px 4px -24px;
+    }
     .subcategory-grid, .product-grid { gap: 16px; }
     .tile { min-height: 220px; }
     .modal-content {
@@ -366,15 +396,34 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
 }
 
+
+/* --- ================================================ --- */
 /* --- PRINT-ONLY STYLES --- */
+/* --- ================================================ --- */
 @media print {
+    /* --- Page Setup --- */
     @page {
         size: auto;
         margin: 0.75in;
     }
-    body > * { display: none !important; }
-    .print-container, .print-container * { display: block !important; }
-    body { font-family: 'Times New Roman', serif; color: #000; }
+
+    /* --- Hide Website Elements --- */
+    .site-header, main, .site-footer {
+        display: none !important;
+    }
+    
+    /* --- Show ONLY the Print Container --- */
+    .print-container, .print-container * {
+        display: block !important;
+    }
+
+    /* --- General Print Typography --- */
+    body {
+        font-family: 'Times New Roman', serif;
+        color: #000;
+    }
+
+    /* --- Cover Page Styling --- */
     .print-cover-page {
         display: flex !important;
         flex-direction: column;
@@ -384,14 +433,45 @@ input:checked + .slider:before { transform: translateX(20px); }
         height: 90vh;
         page-break-after: always;
     }
-    .print-cover-page .cover-logo { max-width: 300px; margin-bottom: 40px; }
-    .print-cover-page h1 { font-size: 36pt; margin-bottom: 20px; }
-    .print-cover-page h2 { font-size: 24pt; font-weight: normal; margin-bottom: 80px; }
-    .print-cover-page p { font-size: 14pt; }
-    .print-category { page-break-before: always; }
-    .print-category > h1 { font-size: 28pt; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 40px; }
-    .print-subcategory { margin-bottom: 40px; page-break-inside: avoid; }
-    .print-subcategory > h2 { font-size: 20pt; margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .print-cover-page .cover-logo {
+        max-width: 300px;
+        margin-bottom: 40px;
+    }
+    .print-cover-page h1 {
+        font-size: 36pt;
+        margin-bottom: 20px;
+    }
+    .print-cover-page h2 {
+        font-size: 24pt;
+        font-weight: normal;
+        margin-bottom: 80px;
+    }
+    .print-cover-page p {
+        font-size: 14pt;
+    }
+
+    /* --- Catalog Section Styling --- */
+    .print-category {
+        page-break-before: always;
+    }
+    .print-category > h1 {
+        font-size: 28pt;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+        margin-bottom: 40px;
+    }
+    .print-subcategory {
+        margin-bottom: 40px;
+        page-break-inside: avoid;
+    }
+    .print-subcategory > h2 {
+        font-size: 20pt;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+    }
+
+    /* --- Product "Modal" Styling --- */
     .print-product {
         display: grid !important;
         grid-template-columns: 150px 1fr;
@@ -400,9 +480,23 @@ input:checked + .slider:before { transform: translateX(20px); }
         margin-bottom: 30px;
         page-break-inside: avoid;
     }
-    .print-product img { width: 150px; height: 150px; object-fit: cover; border-radius: 8px; }
-    .print-product-details h3 { font-size: 16pt; margin: 0 0 10px 0; }
-    .print-product-details p { font-size: 12pt; line-height: 1.5; margin: 0 0 8px 0; }
-    .print-product-details strong { font-weight: bold; }
+    .print-product img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .print-product-details h3 {
+        font-size: 16pt;
+        margin: 0 0 10px 0;
+    }
+    .print-product-details p {
+        font-size: 12pt;
+        line-height: 1.5;
+        margin: 0 0 8px 0;
+    }
+    .print-product-details strong {
+        font-weight: bold;
+    }
 }
 
