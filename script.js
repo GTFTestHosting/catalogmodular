@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.innerHTML = `<h2>${item.name}</h2>`; 
                 tile.onclick = () => {
                     navigationHistory.push(filePath);
-                    const nextPath = item.dataFile; // Path is already language-specific from the parent JSON
+                    const nextPath = item.dataFile;
                     if (item.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
                         preloadSubcategoryImages(nextPath);
@@ -98,9 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tile = document.createElement('div');
                 if (product.type === 'promo-panel') {
                     tile.className = 'promo-panel';
-                    if (product.style) {
-                        tile.classList.add(`promo-${product.style}`);
-                    }
+                    if (product.style) tile.classList.add(`promo-${product.style}`);
                     if (product.backgroundColor) tile.style.backgroundColor = product.backgroundColor;
                     if (product.textColor) tile.style.color = product.textColor;
                     
@@ -143,16 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const manifestResponse = await fetch(manifestFilePath);
             if (!manifestResponse.ok) return;
             const manifest = await manifestResponse.json();
-            const basePath = manifest.basePath;
-            const files = manifest.files;
-            const productPromises = files.map(file => fetch(basePath + file).then(res => res.json()));
-            const products = await Promise.all(productPromises);
-            products.forEach(product => {
-                if (product.image) {
-                    const img = new Image();
-                    img.src = product.image;
-                }
-            });
+            if (manifest && Array.isArray(manifest.files)) {
+                const basePath = manifest.basePath;
+                const files = manifest.files;
+                const productPromises = files.map(file => fetch(basePath + file).then(res => res.json()));
+                const products = await Promise.all(productPromises);
+                products.forEach(product => {
+                    if (product.image) {
+                        const img = new Image();
+                        img.src = product.image;
+                    }
+                });
+            }
         } catch (error) {
             console.warn(`Preloading failed for ${manifestFilePath}:`, error);
         }
@@ -223,12 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (item.type === 'products') {
                 const manifestResponse = await fetch(item.dataFile);
                 const manifest = await manifestResponse.json();
-                // THIS IS THE FIX: Check if manifest and manifest.files exist before trying to map over it.
                 if (manifest && Array.isArray(manifest.files)) {
                     const productPromises = manifest.files.map(file => fetch(manifest.basePath + file).then(res => res.json()));
                     item.products = await Promise.all(productPromises);
                 } else {
-                    // If the manifest is empty or malformed, treat this as an empty category.
                     item.products = [];
                 }
             }
@@ -248,33 +246,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
             </div>`;
         printContainer.innerHTML += coverPage;
+        
+        function renderProducts(products) {
+            return products.map(product => `
+                <div class="print-product">
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="print-product-details">
+                        <h3>${product.name}</h3>
+                        <p>${product.description || ''}</p>
+                        <p><strong>${translations.modalSpecs || 'Specifications'}:</strong> ${product.specs || ''}</p>
+                        <p><strong>${translations.modalShipping || 'Shipping'}:</strong> ${product.shipping || ''}</p>
+                    </div>
+                </div>`).join('');
+        }
+
         function renderLevel(items) {
             let html = '';
             items.forEach(item => {
                 if (item.children) {
                      html += `<div class="print-subcategory"><h2>${item.name}</h2>${renderLevel(item.children)}</div>`;
                 } else if (item.products) {
-                     html += `<div class="print-subcategory"><h2>${item.name}</h2>
-                            ${item.products.map(product => `
-                                <div class="print-product">
-                                    <img src="${product.image}" alt="${product.name}">
-                                    <div class="print-product-details">
-                                        <h3>${product.name}</h3>
-                                        <p>${product.description || ''}</p>
-                                        <p><strong>${translations.modalSpecs || 'Specifications'}:</strong> ${product.specs || ''}</p>
-                                        <p><strong>${translations.modalShipping || 'Shipping'}:</strong> ${product.shipping || ''}</p>
-                                    </div>
-                                </div>`).join('')}
-                        </div>`;
+                     html += `<div class="print-subcategory"><h2>${item.name}</h2>${renderProducts(item.products)}</div>`;
                 }
             });
             return html;
         }
+
         data.forEach(category => {
             printContainer.innerHTML += `
                 <section class="print-category">
-                    <h1>${category.name}</h1>
-                    ${renderLevel(category.children || (category.products ? [category] : []))}
+                    <div class="print-category-header">
+                        <img src="${category.image}" class="category-banner" alt="${category.name} Banner">
+                        <h1>${category.name}</h1>
+                    </div>
+                    <div class="print-product-list">
+                         ${renderLevel(category.children || (category.products ? [category] : []))}
+                    </div>
                 </section>`;
         });
     }
