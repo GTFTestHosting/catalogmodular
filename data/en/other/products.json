@@ -1,3 +1,20 @@
-[
-    "data/en/other/tostada_shells.json"
-]
+{
+    "basePath": "data/en/other/",
+    "files": [
+        "beef_tamales.json",
+        "chicken_tamales.json",
+        "pork_tamales.json",
+        "cheese_tamales.json",
+        "vegetable_tamales.json",
+        "chile_relleno.json",
+        "sopes_w.json",
+        "sopes_y.json",
+        "tostadas.json",
+        "chips_1lbs.json",
+        "chips_10lbs.json",
+        "teleras.json",
+        "burger.json",
+        "chicharrones.json",
+        "corn_husk.json"
+    ]
+}
