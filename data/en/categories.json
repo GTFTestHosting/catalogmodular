@@ -8,8 +8,8 @@
     {
         "name": "Flour Tortillas",
         "image": "images/category-banners/Flour-Banner.jpg",
-        "type": "products",
-        "dataFile": "data/en/flour/products.json" 
+        "type": "subcategories",
+        "dataFile": "data/en/flour/subcategories.json" 
     },
     {
         "name": "Spices & Peppers",

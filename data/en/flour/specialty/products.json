@@ -1,0 +1,17 @@
+{
+    "basePath": "data/en/flour/regular/",
+    "files": [
+        "5_sonora.json",
+        "6_sonora.json",
+        "12_sonora.json",
+        "8_spinach_18oz.json",
+        "8_wheat_18oz.json",
+        "8_wheat_24oz.json",
+        "10_spinach.json",
+        "10_wheat.json",
+        "12_spinach.json",
+        "12_tomato.json",
+        "12_wheat.json",
+        "12_garlic.json"
+    ]
+}
