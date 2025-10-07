@@ -409,14 +409,18 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
     
     /* --- Show ONLY the Print Container --- */
-    .print-container, .print-container * {
+    /* REMOVED: The aggressive '*' selector has been removed to prevent layout conflicts. */
+    .print-container {
         display: block !important;
+    }
+    .print-container * {
         background: none !important;
         color: #000 !important;
         box-shadow: none !important;
     }
     img {
         display: block !important; /* Failsafe to ensure images are visible */
+        visibility: visible !important; /* Additional failsafe */
     }
 
     /* --- General Print Typography --- */
@@ -489,6 +493,11 @@ input:checked + .slider:before { transform: translateX(20px); }
 
     /* --- Product "Modal" Styling --- */
     .print-product {
+        /* ADDED: Restore the grid layout for each product entry */
+        display: grid !important;
+        grid-template-columns: 150px 1fr;
+        gap: 20px;
+        align-items: start;
         break-inside: avoid;
         margin-bottom: 25px;
     }
