@@ -5,16 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('product-modal');
     const closeModal = document.querySelector('.close-button');
     const langToggle = document.getElementById('lang-toggle-checkbox');
+    const printButton = document.getElementById('print-button');
 
     // ---STATE MANAGEMENT---
     let currentLanguage = 'en';
     let translations = {};
     let navigationHistory = [];
-    let currentViewFunction = null;
+    let currentViewFunction = null; 
     let currentViewPath = '';
 
     // ---CORE TRANSLATION FUNCTIONS---
-
     async function loadLanguage(lang) {
         const response = await fetch(`lang/${lang}.json`);
         translations = await response.json();
@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---DYNAMIC CONTENT DISPLAY FUNCTIONS---
-
     async function displayCategoryLevel(filePath) {
         currentViewFunction = () => displayCategoryLevel(filePath);
         currentViewPath = filePath;
@@ -55,10 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 tile.style.backgroundImage = `url("${item.image}")`;
-                tile.innerHTML = `<h2>${item.name}</h2>`;
+                tile.innerHTML = `<h2>${item.name}</h2>`; 
                 tile.onclick = () => {
                     navigationHistory.push(filePath);
-                    const nextPath = item.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
+                    const nextPath = item.dataFile; // Path is already language-specific from the parent JSON
                     if (item.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
                         preloadSubcategoryImages(nextPath);
@@ -97,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             products.forEach(product => {
                 const tile = document.createElement('div');
-
                 if (product.type === 'promo-panel') {
                     tile.className = 'promo-panel';
                     if (product.style) {
@@ -105,19 +103,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     if (product.backgroundColor) tile.style.backgroundColor = product.backgroundColor;
                     if (product.textColor) tile.style.color = product.textColor;
-
+                    
                     let content = '';
                     if (product.title) content += `<h3>${product.title}</h3>`;
                     if (product.text) content += `<p>${product.text}</p>`;
                     tile.innerHTML = content;
-
                 } else {
                     tile.className = 'tile';
                     tile.style.backgroundImage = `url("${product.image}")`;
                     tile.innerHTML = `<h2>${product.name}</h2>`;
                     tile.onclick = () => showProductDetails(product);
                 }
-
                 subCategoriesContainer.appendChild(tile);
             });
         } catch (error) {
@@ -125,9 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
             subCategoriesContainer.innerHTML = `<p>Error loading products.</p>`;
         }
     }
-
+    
     // --- PRELOADING FUNCTIONS ---
-
     async function preloadSubcategoryImages(subcategoryFilePath) {
         try {
             const response = await fetch(subcategoryFilePath);
@@ -135,8 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const subItems = await response.json();
             subItems.forEach(item => {
                 if (item.type === 'products') {
-                    const translatedDataFile = item.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
-                    preloadImagesForManifest(translatedDataFile);
+                    preloadImagesForManifest(item.dataFile);
                 }
             });
         } catch (error) {
@@ -149,13 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const manifestResponse = await fetch(manifestFilePath);
             if (!manifestResponse.ok) return;
             const manifest = await manifestResponse.json();
-
             const basePath = manifest.basePath;
             const files = manifest.files;
-
             const productPromises = files.map(file => fetch(basePath + file).then(res => res.json()));
             const products = await Promise.all(productPromises);
-
             products.forEach(product => {
                 if (product.image) {
                     const img = new Image();
@@ -167,12 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
     // ---HELPER FUNCTIONS---
-
     function createBackButton() {
         const container = document.createElement('div');
-        container.className = 'back-button-container'; // Class for sticky behavior
+        container.className = 'back-button-container';
         container.style.gridColumn = '1 / -1';
         const backButton = document.createElement('button');
         backButton.textContent = translations.backButton || 'Back';
@@ -196,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLoadingMessage(container) {
         container.innerHTML = `<h2>${translations.loading || 'Loading...'}</h2>`;
     }
-
+    
     function showProductDetails(product) {
         modal.style.display = 'block';
         document.getElementById('modal-img').src = product.image;
@@ -205,15 +194,90 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-specs').textContent = product.specs;
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
+    
+    // --- PRINT-SPECIFIC LOGIC ---
+    async function handlePrintRequest() {
+        printButton.textContent = 'Generating...';
+        printButton.disabled = true;
+
+        try {
+            const fullCatalogData = await fetchAllData(`data/${currentLanguage}/categories.json`);
+            buildPrintHtml(fullCatalogData);
+            window.print();
+        } catch (error) {
+            console.error("Failed to generate print view:", error);
+            alert("Sorry, there was an error generating the catalog for printing.");
+        } finally {
+            printButton.textContent = translations.printButton || 'Print Catalog';
+            printButton.disabled = false;
+        }
+    }
+
+    async function fetchAllData(filePath) {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`Failed to fetch ${filePath}`);
+        const items = await response.json();
+        const processedItems = await Promise.all(items.map(async (item) => {
+            if (item.type === 'subcategories') {
+                item.children = await fetchAllData(item.dataFile);
+            } else if (item.type === 'products') {
+                const manifestResponse = await fetch(item.dataFile);
+                const manifest = await manifestResponse.json();
+                const productPromises = manifest.files.map(file => fetch(manifest.basePath + file).then(res => res.json()));
+                item.products = await Promise.all(productPromises);
+            }
+            return item;
+        }));
+        return processedItems;
+    }
+
+    function buildPrintHtml(data) {
+        const printContainer = document.getElementById('print-view');
+        printContainer.innerHTML = '';
+        const coverPage = `
+            <div class="print-cover-page">
+                <img src="images/GTF-LOGO-BLACK.png" class="cover-logo" alt="Company Logo">
+                <h1>Product Catalog</h1>
+                <h2>${new Date().getFullYear()}</h2>
+                <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
+            </div>`;
+        printContainer.innerHTML += coverPage;
+        function renderLevel(items) {
+            let html = '';
+            items.forEach(item => {
+                if (item.children) {
+                     html += `<div class="print-subcategory"><h2>${item.name}</h2>${renderLevel(item.children)}</div>`;
+                } else if (item.products) {
+                     html += `<div class="print-subcategory"><h2>${item.name}</h2>
+                            ${item.products.map(product => `
+                                <div class="print-product">
+                                    <img src="${product.image}" alt="${product.name}">
+                                    <div class="print-product-details">
+                                        <h3>${product.name}</h3>
+                                        <p>${product.description || ''}</p>
+                                        <p><strong>${translations.modalSpecs || 'Specifications'}:</strong> ${product.specs || ''}</p>
+                                        <p><strong>${translations.modalShipping || 'Shipping'}:</strong> ${product.shipping || ''}</p>
+                                    </div>
+                                </div>`).join('')}
+                        </div>`;
+                }
+            });
+            return html;
+        }
+        data.forEach(category => {
+            printContainer.innerHTML += `
+                <section class="print-category">
+                    <h1>${category.name}</h1>
+                    ${renderLevel(category.children || (category.products ? [category] : []))}
+                </section>`;
+        });
+    }
 
     // ---INITIALIZATION AND EVENT LISTENERS---
-
-    // NEW: Add a scroll listener to the window to handle the floating back button
     function handleScroll() {
         const backButtonContainer = document.querySelector('.back-button-container');
         if (backButtonContainer) {
-            // Add the floating class when user scrolls down more than a small amount (e.g., 20px)
-            if (window.scrollY > 20) {
+            if (window.scrollY > 50) {
                 backButtonContainer.classList.add('is-floating');
             } else {
                 backButtonContainer.classList.remove('is-floating');
@@ -221,24 +285,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.addEventListener('scroll', handleScroll);
-
-
+    
     langToggle.addEventListener('change', async () => {
         const newLang = langToggle.checked ? 'es' : 'en';
         await loadLanguage(newLang);
-
         if (currentViewFunction) {
-            const translatedPath = currentViewPath.replace('data/en/', `data/${newLang}/`).replace('data/es/', `data/${newLang}/`);
+            const translatedPath = currentViewPath.replace(/data\/(en|es)\//, `data/${newLang}/`);
             if (currentViewPath.endsWith('categories.json')) {
-                initializeCatalog();
+                 initializeCatalog();
             } else {
                 const isProductView = subCategoriesContainer.className === 'product-grid';
-                currentViewFunction = () => (isProductView ? displayProductLevel(translatedPath) : displayCategoryLevel(translatedPath));
-                currentViewFunction();
+                const newViewFunction = () => (isProductView ? displayProductLevel(translatedPath) : displayCategoryLevel(translatedPath));
+                newViewFunction();
             }
         }
     });
 
+    printButton.addEventListener('click', handlePrintRequest);
     closeModal.onclick = () => { modal.style.display = 'none'; };
     window.onclick = (event) => { if (event.target == modal) { modal.style.display = 'none'; } };
 
@@ -265,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.innerHTML = `<h2>${category.name}</h2>`;
                 tile.onclick = () => {
                     navigationHistory.push(categoriesPath);
-                    const nextPath = category.dataFile.replace('data/en/', `data/${currentLanguage}/`).replace('data/es/', `data/${currentLanguage}/`);
+                    const nextPath = category.dataFile;
                     if (category.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
                         preloadSubcategoryImages(nextPath);
@@ -286,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadLanguage(currentLanguage);
         initializeCatalog();
     }
-
+    
     startApp();
 });
 

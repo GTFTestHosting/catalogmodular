@@ -33,7 +33,7 @@ main {
     border-bottom: 1px solid var(--border-color);
     display: flex; 
     align-items: center;
-    /* Add a transition for smoother resizing */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     transition: padding 0.3s ease;
 }
 .header-content {
@@ -56,7 +56,7 @@ main {
     font-size: 0.9rem;
 }
 
-/* --- Language Toggle --- */
+/* --- Language Toggle Styles --- */
 .lang-toggle {
     display: flex;
     align-items: center;
@@ -97,6 +97,29 @@ main {
 input:checked + .slider { background-color: var(--primary-color); }
 input:checked + .slider:before { transform: translateX(20px); }
 
+/* --- Print Button --- */
+.print-button {
+    margin-left: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.print-button:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.print-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* --- Catalog Containers --- */
 .catalog-container {
     padding: 40px;
@@ -122,6 +145,9 @@ input:checked + .slider:before { transform: translateX(20px); }
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
     grid-auto-flow: dense;
+}
+.print-container {
+    display: none;
 }
 
 /* --- The Tile (Product Images) --- */
@@ -192,17 +218,9 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 
 /* --- Promo Panel Size Modifiers --- */
-.promo-panel.promo-wide {
-    grid-column: span 2;
-}
-.promo-panel.promo-tall {
-    grid-row: span 2;
-}
-.promo-panel.promo-large {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
+.promo-panel.promo-wide { grid-column: span 2; }
+.promo-panel.promo-tall { grid-row: span 2; }
+.promo-panel.promo-large { grid-column: span 2; grid-row: span 2; }
 .hidden { display: none; }
 
 /* --- Back Button --- */
@@ -224,27 +242,22 @@ input:checked + .slider:before { transform: translateX(20px); }
     background-color: #4338ca;
     transform: translateY(-2px);
 }
-
-/* --- Container for the sticky back button --- */
 .back-button-container {
     position: sticky;
-    top: -1px; /* Prevents a 1px gap on some browsers */
+    top: -1px;
     z-index: 50;
     padding: 20px 0;
-    margin-bottom: -16px; /* Overlap the grid gap for a seamless look */
+    margin-bottom: -16px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, margin 0.3s ease;
 }
-
-/* --- Style for when the button becomes "floating" on scroll --- */
 .back-button-container.is-floating {
-    background-color: rgba(248, 249, 250, 0.85); /* Semi-transparent background */
+    background-color: rgba(248, 249, 250, 0.85);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px); /* Safari support */
+    -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    padding: 16px 40px; /* Match the main container's horizontal padding */
-    margin: 0 -40px 4px -40px; /* Stretch across the full width */
+    padding: 16px 40px;
+    margin: 0 -40px 4px -40px;
 }
-
 
 /* --- Footer --- */
 .site-footer {
@@ -318,49 +331,22 @@ input:checked + .slider:before { transform: translateX(20px); }
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
-#modal-text h2 {
-    margin-top: 0;
-    font-size: 1.75rem;
-    font-weight: 700;
-}
-#modal-text h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
-    margin-top: 24px;
-}
-#modal-text p {
-    color: #6b7280;
-    line-height: 1.6;
-}
+#modal-text h2 { margin-top: 0; font-size: 1.75rem; font-weight: 700; }
+#modal-text h3 { font-size: 1rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-top: 24px; }
+#modal-text p { color: #6b7280; line-height: 1.6; }
 
 /* --- Responsive Overrides --- */
 @media (max-width: 768px) {
-    /* UPDATED: Stack header items vertically on mobile for more space */
     .site-header { 
         padding: 16px 24px;
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px; /* Add space between the brand and the toggle */
+        gap: 16px;
     }
-    
-    .header-content {
-        /* No changes needed here, the parent controls the layout */
-    }
-    
-    /* UPDATED: Adjust toggle margin for the new stacked layout */
-    .lang-toggle {
-        margin-left: 0; /* Remove auto margin */
-        margin-top: 0;  /* Spacing is handled by the parent's 'gap' property */
-    }
-
+    .lang-toggle { margin-left: 0; }
+    .print-button { margin-left: 0; margin-top: 10px; }
     .catalog-container { padding: 24px; }
-    
-    .back-button-container.is-floating {
-        padding: 12px 24px;
-        margin: 0 -24px 4px -24px;
-    }
+    .back-button-container.is-floating { padding: 12px 24px; margin: 0 -24px 4px -24px; }
     .subcategory-grid, .product-grid { gap: 16px; }
     .tile { min-height: 220px; }
     .modal-content {
@@ -378,5 +364,45 @@ input:checked + .slider:before { transform: translateX(20px); }
     .subcategory-grid {
         grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     }
+}
+
+/* --- PRINT-ONLY STYLES --- */
+@media print {
+    @page {
+        size: auto;
+        margin: 0.75in;
+    }
+    body > * { display: none !important; }
+    .print-container, .print-container * { display: block !important; }
+    body { font-family: 'Times New Roman', serif; color: #000; }
+    .print-cover-page {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 90vh;
+        page-break-after: always;
+    }
+    .print-cover-page .cover-logo { max-width: 300px; margin-bottom: 40px; }
+    .print-cover-page h1 { font-size: 36pt; margin-bottom: 20px; }
+    .print-cover-page h2 { font-size: 24pt; font-weight: normal; margin-bottom: 80px; }
+    .print-cover-page p { font-size: 14pt; }
+    .print-category { page-break-before: always; }
+    .print-category > h1 { font-size: 28pt; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 40px; }
+    .print-subcategory { margin-bottom: 40px; page-break-inside: avoid; }
+    .print-subcategory > h2 { font-size: 20pt; margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .print-product {
+        display: grid !important;
+        grid-template-columns: 150px 1fr;
+        gap: 20px;
+        align-items: start;
+        margin-bottom: 30px;
+        page-break-inside: avoid;
+    }
+    .print-product img { width: 150px; height: 150px; object-fit: cover; border-radius: 8px; }
+    .print-product-details h3 { font-size: 16pt; margin: 0 0 10px 0; }
+    .print-product-details p { font-size: 12pt; line-height: 1.5; margin: 0 0 8px 0; }
+    .print-product-details strong { font-weight: bold; }
 }
 
