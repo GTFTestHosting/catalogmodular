@@ -159,9 +159,12 @@ input:checked + .slider:before { transform: translateX(20px); }
 .product-grid {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* CHANGE: Use a fixed column width to allow for centering */
+    grid-template-columns: repeat(auto-fit, 250px);
     gap: 24px;
     grid-auto-flow: dense;
+    /* NEW: Center the entire grid of items horizontally */
+    justify-content: center;
 }
 /* --- End of Layout Solution --- */
 
@@ -410,6 +413,106 @@ input:checked + .slider:before { transform: translateX(20px); }
 /* --- V.I.P: PRINT-ONLY STYLES (SIMPLIFIED) --- */
 /* --- ================================================ --- */
 @media print {
-    /* ... existing print styles ... */
+    /* --- Page Setup --- */
+    @page {
+        size: legal landscape;
+        margin: 0.5in;
+    }
+
+    /* --- Hide Website Elements --- */
+    .site-header, main, .site-footer {
+        display: none !important;
+    }
+    
+    .print-container, .print-container * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    .print-container {
+        display: block !important;
+    }
+
+    /* --- General Print Typography --- */
+    body {
+        font-family: 'Times New Roman', serif;
+        font-size: 10pt;
+        -webkit-print-color-adjust: exact;
+    }
+
+    /* --- Cover Page Styling --- */
+    .print-cover-page {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 95vh;
+        page-break-after: always;
+    }
+    .print-cover-page .cover-logo { display: block; max-width: 400px; margin-bottom: 40px; }
+    .print-cover-page h1 { font-size: 32pt; margin-bottom: 20px; }
+    .print-cover-page h2 { font-size: 20pt; font-weight: normal; margin-bottom: 80px; }
+    .print-cover-page p { font-size: 12pt; }
+
+    /* --- REMOVED: Table of Contents Styling --- */
+
+    /* --- Category Divider/Header Styling --- */
+    .print-category-header {
+        page-break-before: always;
+        page-break-after: avoid;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .print-category-header .category-banner { display: block; width: 100%; height: 200px; object-fit: cover; margin-bottom: 20px; }
+    .print-category-header h1 { font-size: 28pt; }
+
+    /* --- Two-Column Layout for Products --- */
+    .print-product-list {
+        column-count: 2;
+        column-gap: 30px;
+    }
+
+    .print-subcategory {
+        break-inside: avoid-page;
+        margin-bottom: 20px;
+    }
+    .print-subcategory > h2 {
+        font-size: 18pt;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+        break-after: avoid-column;
+    }
+
+    /* --- Product "Modal" Styling --- */
+    .print-product {
+        display: grid !important;
+        grid-template-columns: 150px 1fr;
+        gap: 20px;
+        align-items: start;
+        break-inside: avoid;
+        margin-bottom: 25px;
+    }
+    .print-product img {
+        display: block;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+    .print-product-details h3 {
+        font-size: 14pt;
+        margin: 0 0 8px 0;
+    }
+    .print-product-details p {
+        font-size: 10pt;
+        line-height: 1.4;
+        margin: 0 0 6px 0;
+    }
+    .print-product-details strong {
+        font-weight: bold;
+    }
 }
 
