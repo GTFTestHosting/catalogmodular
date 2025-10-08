@@ -52,11 +52,11 @@ main {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #ff5919;
+    color: var(--text-color);
 }
 .brand-info p {
     margin: 0;
-    color: #6b7280;
+    color: #ff5919;
     font-size: 0.9rem;
 }
 
