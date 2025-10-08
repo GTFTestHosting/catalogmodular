@@ -34,6 +34,9 @@ main {
     display: flex; 
     align-items: center;
     flex-wrap: wrap;
+    position: sticky; /* Keep header visible */
+    top: 0;
+    z-index: 100;
 }
 .header-content {
     display: flex;
@@ -118,26 +121,33 @@ input:checked + .slider:before { transform: translateX(20px); }
     cursor: not-allowed;
 }
 
-/* --- Catalog Containers --- */
+/* --- THIS IS THE KEY LAYOUT FIX --- */
 .catalog-container {
     padding: 40px;
     flex-grow: 1; 
-    display: flex;
-    flex-direction: column;
+    display: grid; /* Use grid for the main layout area */
+    grid-template-rows: 1fr; /* Make the single row take up all space */
 }
+.category-container,
+.subcategory-grid,
+.product-grid {
+    grid-row: 1; /* All three potential views live in the same grid area */
+    grid-column: 1;
+}
+/* --- END OF KEY LAYOUT FIX --- */
+
+
 .category-container {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-/* --- THIS IS THE DEFINITIVE FIX --- */
 .subcategory-grid {
-    display: grid; /* Use Grid */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Keep modular columns */
-    grid-auto-rows: 1fr; /* This is the magic: makes all rows stretch vertically */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 1fr; 
     gap: 24px;
-    flex-grow: 1; /* Ensures the grid itself fills the parent's vertical space */
 }
 
 .product-grid {
@@ -162,8 +172,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     overflow: hidden;
     position: relative;
 }
-/* This rule is no longer needed as we're not using flexbox for the grid */
-/* .subcategory-grid > .tile { ... } */
 
 .tile:hover {
     transform: translateY(-8px);
@@ -229,25 +237,14 @@ input:checked + .slider:before { transform: translateX(20px); }
     grid-row: span 2;
 }
 
-.hidden { display: none; }
+.hidden { 
+    display: none !important; /* Use important to override grid display */
+}
 
 /* --- Back Button --- */
 .back-button-container {
-    position: sticky;
-    top: -1px;
-    z-index: 50;
-    padding: 20px 0;
-    margin-bottom: -16px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, margin 0.3s ease;
-    width: 100%; 
-}
-.back-button-container.is-floating {
-    background-color: rgba(248, 249, 250, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    padding: 16px 40px;
-    margin: 0 -40px 4px -40px;
+    /* This container is no longer sticky within the grid, it's a grid item */
+    grid-column: 1 / -1; /* Span all columns */
 }
 .back-button {
     padding: 12px 24px;
@@ -375,10 +372,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
     .print-button { width: 100%; }
     .catalog-container { padding: 24px; }
-    .back-button-container.is-floating {
-        padding: 12px 24px;
-        margin: 0 -24px 4px -24px;
-    }
     .subcategory-grid, .product-grid { gap: 16px; }
     .tile { min-height: 220px; }
     .modal-content {
