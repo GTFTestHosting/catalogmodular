@@ -121,45 +121,33 @@ input:checked + .slider:before { transform: translateX(20px); }
     cursor: not-allowed;
 }
 
-/* --- THIS IS THE DEFINITIVE LAYOUT FIX --- */
+/* --- Catalog Containers (Reverted) --- */
 .catalog-container {
     padding: 40px;
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
 }
-
-#sub-categories {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
 .category-container {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
-
-/* The wrapper for subcategories or products will grow */
-.subcategory-grid, .product-grid {
-    flex-grow: 1;
-    display: grid;
-    gap: 24px;
-}
-
-/* Specific rules for the subcategory grid */
 .subcategory-grid {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: 1fr; 
+    grid-template-rows: auto; 
+    grid-auto-rows: 1fr;
+    gap: 24px;
+    flex-grow: 1;
 }
-
-/* Specific rules for the product grid */
 .product-grid {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
     grid-auto-flow: dense;
 }
-/* --- END OF DEFINITIVE LAYOUT FIX --- */
+/* --- End of Reverted Section --- */
 
 
 /* --- The Tile (Product Images) --- */
@@ -388,6 +376,14 @@ input:checked + .slider:before { transform: translateX(20px); }
         grid-column: span 1;
     }
 }
+
+/* Re-added the desktop-specific media query that fixed the issue */
+@media (min-width: 1024px) {
+    .subcategory-grid {
+        grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    }
+}
+
 
 /* --- ================================================ --- */
 /* --- V.I.P: PRINT-ONLY STYLES --- */
