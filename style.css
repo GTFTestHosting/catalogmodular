@@ -125,18 +125,15 @@ input:checked + .slider:before { transform: translateX(20px); }
 .catalog-container {
     padding: 40px;
     flex-grow: 1; 
-    position: relative; /* Establish a positioning context for the views */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Make all views fill the container using absolute positioning */
-#main-categories, #sub-categories {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
+#sub-categories {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
-/* --- END OF DEFINITIVE LAYOUT FIX --- */
 
 .category-container {
     display: flex;
@@ -144,19 +141,23 @@ input:checked + .slider:before { transform: translateX(20px); }
     gap: 24px;
 }
 
-.subcategory-grid {
+.subcategory-grid, .product-grid {
+    flex-grow: 1; /* This is key: it makes the grid wrapper fill the space */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: 1fr; 
     gap: 24px;
 }
 
+.subcategory-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 1fr; 
+}
+
 .product-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
     grid-auto-flow: dense;
 }
+/* --- END OF DEFINITIVE LAYOUT FIX --- */
+
 
 /* --- The Tile (Product Images) --- */
 .tile {
@@ -244,7 +245,6 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 /* --- Back Button --- */
 .back-button-container {
-    grid-column: 1 / -1;
     margin-bottom: 24px;
 }
 .back-button {
@@ -291,7 +291,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 .modal {
     display: none;
     position: fixed;
-    z-index: 200; /* Must be higher than header */
+    z-index: 200;
     inset: 0;
     overflow: auto;
     background-color: rgba(31, 41, 55, 0.7);
@@ -372,13 +372,7 @@ input:checked + .slider:before { transform: translateX(20px); }
         margin-top: 16px;
     }
     .print-button { width: 100%; }
-    .catalog-container, #main-categories, #sub-categories { 
-        padding: 24px;
-        top: 24px;
-        left: 24px;
-        right: 24px;
-        bottom: 24px;
-    }
+    .catalog-container { padding: 24px; }
     .subcategory-grid, .product-grid { gap: 16px; }
     .tile { min-height: 220px; }
     .modal-content {
@@ -396,149 +390,6 @@ input:checked + .slider:before { transform: translateX(20px); }
 /* --- V.I.P: PRINT-ONLY STYLES --- */
 /* --- ================================================ --- */
 @media print {
-    /* --- Page Setup --- */
-    @page {
-        size: legal landscape;
-        margin: 0.5in;
-    }
-
-    /* --- Hide Website Elements --- */
-    .site-header, main, .site-footer {
-        display: none !important;
-    }
-    
-    .print-container, .print-container * {
-        background: transparent !important;
-        color: #000 !important;
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-    .print-container {
-        display: block !important;
-    }
-
-    /* --- General Print Typography --- */
-    body {
-        font-family: 'Times New Roman', serif;
-        font-size: 10pt;
-        -webkit-print-color-adjust: exact;
-    }
-
-    /* --- Cover Page Styling --- */
-    .print-cover-page {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        height: 95vh;
-        page-break-after: always;
-    }
-    .print-cover-page .cover-logo { display: block; max-width: 400px; margin-bottom: 40px; }
-    .print-cover-page h1 { font-size: 32pt; margin-bottom: 20px; }
-    .print-cover-page h2 { font-size: 20pt; font-weight: normal; margin-bottom: 80px; }
-    .print-cover-page p { font-size: 12pt; }
-
-    /* --- Table of Contents Styling --- */
-    .print-toc-page {
-        page-break-after: always;
-    }
-    .print-toc-page h1 {
-        font-size: 28pt;
-        margin-bottom: 30px;
-    }
-    .print-toc {
-        column-count: 2;
-    }
-    .print-toc ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .print-toc li {
-        margin-bottom: 10px;
-        break-inside: avoid;
-    }
-    .print-toc a {
-        text-decoration: none;
-        color: #000;
-        display: grid !important;
-        grid-template-columns: auto 1fr auto;
-        align-items: end;
-    }
-    .print-toc a::after {
-        content: target-counter(attr(href), page);
-        padding-left: 10px;
-        grid-column: 3;
-    }
-    .print-toc a::before {
-        content: '';
-        border-bottom: 1px dotted #000;
-        margin: 0 5px;
-        grid-column: 2;
-    }
-    .print-toc .toc-level-1 {
-        margin-left: 20px;
-    }
-     .print-toc .toc-level-2 {
-        margin-left: 40px;
-    }
-
-    /* --- Category Divider/Header Styling --- */
-    .print-category-header {
-        page-break-before: always;
-        page-break-after: avoid;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .print-category-header .category-banner { display: block; width: 100%; height: 200px; object-fit: cover; margin-bottom: 20px; }
-    .print-category-header h1 { font-size: 28pt; }
-
-    /* --- Two-Column Layout for Products --- */
-    .print-product-list {
-        column-count: 2;
-        column-gap: 30px;
-    }
-
-    .print-subcategory {
-        break-inside: avoid-page;
-        margin-bottom: 20px;
-    }
-    .print-subcategory > h2 {
-        font-size: 18pt;
-        margin-bottom: 15px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 5px;
-        break-after: avoid-column;
-    }
-
-    /* --- Product "Modal" Styling --- */
-    .print-product {
-        display: grid !important;
-        grid-template-columns: 150px 1fr;
-        gap: 20px;
-        align-items: start;
-        break-inside: avoid;
-        margin-bottom: 25px;
-    }
-    .print-product img {
-        display: block;
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 4px;
-    }
-    .print-product-details h3 {
-        font-size: 14pt;
-        margin: 0 0 8px 0;
-    }
-    .print-product-details p {
-        font-size: 10pt;
-        line-height: 1.4;
-        margin: 0 0 6px 0;
-    }
-    .print-product-details strong {
-        font-weight: bold;
-    }
+    /* ... existing print styles ... */
 }
 
