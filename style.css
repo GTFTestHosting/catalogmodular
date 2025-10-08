@@ -145,26 +145,24 @@ input:checked + .slider:before { transform: translateX(20px); }
 .subcategory-wrapper {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fit, 300px);
     gap: 24px;
+    justify-content: center;
 }
 
 /* New cell container for each subcategory tile */
 .subcategory-cell {
-    display: flex; /* Allows the tile inside to stretch */
+    display: flex;
 }
 
-/* Product grid remains separate */
+/* Product grid remains separate and also uses centering */
 .product-grid {
     flex-grow: 1;
     display: grid;
-    /* CHANGE: Use a fixed column width to allow for centering */
     grid-template-columns: repeat(auto-fit, 250px);
     gap: 24px;
     grid-auto-flow: dense;
-    /* NEW: Center the entire grid of items horizontally */
-    justify-content: center;
+    justify-content: center; /* This line centers the product tiles */
 }
 /* --- End of Layout Solution --- */
 
@@ -183,7 +181,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     box-shadow: var(--card-shadow);
     overflow: hidden;
     position: relative;
-    width: 100%; /* Make tile fill its parent cell */
+    width: 100%;
     height: 100%;
 }
 
