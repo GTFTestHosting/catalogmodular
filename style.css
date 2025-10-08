@@ -159,11 +159,11 @@ input:checked + .slider:before { transform: translateX(20px); }
 .product-grid {
     flex-grow: 1;
     display: grid;
-    /* CHANGE: Use a fixed column width to allow for centering */
-    grid-template-columns: repeat(auto-fit, 250px);
+    /* Use auto-fill for more predictable centering */
+    grid-template-columns: repeat(auto-fill, 250px);
     gap: 24px;
     grid-auto-flow: dense;
-    /* NEW: Center the entire grid of items horizontally */
+    /* Center the entire grid of items horizontally */
     justify-content: center;
 }
 /* --- End of Layout Solution --- */
