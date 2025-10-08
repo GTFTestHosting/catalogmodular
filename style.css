@@ -307,6 +307,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     overflow: auto;
     background-color: rgba(31, 41, 55, 0.7);
     backdrop-filter: blur(4px);
+    padding: 24px; /* Add padding for mobile view */
 }
 .modal-content {
     position: relative;
@@ -386,11 +387,23 @@ input:checked + .slider:before { transform: translateX(20px); }
     .catalog-container { padding: 24px; }
     .subcategory-wrapper, .product-grid { gap: 16px; }
     .tile { min-height: 220px; }
+
+    /* THIS IS THE KEY FIX FOR THE MODAL */
+    .modal {
+        padding: 0; /* Remove padding on the backdrop */
+        display: flex; /* Use flexbox to easily center the modal content */
+        align-items: center;
+        justify-content: center;
+    }
     .modal-content {
         grid-template-columns: 1fr;
         padding: 24px;
-        margin: 10% auto;
+        margin: 24px; /* Use a fixed margin */
+        width: 100%; /* Let it fill the available width inside the margins */
+        max-height: calc(100vh - 48px); /* Ensure modal is never taller than the screen */
+        overflow-y: auto; /* Allow the content INSIDE the modal to scroll */
     }
+
     .promo-panel.promo-wide,
     .promo-panel.promo-large {
         grid-column: span 1;
