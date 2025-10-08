@@ -16,10 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---CORE TRANSLATION FUNCTIONS---
     async function loadLanguage(lang) {
-        const response = await fetch(`lang/${lang}.json`);
-        translations = await response.json();
-        currentLanguage = lang;
-        applyStaticTranslations();
+        try {
+            const response = await fetch(`lang/${lang}.json`);
+            if (!response.ok) throw new Error('Language file not found');
+            translations = await response.json();
+            currentLanguage = lang;
+            applyStaticTranslations();
+        } catch (error) {
+            console.error(`Failed to load language ${lang}:`, error);
+        }
     }
 
     function applyStaticTranslations() {
@@ -39,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoadingMessage(subCategoriesContainer);
         mainCategoriesContainer.classList.add('hidden');
         subCategoriesContainer.classList.remove('hidden');
-        subCategoriesContainer.className = 'subcategory-grid';
 
         try {
             const response = await fetch(filePath);
@@ -50,7 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 subCategoriesContainer.appendChild(createBackButton());
             }
 
+            // Create the main wrapper for the grid
+            const gridWrapper = document.createElement('div');
+            gridWrapper.className = 'subcategory-wrapper';
+
             items.forEach(item => {
+                // Create the individual grid cell
+                const cell = document.createElement('div');
+                cell.className = 'subcategory-cell';
+
+                // Create the tile to go inside the cell
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 tile.style.backgroundImage = `url("${item.image}")`;
@@ -65,8 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         displayProductLevel(nextPath);
                     }
                 };
-                subCategoriesContainer.appendChild(tile);
+                
+                cell.appendChild(tile); // Place the tile inside the cell
+                gridWrapper.appendChild(cell); // Place the cell inside the main wrapper
             });
+            subCategoriesContainer.appendChild(gridWrapper);
+
         } catch (error) {
             console.error("Error loading category level:", error);
             subCategoriesContainer.innerHTML = `<p>Error loading content.</p>`;
@@ -80,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoadingMessage(subCategoriesContainer);
         mainCategoriesContainer.classList.add('hidden');
         subCategoriesContainer.classList.remove('hidden');
-        subCategoriesContainer.className = 'product-grid';
 
         try {
             const manifestResponse = await fetch(manifestFilePath);
@@ -93,6 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             subCategoriesContainer.innerHTML = '';
             subCategoriesContainer.appendChild(createBackButton());
+
+            const gridWrapper = document.createElement('div');
+            gridWrapper.className = 'product-grid';
 
             products.forEach(product => {
                 const tile = document.createElement('div');
@@ -112,8 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     tile.innerHTML = `<h2>${product.name}</h2>`;
                     tile.onclick = () => showProductDetails(product);
                 }
-                subCategoriesContainer.appendChild(tile);
+                gridWrapper.appendChild(tile);
             });
+            subCategoriesContainer.appendChild(gridWrapper);
+
         } catch (error) {
             console.error("Error loading product level:", error);
             subCategoriesContainer.innerHTML = `<p>Error loading products.</p>`;
@@ -162,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function createBackButton() {
         const container = document.createElement('div');
         container.className = 'back-button-container';
-        container.style.gridColumn = '1 / -1';
         const backButton = document.createElement('button');
         backButton.textContent = translations.backButton || 'Back';
         backButton.className = 'back-button';
@@ -195,11 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
     
-    // --- ================================================ ---
-    // --- NEW / HEAVILY MODIFIED PRINT LOGIC ---
-    // --- ================================================ ---
-
-    // Helper to create safe IDs for links
+    // --- PRINT-SPECIFIC LOGIC ---
     function createSlug(text) {
         return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     }
@@ -228,12 +244,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (item.type === 'subcategories') {
                 item.children = await fetchAllData(item.dataFile);
             } else if (item.type === 'products') {
-                const manifestResponse = await fetch(item.dataFile);
-                const manifest = await manifestResponse.json();
-                if (manifest && Array.isArray(manifest.files)) {
-                    const productPromises = manifest.files.map(file => fetch(manifest.basePath + file).then(res => res.json()));
-                    item.products = await Promise.all(productPromises);
-                } else {
+                try {
+                    const manifestResponse = await fetch(item.dataFile);
+                    const manifest = await manifestResponse.json();
+                    if (manifest && Array.isArray(manifest.files)) {
+                        const productPromises = manifest.files.map(file => fetch(manifest.basePath + file).then(res => res.json()));
+                        item.products = await Promise.all(productPromises);
+                    } else {
+                        item.products = [];
+                    }
+                } catch (e) {
+                    console.warn(`Could not process manifest for ${item.name}`, e);
                     item.products = [];
                 }
             }
@@ -241,12 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }));
         return processedItems;
     }
-
+    
     function buildPrintHtml(data) {
         const printContainer = document.getElementById('print-view');
         let fullHtml = '';
 
-        // 1. Build Cover Page
         fullHtml += `
             <div class="print-cover-page">
                 <img src="images/GTF-LOGO-BLACK.png" class="cover-logo" alt="Company Logo">
@@ -255,7 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
             </div>`;
 
-        // 2. Build Table of Contents Page
         function buildToc(items, level = 0) {
             let tocHtml = `<ul class="toc-level-${level}">`;
             items.forEach(item => {
@@ -276,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </nav>
             </div>`;
 
-        // 3. Build Main Content Pages
         function renderProducts(products) {
             return products.map(product => `
                 <div class="print-product">
@@ -341,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentViewPath.endsWith('categories.json')) {
                  initializeCatalog();
             } else {
-                const isProductView = subCategoriesContainer.className === 'product-grid';
+                const isProductView = !!subCategoriesContainer.querySelector('.product-grid');
                 const newViewFunction = () => (isProductView ? displayProductLevel(translatedPath) : displayCategoryLevel(translatedPath));
                 newViewFunction();
             }
