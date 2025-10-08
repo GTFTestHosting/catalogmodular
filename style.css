@@ -460,16 +460,25 @@ input:checked + .slider:before { transform: translateX(20px); }
         margin-bottom: 10px;
         break-inside: avoid;
     }
+    /* THIS IS THE KEY FIX: Using Grid for robust alignment */
     .print-toc a {
         text-decoration: none;
         color: #000;
-        display: flex;
+        display: grid !important; /* Use Grid instead of Flex */
+        grid-template-columns: auto 1fr auto; /* Title | Dots | Page Number */
+        align-items: end;
     }
     .print-toc a::after {
-        content: leader('.') target-counter(attr(href), page);
-        flex-grow: 1;
-        text-align: right;
-        padding-left: 10px;
+        content: target-counter(attr(href), page); /* Just the page number */
+        padding-left: 10px; /* Space between dots and number */
+        grid-column: 3; /* Place in the third column */
+    }
+    /* NEW: Use a pseudo-element for the dot leader */
+    .print-toc a::before {
+        content: '';
+        border-bottom: 1px dotted #000;
+        margin: 0 5px;
+        grid-column: 2; /* Place in the second, expanding column */
     }
     .print-toc .toc-level-1 {
         margin-left: 20px;
