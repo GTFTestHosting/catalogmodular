@@ -136,7 +136,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     flex-wrap: wrap;
     gap: 24px;
     flex-grow: 1;
-    /* REMOVED: The align-content rule has been removed to allow vertical stretching */
+    align-content: flex-start; /* THIS IS THE KEY FIX: Aligns all content to the top */
 }
 
 .product-grid {
