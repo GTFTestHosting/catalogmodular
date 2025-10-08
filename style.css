@@ -159,11 +159,9 @@ input:checked + .slider:before { transform: translateX(20px); }
 .product-grid {
     flex-grow: 1;
     display: grid;
-    /* REVERTED: Use minmax to allow columns to stretch and fill space */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
     grid-auto-flow: dense;
-    /* REMOVED: justify-content is not needed for a stretching grid */
 }
 /* --- End of Layout Solution --- */
 
@@ -300,29 +298,36 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 /* --- Modal --- */
 .modal {
-    display: none; /* Changed from flex to none */
+    display: none;
     position: fixed;
     z-index: 200;
     inset: 0;
-    overflow: hidden; /* Prevent body scroll when modal is open */
+    overflow: auto; /* Allow the backdrop to scroll if content is huge */
     background-color: rgba(31, 41, 55, 0.7);
     backdrop-filter: blur(4px);
-    padding: 24px;
-    /* Add flex properties here to control alignment when it's displayed */
-    align-items: center;
-    justify-content: center;
+    text-align: center; /* Helps with vertical centering trick */
+}
+/* This pseudo-element is a trick to vertically center the modal content */
+.modal::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
 }
 .modal-content {
     position: relative;
     background-color: #ffffff;
     padding: 32px;
-    width: 100%; /* Start with full width */
+    width: 90%;
     max-width: 800px;
     border-radius: 20px;
-    display: grid;
+    display: inline-grid; /* Changed to inline-grid */
     grid-template-columns: 1fr 1fr;
     gap: 32px;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    text-align: left; /* Reset text align */
+    vertical-align: middle; /* Align to the pseudo-element */
 }
 .close-button {
     position: absolute;
@@ -390,14 +395,14 @@ input:checked + .slider:before { transform: translateX(20px); }
     .subcategory-wrapper, .product-grid { gap: 16px; }
     .tile { min-height: 220px; }
 
-    /* THIS IS THE KEY FIX FOR THE MODAL */
+    /* THIS IS THE KEY FIX FOR THE MODAL ON MOBILE */
     .modal-content {
         grid-template-columns: 1fr;
         padding: 24px;
-        margin: 0; /* Remove margin, the modal's padding handles spacing */
-        width: 100%;
-        max-height: calc(100vh - 48px);
-        overflow-y: auto;
+        width: auto; /* Let the modal shrink to fit */
+        margin: 24px;
+        max-height: calc(100% - 48px); /* Ensure it's never taller than the screen */
+        overflow-y: auto; /* Allow content inside to scroll */
     }
 
     .promo-panel.promo-wide,
