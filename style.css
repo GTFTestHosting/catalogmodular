@@ -429,7 +429,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 
     .promo-panel.promo-wide,
     .promo-panel.promo-large {
-        grid-column: span 1;
+        grid-column: span 2;
     }
 }
 
