@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.querySelector('.close-button');
     const langToggle = document.getElementById('lang-toggle-checkbox');
     const printButton = document.getElementById('print-button');
+    const backButtonPlaceholder = document.getElementById('back-button-placeholder'); // New placeholder reference
 
     // ---STATE MANAGEMENT---
     let currentLanguage = 'en';
@@ -50,9 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const items = await response.json();
             subCategoriesContainer.innerHTML = '';
 
-            if (navigationHistory.length > 0) {
-                subCategoriesContainer.appendChild(createBackButton());
-            }
+            // Add back button to the header
+            showBackButton();
 
             const gridWrapper = document.createElement('div');
             gridWrapper.className = 'subcategory-wrapper';
@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             items.forEach(item => {
                 const cell = document.createElement('div');
                 cell.className = 'subcategory-cell';
-
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 tile.style.backgroundImage = `url("${item.image}")`;
@@ -75,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         displayProductLevel(nextPath);
                     }
                 };
-                
                 cell.appendChild(tile);
                 gridWrapper.appendChild(cell);
             });
@@ -105,7 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const products = await Promise.all(productPromises);
 
             subCategoriesContainer.innerHTML = '';
-            subCategoriesContainer.appendChild(createBackButton());
+            
+            // Add back button to the header
+            showBackButton();
 
             const gridWrapper = document.createElement('div');
             gridWrapper.className = 'product-grid';
@@ -177,22 +177,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---HELPER FUNCTIONS---
-    function createBackButton() {
-        const container = document.createElement('div');
-        container.className = 'back-button-container';
+    function showBackButton() {
+        backButtonPlaceholder.innerHTML = ''; // Clear any existing button
         const backButton = document.createElement('button');
         backButton.textContent = translations.backButton || 'Back';
         backButton.className = 'back-button';
         backButton.onclick = goBack;
-        container.appendChild(backButton);
-        return container;
+        backButtonPlaceholder.appendChild(backButton);
+    }
+
+    function hideBackButton() {
+        backButtonPlaceholder.innerHTML = '';
     }
 
     function goBack() {
         const lastPath = navigationHistory.pop();
         if (lastPath) {
             if (lastPath === `data/${currentLanguage}/categories.json`) {
-                initializeCatalog();
+                initializeCatalog(); // This will also hide the back button
             } else {
                 displayCategoryLevel(lastPath);
             }
@@ -213,6 +215,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // --- PRINT-SPECIFIC LOGIC (SIMPLIFIED) ---
+    function createSlug(text) {
+        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+
     async function handlePrintRequest() {
         printButton.textContent = 'Generating...';
         printButton.disabled = true;
@@ -260,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const printContainer = document.getElementById('print-view');
         let fullHtml = '';
 
-        // 1. Build Cover Page
         fullHtml += `
             <div class="print-cover-page">
                 <img src="images/GTF-LOGO-BLACK.png" class="cover-logo" alt="Company Logo">
@@ -268,8 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2>${new Date().getFullYear()}</h2>
                 <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
             </div>`;
-
-        // 2. Build Main Content Pages (No Index)
+        
         function renderProducts(products) {
             return products.map(product => `
                 <div class="print-product">
@@ -312,17 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---INITIALIZATION AND EVENT LISTENERS---
-    function handleScroll() {
-        const backButtonContainer = document.querySelector('.back-button-container');
-        if (backButtonContainer) {
-            if (window.scrollY > 50) {
-                backButtonContainer.classList.add('is-floating');
-            } else {
-                backButtonContainer.classList.remove('is-floating');
-            }
-        }
-    }
-    window.addEventListener('scroll', handleScroll);
     
     langToggle.addEventListener('change', async () => {
         const newLang = langToggle.checked ? 'es' : 'en';
@@ -345,6 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function initializeCatalog() {
         navigationHistory = [];
+        hideBackButton(); // Hide the back button on the main menu
         const categoriesPath = `data/${currentLanguage}/categories.json`;
         currentViewFunction = initializeCatalog;
         currentViewPath = categoriesPath;
