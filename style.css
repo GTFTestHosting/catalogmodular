@@ -46,17 +46,17 @@ main {
     gap: 20px;
 }
 .logo {
-    height: 75px;
+    height: 100px;
 }
 .brand-info h1 {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-color);
+    color: #ff5919;
 }
 .brand-info p {
     margin: 0;
-    color: #ff5919;
+    color: #6b7280;
     font-size: 0.9rem;
 }
 
