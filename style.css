@@ -399,8 +399,8 @@ input:checked + .slider:before { transform: translateX(20px); }
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 90%; /* Use a percentage for responsive width */
-        max-height: 50%; /* Use a percentage for responsive height */
+        width: 70%; /* Use a percentage for responsive width */
+        max-height: 85%; /* Use a percentage for responsive height */
         overflow-y: auto;
         margin: 0;
         padding: 24px;
