@@ -137,12 +137,15 @@ input:checked + .slider:before { transform: translateX(20px); }
     flex-direction: column;
 }
 
+/* THIS IS THE KEY CHANGE for main categories */
 .category-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Changed to row for columns */
     gap: 24px;
+    flex-grow: 1; /* Allow it to fill vertical space */
 }
 
+/* New wrapper for the subcategory grid */
 .subcategory-wrapper {
     flex-grow: 1;
     display: grid;
@@ -151,10 +154,12 @@ input:checked + .slider:before { transform: translateX(20px); }
     gap: 24px;
 }
 
+/* New cell container for each subcategory tile */
 .subcategory-cell {
     display: flex;
 }
 
+/* Product grid remains separate */
 .product-grid {
     flex-grow: 1;
     display: grid;
@@ -162,6 +167,8 @@ input:checked + .slider:before { transform: translateX(20px); }
     gap: 24px;
     grid-auto-flow: dense;
 }
+/* --- End of Layout --- */
+
 
 /* --- The Tile (Product Images) --- */
 .tile {
@@ -177,9 +184,17 @@ input:checked + .slider:before { transform: translateX(20px); }
     box-shadow: var(--card-shadow);
     overflow: hidden;
     position: relative;
+}
+/* New rule for main category tiles to make them grow */
+.category-container > .tile {
+    flex: 1;
+}
+/* New rule to scope width/height to subcategory view */
+.subcategory-cell > .tile {
     width: 100%;
     height: 100%;
 }
+
 
 .tile:hover {
     transform: translateY(-8px);
@@ -249,7 +264,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     display: none !important; 
 }
 
-/* --- Back Button (NEW STYLES) --- */
+/* --- Back Button --- */
 #back-button-placeholder {
     margin-right: 24px;
 }
@@ -401,6 +416,10 @@ input:checked + .slider:before { transform: translateX(20px); }
         grid-row: 1;
         width: 100%;
         margin: 0;
+    }
+    /* On mobile, main categories go back to being vertical rows */
+    .category-container {
+        flex-direction: column;
     }
 
     .catalog-container { padding: 24px; }
