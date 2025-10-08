@@ -54,16 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 subCategoriesContainer.appendChild(createBackButton());
             }
 
-            // Create the main wrapper for the grid
             const gridWrapper = document.createElement('div');
             gridWrapper.className = 'subcategory-wrapper';
 
             items.forEach(item => {
-                // Create the individual grid cell
                 const cell = document.createElement('div');
                 cell.className = 'subcategory-cell';
 
-                // Create the tile to go inside the cell
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 tile.style.backgroundImage = `url("${item.image}")`;
@@ -79,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
                 
-                cell.appendChild(tile); // Place the tile inside the cell
-                gridWrapper.appendChild(cell); // Place the cell inside the main wrapper
+                cell.appendChild(tile);
+                gridWrapper.appendChild(cell);
             });
             subCategoriesContainer.appendChild(gridWrapper);
 
@@ -215,11 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
     
-    // --- PRINT-SPECIFIC LOGIC ---
-    function createSlug(text) {
-        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    }
-
+    // --- PRINT-SPECIFIC LOGIC (SIMPLIFIED) ---
     async function handlePrintRequest() {
         printButton.textContent = 'Generating...';
         printButton.disabled = true;
@@ -267,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const printContainer = document.getElementById('print-view');
         let fullHtml = '';
 
+        // 1. Build Cover Page
         fullHtml += `
             <div class="print-cover-page">
                 <img src="images/GTF-LOGO-BLACK.png" class="cover-logo" alt="Company Logo">
@@ -275,26 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
             </div>`;
 
-        function buildToc(items, level = 0) {
-            let tocHtml = `<ul class="toc-level-${level}">`;
-            items.forEach(item => {
-                const slug = createSlug(item.name);
-                tocHtml += `<li><a href="#${slug}">${item.name}</a></li>`;
-                if (item.children) {
-                    tocHtml += buildToc(item.children, level + 1);
-                }
-            });
-            tocHtml += `</ul>`;
-            return tocHtml;
-        }
-        fullHtml += `
-            <div class="print-toc-page">
-                <h1>Index</h1>
-                <nav class="print-toc">
-                    ${buildToc(data)}
-                </nav>
-            </div>`;
-
+        // 2. Build Main Content Pages (No Index)
         function renderProducts(products) {
             return products.map(product => `
                 <div class="print-product">
@@ -311,23 +286,21 @@ document.addEventListener('DOMContentLoaded', () => {
         function renderLevel(items) {
             let contentHtml = '';
             items.forEach(item => {
-                const slug = createSlug(item.name);
                 if (item.children) {
-                     contentHtml += `<div class="print-subcategory"><h2 id="${slug}">${item.name}</h2>${renderLevel(item.children)}</div>`;
+                     contentHtml += `<div class="print-subcategory"><h2>${item.name}</h2>${renderLevel(item.children)}</div>`;
                 } else if (item.products) {
-                     contentHtml += `<div class="print-subcategory"><h2 id="${slug}">${item.name}</h2>${renderProducts(item.products)}</div>`;
+                     contentHtml += `<div class="print-subcategory"><h2>${item.name}</h2>${renderProducts(item.products)}</div>`;
                 }
             });
             return contentHtml;
         }
 
         data.forEach(category => {
-            const categorySlug = createSlug(category.name);
             fullHtml += `
                 <section class="print-category">
                     <div class="print-category-header">
                         <img src="${category.image}" class="category-banner" alt="${category.name} Banner">
-                        <h1 id="${categorySlug}">${category.name}</h1>
+                        <h1>${category.name}</h1>
                     </div>
                     <div class="print-product-list">
                          ${renderLevel(category.children || (category.products ? [category] : []))}

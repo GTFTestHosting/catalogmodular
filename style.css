@@ -159,11 +159,11 @@ input:checked + .slider:before { transform: translateX(20px); }
 .product-grid {
     flex-grow: 1;
     display: grid;
-    /* Use auto-fill for more predictable centering */
-    grid-template-columns: repeat(auto-fill, 250px);
+    /* CHANGE: Use a fixed column width to allow for centering */
+    grid-template-columns: repeat(auto-fit, 250px);
     gap: 24px;
     grid-auto-flow: dense;
-    /* Center the entire grid of items horizontally */
+    /* NEW: Center the entire grid of items horizontally */
     justify-content: center;
 }
 /* --- End of Layout Solution --- */
@@ -399,7 +399,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 
 /* --- ================================================ --- */
-/* --- V.I.P: PRINT-ONLY STYLES --- */
+/* --- V.I.P: PRINT-ONLY STYLES (SIMPLIFIED) --- */
 /* --- ================================================ --- */
 @media print {
     /* --- Page Setup --- */
@@ -445,56 +445,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     .print-cover-page h2 { font-size: 20pt; font-weight: normal; margin-bottom: 80px; }
     .print-cover-page p { font-size: 12pt; }
 
-    /* --- THIS IS THE DEFINITIVE FIX FOR THE TABLE OF CONTENTS --- */
-    .print-toc-page {
-        page-break-after: always;
-    }
-    .print-toc-page h1 {
-        font-size: 28pt;
-        margin-bottom: 30px;
-    }
-    .print-toc {
-        column-count: 2;
-    }
-    .print-toc ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .print-toc li {
-        margin-bottom: 10px;
-        break-inside: avoid;
-    }
-    /* Use a simpler block layout for the link */
-    .print-toc a {
-        text-decoration: none;
-        color: #000;
-        display: block;
-        overflow: hidden; /* This is key for the dot leader */
-    }
-    /* Use a simple float for the page number */
-    .print-toc a::after {
-        content: target-counter(attr(href), page);
-        float: right;
-        padding-left: 10px;
-        /* Add a white background to cover the dots behind the number */
-        background-color: #fff;
-    }
-    /* A simple span inside the link will hold the text */
-    .print-toc a span {
-        float: left;
-        padding-right: 10px;
-        background-color: #fff;
-    }
-    /* Create the dot leader with a simple bottom border */
-    .print-toc a .leader {
-        display: block;
-        overflow: hidden;
-        border-bottom: 1px dotted #000;
-        height: 0.7em; /* Adjust vertical position of the dots */
-    }
-    .print-toc .toc-level-1 { margin-left: 20px; }
-    .print-toc .toc-level-2 { margin-left: 40px; }
+    /* --- REMOVED: Table of Contents Styling --- */
 
     /* --- Category Divider/Header Styling --- */
     .print-category-header {
