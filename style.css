@@ -445,7 +445,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     .print-cover-page h2 { font-size: 20pt; font-weight: normal; margin-bottom: 80px; }
     .print-cover-page p { font-size: 12pt; }
 
-    /* --- Table of Contents Styling --- */
+    /* --- THIS IS THE DEFINITIVE FIX FOR THE TABLE OF CONTENTS --- */
     .print-toc-page {
         page-break-after: always;
     }
@@ -465,30 +465,36 @@ input:checked + .slider:before { transform: translateX(20px); }
         margin-bottom: 10px;
         break-inside: avoid;
     }
+    /* Use a simpler block layout for the link */
     .print-toc a {
         text-decoration: none;
         color: #000;
-        display: grid !important;
-        grid-template-columns: auto 1fr auto;
-        align-items: end;
+        display: block;
+        overflow: hidden; /* This is key for the dot leader */
     }
+    /* Use a simple float for the page number */
     .print-toc a::after {
         content: target-counter(attr(href), page);
+        float: right;
         padding-left: 10px;
-        grid-column: 3;
+        /* Add a white background to cover the dots behind the number */
+        background-color: #fff;
     }
-    .print-toc a::before {
-        content: '';
+    /* A simple span inside the link will hold the text */
+    .print-toc a span {
+        float: left;
+        padding-right: 10px;
+        background-color: #fff;
+    }
+    /* Create the dot leader with a simple bottom border */
+    .print-toc a .leader {
+        display: block;
+        overflow: hidden;
         border-bottom: 1px dotted #000;
-        margin: 0 5px;
-        grid-column: 2;
+        height: 0.7em; /* Adjust vertical position of the dots */
     }
-    .print-toc .toc-level-1 {
-        margin-left: 20px;
-    }
-     .print-toc .toc-level-2 {
-        margin-left: 40px;
-    }
+    .print-toc .toc-level-1 { margin-left: 20px; }
+    .print-toc .toc-level-2 { margin-left: 40px; }
 
     /* --- Category Divider/Header Styling --- */
     .print-category-header {
