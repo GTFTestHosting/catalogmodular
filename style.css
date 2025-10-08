@@ -131,13 +131,12 @@ input:checked + .slider:before { transform: translateX(20px); }
     gap: 24px;
 }
 
-/* THIS IS THE KEY CHANGE: Switching subcategory view to Flexbox */
 .subcategory-grid {
-    display: flex;      /* Use flexbox */
-    flex-wrap: wrap;    /* Allow items to wrap to the next line */
+    display: flex;
+    flex-wrap: wrap;
     gap: 24px;
     flex-grow: 1;
-    align-content: flex-start; /* Align wrapped lines to the top */
+    /* REMOVED: The align-content rule has been removed to allow vertical stretching */
 }
 
 .product-grid {
@@ -162,9 +161,8 @@ input:checked + .slider:before { transform: translateX(20px); }
     overflow: hidden;
     position: relative;
 }
-/* NEW: Rule specifically for tiles inside the flexbox subcategory-grid */
 .subcategory-grid > .tile {
-    flex: 1 1 300px; /* Grow, Shrink, Basis: The core of the adaptive resizing */
+    flex: 1 1 300px; 
 }
 
 .tile:hover {
@@ -241,7 +239,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     padding: 20px 0;
     margin-bottom: -16px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, margin 0.3s ease;
-    width: 100%; /* Ensure the container takes full width for sticky positioning */
+    width: 100%; 
 }
 .back-button-container.is-floating {
     background-color: rgba(248, 249, 250, 0.85);
@@ -393,9 +391,6 @@ input:checked + .slider:before { transform: translateX(20px); }
         grid-column: span 1;
     }
 }
-
-/* We no longer need the desktop-specific override for subcategory-grid */
-
 
 /* --- ================================================ --- */
 /* --- V.I.P: PRINT-ONLY STYLES --- */
