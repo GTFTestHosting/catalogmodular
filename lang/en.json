@@ -1,10 +1,10 @@
 {
-    "companyTitle": "Graciana Tortilla Factory",
-    "companySubtitle": "Product Catalog 2025",
+    "companyTitle": "Product Catalog",
+    "companySubtitle": "2025",
     "modalSpecs": "Specifications",
     "modalShipping": "Shipping Information",
     "footerRights": "© Graciana Tortilla Factory. All Rights Reserved.",
-    "footerContact": "Contact us: support@gracianatortilla.com",
+    "footerContact": "Contact us:",
     "backButton": "Back",
     "loading": "Loading..."
 }
