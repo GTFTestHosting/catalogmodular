@@ -408,25 +408,21 @@ input:checked + .slider:before { transform: translateX(20px); }
         display: none !important;
     }
     
-    /* --- Show ONLY the Print Container --- */
-    .print-container {
-        display: block !important;
-    }
-    .print-container * {
-        background: none !important;
+    .print-container, .print-container * {
+        background: transparent !important;
         color: #000 !important;
         box-shadow: none !important;
+        text-shadow: none !important;
     }
-    img {
+    .print-container {
         display: block !important;
-        visibility: visible !important;
     }
 
     /* --- General Print Typography --- */
     body {
         font-family: 'Times New Roman', serif;
         font-size: 10pt;
-        -webkit-print-color-adjust: exact; /* Helps force images and colors */
+        -webkit-print-color-adjust: exact;
     }
 
     /* --- Cover Page Styling --- */
@@ -439,21 +435,47 @@ input:checked + .slider:before { transform: translateX(20px); }
         height: 95vh;
         page-break-after: always;
     }
-    .print-cover-page .cover-logo {
-        max-width: 400px;
-        margin-bottom: 40px;
+    .print-cover-page .cover-logo { display: block; max-width: 400px; margin-bottom: 40px; }
+    .print-cover-page h1 { font-size: 32pt; margin-bottom: 20px; }
+    .print-cover-page h2 { font-size: 20pt; font-weight: normal; margin-bottom: 80px; }
+    .print-cover-page p { font-size: 12pt; }
+
+    /* --- Table of Contents Styling --- */
+    .print-toc-page {
+        page-break-after: always;
     }
-    .print-cover-page h1 {
-        font-size: 32pt;
-        margin-bottom: 20px;
+    .print-toc-page h1 {
+        font-size: 28pt;
+        margin-bottom: 30px;
     }
-    .print-cover-page h2 {
-        font-size: 20pt;
-        font-weight: normal;
-        margin-bottom: 80px;
+    .print-toc {
+        column-count: 2;
     }
-    .print-cover-page p {
-        font-size: 12pt;
+    .print-toc ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .print-toc li {
+        margin-bottom: 10px;
+        break-inside: avoid;
+    }
+    .print-toc a {
+        text-decoration: none;
+        color: #000;
+        display: flex;
+    }
+    .print-toc a::after {
+        content: leader('.') target-counter(attr(href), page);
+        flex-grow: 1;
+        text-align: right;
+        padding-left: 10px;
+    }
+    .print-toc .toc-level-1 {
+        margin-left: 20px;
+    }
+     .print-toc .toc-level-2 {
+        margin-left: 40px;
     }
 
     /* --- Category Divider/Header Styling --- */
@@ -463,15 +485,8 @@ input:checked + .slider:before { transform: translateX(20px); }
         text-align: center;
         margin-bottom: 30px;
     }
-    .print-category-header .category-banner {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        margin-bottom: 20px;
-    }
-    .print-category-header h1 {
-        font-size: 28pt;
-    }
+    .print-category-header .category-banner { display: block; width: 100%; height: 200px; object-fit: cover; margin-bottom: 20px; }
+    .print-category-header h1 { font-size: 28pt; }
 
     /* --- Two-Column Layout for Products --- */
     .print-product-list {
@@ -501,12 +516,11 @@ input:checked + .slider:before { transform: translateX(20px); }
         margin-bottom: 25px;
     }
     .print-product img {
-        /* THIS IS THE CRITICAL FIX */
+        display: block;
         width: 150px;
         height: 150px;
-        object-fit: cover; /* Prevents image distortion */
+        object-fit: cover;
         border-radius: 4px;
-        margin-bottom: 10px;
     }
     .print-product-details h3 {
         font-size: 14pt;
