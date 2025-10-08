@@ -34,7 +34,7 @@ main {
     display: flex; 
     align-items: center;
     flex-wrap: wrap;
-    position: sticky; /* Keep header visible */
+    position: sticky;
     top: 0;
     z-index: 100;
 }
@@ -125,17 +125,9 @@ input:checked + .slider:before { transform: translateX(20px); }
 .catalog-container {
     padding: 40px;
     flex-grow: 1; 
-    display: grid; /* Use grid for the main layout area */
-    grid-template-rows: 1fr; /* Make the single row take up all space */
+    display: flex; /* Use flex to allow child to grow */
+    flex-direction: column;
 }
-.category-container,
-.subcategory-grid,
-.product-grid {
-    grid-row: 1; /* All three potential views live in the same grid area */
-    grid-column: 1;
-}
-/* --- END OF KEY LAYOUT FIX --- */
-
 
 .category-container {
     display: flex;
@@ -148,6 +140,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: 1fr; 
     gap: 24px;
+    flex-grow: 1; /* This is the key: forces the grid to fill the flex parent */
 }
 
 .product-grid {
@@ -155,7 +148,10 @@ input:checked + .slider:before { transform: translateX(20px); }
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
     grid-auto-flow: dense;
+    flex-grow: 1; /* Add for consistency */
 }
+/* --- END OF KEY LAYOUT FIX --- */
+
 
 /* --- The Tile (Product Images) --- */
 .tile {
@@ -238,13 +234,13 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 
 .hidden { 
-    display: none !important; /* Use important to override grid display */
+    display: none !important;
 }
 
 /* --- Back Button --- */
 .back-button-container {
-    /* This container is no longer sticky within the grid, it's a grid item */
-    grid-column: 1 / -1; /* Span all columns */
+    grid-column: 1 / -1; /* This rule only applies when inside a grid (product view) */
+    margin-bottom: 24px; /* Give it space from the items below */
 }
 .back-button {
     padding: 12px 24px;
