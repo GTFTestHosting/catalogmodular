@@ -373,25 +373,34 @@ input:checked + .slider:before { transform: translateX(20px); }
 @media (max-width: 768px) {
     .site-header { 
         padding: 16px 24px;
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        align-items: center;
     }
     .header-content {
-        order: 2; /* Move brand info down */
+        grid-column: 1 / -1;
+        grid-row: 2;
         width: 100%;
     }
-    .lang-toggle, .print-button {
-        order: 3; /* Move toggles to the very bottom */
-        margin-left: 0;
-        margin-top: 16px;
+    .lang-toggle {
+        grid-row: 3;
+        grid-column: 1;
+        justify-self: start;
+        margin: 0;
     }
-    .print-button { width: 100%; }
+    .print-button {
+        grid-row: 3;
+        grid-column: 2;
+        width: 100%;
+        margin: 0;
+    }
     
     #back-button-placeholder {
-        order: 1; /* Make back button the first item */
-        margin-right: 0;
-        margin-bottom: 16px;
+        grid-column: 1 / -1;
+        grid-row: 1;
         width: 100%;
+        margin: 0;
     }
 
     .catalog-container { padding: 24px; }
