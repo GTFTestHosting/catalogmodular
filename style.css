@@ -300,21 +300,23 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 /* --- Modal --- */
 .modal {
-    display: none;
+    display: none; /* Changed from flex to none */
     position: fixed;
     z-index: 200;
     inset: 0;
-    overflow: auto;
+    overflow: hidden; /* Prevent body scroll when modal is open */
     background-color: rgba(31, 41, 55, 0.7);
     backdrop-filter: blur(4px);
-    padding: 24px; /* Add padding for mobile view */
+    padding: 24px;
+    /* Add flex properties here to control alignment when it's displayed */
+    align-items: center;
+    justify-content: center;
 }
 .modal-content {
     position: relative;
     background-color: #ffffff;
-    margin: 5% auto;
     padding: 32px;
-    width: 90%;
+    width: 100%; /* Start with full width */
     max-width: 800px;
     border-radius: 20px;
     display: grid;
@@ -389,19 +391,13 @@ input:checked + .slider:before { transform: translateX(20px); }
     .tile { min-height: 220px; }
 
     /* THIS IS THE KEY FIX FOR THE MODAL */
-    .modal {
-        padding: 0; /* Remove padding on the backdrop */
-        display: flex; /* Use flexbox to easily center the modal content */
-        align-items: center;
-        justify-content: center;
-    }
     .modal-content {
         grid-template-columns: 1fr;
         padding: 24px;
-        margin: 24px; /* Use a fixed margin */
-        width: 100%; /* Let it fill the available width inside the margins */
-        max-height: calc(100vh - 48px); /* Ensure modal is never taller than the screen */
-        overflow-y: auto; /* Allow the content INSIDE the modal to scroll */
+        margin: 0; /* Remove margin, the modal's padding handles spacing */
+        width: 100%;
+        max-height: calc(100vh - 48px);
+        overflow-y: auto;
     }
 
     .promo-panel.promo-wide,
