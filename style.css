@@ -409,7 +409,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
     
     /* --- Show ONLY the Print Container --- */
-    /* REMOVED: The aggressive '*' selector has been removed to prevent layout conflicts. */
     .print-container {
         display: block !important;
     }
@@ -419,14 +418,15 @@ input:checked + .slider:before { transform: translateX(20px); }
         box-shadow: none !important;
     }
     img {
-        display: block !important; /* Failsafe to ensure images are visible */
-        visibility: visible !important; /* Additional failsafe */
+        display: block !important;
+        visibility: visible !important;
     }
 
     /* --- General Print Typography --- */
     body {
         font-family: 'Times New Roman', serif;
         font-size: 10pt;
+        -webkit-print-color-adjust: exact; /* Helps force images and colors */
     }
 
     /* --- Cover Page Styling --- */
@@ -493,7 +493,6 @@ input:checked + .slider:before { transform: translateX(20px); }
 
     /* --- Product "Modal" Styling --- */
     .print-product {
-        /* ADDED: Restore the grid layout for each product entry */
         display: grid !important;
         grid-template-columns: 150px 1fr;
         gap: 20px;
@@ -502,9 +501,10 @@ input:checked + .slider:before { transform: translateX(20px); }
         margin-bottom: 25px;
     }
     .print-product img {
-        width: 100%;
-        max-width: 150px;
-        height: auto;
+        /* THIS IS THE CRITICAL FIX */
+        width: 150px;
+        height: 150px;
+        object-fit: cover; /* Prevents image distortion */
         border-radius: 4px;
         margin-bottom: 10px;
     }
