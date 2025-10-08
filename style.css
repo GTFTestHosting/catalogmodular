@@ -399,7 +399,7 @@ input:checked + .slider:before { transform: translateX(20px); }
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 85%; /* Use a percentage for responsive width */
+        width: 80%; /* Use a percentage for responsive width */
         max-height: 85%; /* Use a percentage for responsive height */
         overflow-y: auto;
         margin: 0;
