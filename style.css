@@ -141,17 +141,20 @@ input:checked + .slider:before { transform: translateX(20px); }
     gap: 24px;
 }
 
+/* The wrapper for subcategories or products will grow */
 .subcategory-grid, .product-grid {
-    flex-grow: 1; /* This is key: it makes the grid wrapper fill the space */
+    flex-grow: 1;
     display: grid;
     gap: 24px;
 }
 
+/* Specific rules for the subcategory grid */
 .subcategory-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: 1fr; 
 }
 
+/* Specific rules for the product grid */
 .product-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-auto-flow: dense;
