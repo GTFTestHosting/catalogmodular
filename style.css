@@ -123,7 +123,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     cursor: not-allowed;
 }
 
-/* --- Definitive Layout Solution --- */
+/* --- Layout --- */
 .catalog-container {
     padding: 40px;
     flex-grow: 1; 
@@ -137,9 +137,10 @@ input:checked + .slider:before { transform: translateX(20px); }
     flex-direction: column;
 }
 
+/* Corrected style for main categories */
 .category-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* This ensures tiles stack vertically */
     gap: 24px;
 }
 
@@ -166,7 +167,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     grid-auto-flow: dense;
     justify-content: center;
 }
-/* --- End of Layout Solution --- */
+/* --- End of Layout --- */
 
 
 /* --- The Tile (Product Images) --- */
