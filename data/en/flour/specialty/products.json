@@ -2,16 +2,16 @@
     "basePath": "data/en/flour/specialty/",
     "files": [
         "5_sonora.json",
-        "6_sonora.json",
+        "ash_6.json",
+        "curry_6.json",
+        "spinach_6.json",
+        "tomato_6.json",
+        "wheat_6.json",
         "12_sonora.json",
-        "8_spinach_18oz.json",
-        "8_wheat_18oz.json",
-        "8_wheat_24oz.json",
-        "10_spinach.json",
-        "10_wheat.json",
         "12_spinach.json",
         "12_tomato.json",
         "12_wheat.json",
-        "12_garlic.json"
+        "12_garlic.json",
+        "12_chipotle.json"
     ]
 }
