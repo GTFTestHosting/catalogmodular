@@ -59,12 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
             items.forEach(item => {
                 const cell = document.createElement('div');
                 cell.className = 'subcategory-cell';
+
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 tile.style.backgroundImage = `url("${item.image}")`;
                 tile.innerHTML = `<h2>${item.name}</h2>`; 
                 tile.onclick = () => {
-                    navigationHistory.push(filePath);
+                    // Push the current subcategory level to history
+                    navigationHistory.push({ type: 'category', path: filePath });
                     const nextPath = item.dataFile;
                     if (item.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
@@ -73,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         displayProductLevel(nextPath);
                     }
                 };
+                
                 cell.appendChild(tile);
                 gridWrapper.appendChild(cell);
             });
@@ -102,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const products = await Promise.all(productPromises);
 
             subCategoriesContainer.innerHTML = '';
-            
             showBackButton();
 
             const gridWrapper = document.createElement('div');
@@ -174,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
     // ---HELPER FUNCTIONS---
     function showBackButton() {
         backButtonPlaceholder.innerHTML = '';
@@ -188,13 +191,14 @@ document.addEventListener('DOMContentLoaded', () => {
         backButtonPlaceholder.innerHTML = '';
     }
 
+    // --- THIS IS THE CORRECTED FUNCTION ---
     function goBack() {
-        const lastPath = navigationHistory.pop();
-        if (lastPath) {
-            if (lastPath.endsWith('categories.json')) {
+        const lastState = navigationHistory.pop();
+        if (lastState) {
+            if (lastState.type === 'catalog') {
                 initializeCatalog();
-            } else {
-                displayCategoryLevel(lastPath);
+            } else if (lastState.type === 'category') {
+                displayCategoryLevel(lastState.path);
             }
         }
     }
@@ -212,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
     
-    // --- PRINT-SPECIFIC LOGIC (MODIFIED) ---
+    // --- PRINT-SPECIFIC LOGIC ---
     async function handlePrintRequest() {
         printButton.textContent = 'Generating...';
         printButton.disabled = true;
@@ -260,15 +264,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const printContainer = document.getElementById('print-view');
         let fullHtml = '';
 
+        // 1. Build Cover Page
         fullHtml += `
             <div class="print-cover-page">
-                <img src="images/logos/GTF_Logo.png" class="cover-logo" alt="Company Logo">
+                <img src="images/GTF-LOGO-BLACK.png" class="cover-logo" alt="Company Logo">
                 <h1>Product Catalog</h1>
                 <h2>${new Date().getFullYear()}</h2>
                 <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
             </div>`;
 
-        // THIS IS THE KEY CHANGE: Product images are removed from the printout
+        // 2. Build Main Content Pages (No Index)
         function renderProducts(products) {
             return products.map(product => `
                 <div class="print-product">
@@ -309,6 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         printContainer.innerHTML = fullHtml;
     }
 
+
     // ---INITIALIZATION AND EVENT LISTENERS---
     
     langToggle.addEventListener('change', async () => {
@@ -340,7 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoadingMessage(mainCategoriesContainer);
         subCategoriesContainer.classList.add('hidden');
         mainCategoriesContainer.classList.remove('hidden');
-        mainCategoriesContainer.className = 'category-container';
 
         try {
             const response = await fetch(categoriesPath);
@@ -353,7 +358,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.style.backgroundImage = `url("${category.image}")`;
                 tile.innerHTML = `<h2>${category.name}</h2>`;
                 tile.onclick = () => {
-                    navigationHistory.push(categoriesPath);
+                    // Push the main catalog state to history
+                    navigationHistory.push({ type: 'catalog', path: categoriesPath });
                     const nextPath = category.dataFile;
                     if (category.type === 'subcategories') {
                         displayCategoryLevel(nextPath);
