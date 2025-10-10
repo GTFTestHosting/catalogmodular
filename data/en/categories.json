@@ -12,15 +12,15 @@
         "dataFile": "data/en/flour/subcategories.json" 
     },
     {
+        "name": "Prepared Products",
+        "image": "images/category-banners/other/Other-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/other/products.json" 
+    },
+    {
         "name": "Spices & Peppers",
         "image": "images/category-banners/spices/Spices-Banner.jpg",
         "type": "subcategories",
         "dataFile": "data/en/spices_and_peppers/subcategories.json" 
-    },
-    {
-        "name": "Other Products",
-        "image": "images/category-banners/other/Other-Banner.jpg",
-        "type": "products",
-        "dataFile": "data/en/other/products.json" 
     }
 ]
