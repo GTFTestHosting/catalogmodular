@@ -13,7 +13,7 @@
     },
     {
         "name": "Dried Fruit Garnishes",
-        "image": "images/category-banners/other/subcat/Pfruit-banner.jpg",
+        "image": "images/category-banners/other/subcat/fruit-banner.jpg",
         "type": "products",
         "dataFile": "data/en/other/dry_fruit/products.json"
     }
