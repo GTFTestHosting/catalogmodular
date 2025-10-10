@@ -1,25 +1,25 @@
 [
     {
         "name": "Corn Tortillas",
-        "image": "images/category-banners/category-banners/corn/Corn-Banner.jpg",
+        "image": "images/category-banners/corn/Corn-Banner.jpg",
         "type": "subcategories",
         "dataFile": "data/en/corn/subcategories.json" 
     },
     {
         "name": "Flour Tortillas",
-        "image": "images/category-banners/category-banners/flour/Flour-Banner.jpg",
+        "image": "images/category-banners/flour/Flour-Banner.jpg",
         "type": "subcategories",
         "dataFile": "data/en/flour/subcategories.json" 
     },
     {
         "name": "Spices & Peppers",
-        "image": "images/category-banners/category-banners/spices/Spices-Banner.jpg",
+        "image": "images/category-banners/spices/Spices-Banner.jpg",
         "type": "subcategories",
         "dataFile": "data/en/spices_and_peppers/subcategories.json" 
     },
     {
         "name": "Other Products",
-        "image": "images/category-banners/category-banners/other/Other-Banner.jpg",
+        "image": "images/category-banners/other/Other-Banner.jpg",
         "type": "products",
         "dataFile": "data/en/other/products.json" 
     }
