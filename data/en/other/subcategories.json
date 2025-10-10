@@ -6,7 +6,7 @@
         "dataFile": "data/en/other/prepared_bases/products.json"
     },
     {
-        "name": "Tamales & Chiles Rellenos (Frozen)",
+        "name": "Frozen Tamales & Chiles Rellenos",
         "image": "images/category-banners/other/subcat/tamales-banner.jpg",
         "type": "products",
         "dataFile": "data/en/other/tamales_chiles_rellenos/products.json"

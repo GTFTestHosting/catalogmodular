@@ -1,5 +1,11 @@
 {
     "basePath": "data/en/other/dry_fruit/",
     "files": [
+        "orange.json",
+        "blood_orange.json",
+        "lemon.json",
+        "lime.json",
+        "dragonfruit.json",
+        "pineapple.json"
     ]
 }
