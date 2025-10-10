@@ -1,6 +1,6 @@
 [
     {
-        "name": "Corn Tortillas",
+        "name": "Corn Products",
         "image": "images/category-banners/corn/Corn-Banner.jpg",
         "type": "subcategories",
         "dataFile": "data/en/corn/subcategories.json" 
@@ -14,8 +14,8 @@
     {
         "name": "Prepared Products",
         "image": "images/category-banners/other/Other-Banner.jpg",
-        "type": "products",
-        "dataFile": "data/en/other/products.json" 
+        "type": "subcategories",
+        "dataFile": "data/en/other/subcategories.json" 
     },
     {
         "name": "Spices & Peppers",

@@ -1,12 +1,6 @@
 {
-    "basePath": "data/en/other/",
+    "basePath": "data/en/other/prepared_bases/",
     "files": [
-        "beef_tamales.json",
-        "chicken_tamales.json",
-        "pork_tamales.json",
-        "cheese_tamales.json",
-        "vegetable_tamales.json",
-        "chile_relleno.json",
         "sopes_w.json",
         "sopes_y.json",
         "tostadas.json",
