@@ -1,12 +1,12 @@
 [
     {
-        "name": "Regular Flour",
+        "name": "Regular Flour Tortillas",
         "image": "images/category-banners/Pepper-Subcat-Banner.jpg",
         "type": "products",
         "dataFile": "data/en/flour/regular/products.json"
     },
     {
-        "name": "Specialty Flavors",
+        "name": "Flavored Tortillas & Wraps",
         "image": "images/category-banners/Nuts-and-More-Banner.jpg",
         "type": "products",
         "dataFile": "data/en/flour/specialty/products.json"
