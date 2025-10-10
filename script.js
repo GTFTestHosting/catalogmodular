@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.querySelector('.close-button');
     const langToggle = document.getElementById('lang-toggle-checkbox');
     const printButton = document.getElementById('print-button');
-    const backButtonPlaceholder = document.getElementById('back-button-placeholder'); // New placeholder reference
+    const backButtonPlaceholder = document.getElementById('back-button-placeholder');
 
     // ---STATE MANAGEMENT---
     let currentLanguage = 'en';
@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const items = await response.json();
             subCategoriesContainer.innerHTML = '';
 
-            // Add back button to the header
             showBackButton();
 
             const gridWrapper = document.createElement('div');
@@ -104,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             subCategoriesContainer.innerHTML = '';
             
-            // Add back button to the header
             showBackButton();
 
             const gridWrapper = document.createElement('div');
@@ -178,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---HELPER FUNCTIONS---
     function showBackButton() {
-        backButtonPlaceholder.innerHTML = ''; // Clear any existing button
+        backButtonPlaceholder.innerHTML = '';
         const backButton = document.createElement('button');
         backButton.textContent = translations.backButton || 'Back';
         backButton.className = 'back-button';
@@ -193,8 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function goBack() {
         const lastPath = navigationHistory.pop();
         if (lastPath) {
-            if (lastPath === `data/${currentLanguage}/categories.json`) {
-                initializeCatalog(); // This will also hide the back button
+            if (lastPath.endsWith('categories.json')) {
+                initializeCatalog();
             } else {
                 displayCategoryLevel(lastPath);
             }
@@ -214,11 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
     
-    // --- PRINT-SPECIFIC LOGIC (SIMPLIFIED) ---
-    function createSlug(text) {
-        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    }
-
+    // --- PRINT-SPECIFIC LOGIC (MODIFIED) ---
     async function handlePrintRequest() {
         printButton.textContent = 'Generating...';
         printButton.disabled = true;
@@ -268,16 +262,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fullHtml += `
             <div class="print-cover-page">
-                <img src="images/GTF-LOGO-BLACK.png" class="cover-logo" alt="Company Logo">
+                <img src="images/logos/GTF_Logo.png" class="cover-logo" alt="Company Logo">
                 <h1>Product Catalog</h1>
                 <h2>${new Date().getFullYear()}</h2>
                 <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
             </div>`;
-        
+
+        // THIS IS THE KEY CHANGE: Product images are removed from the printout
         function renderProducts(products) {
             return products.map(product => `
                 <div class="print-product">
-                    <img src="${product.image}" alt="${product.name}">
                     <div class="print-product-details">
                         <h3>${product.name}</h3>
                         <p>${product.description || ''}</p>
@@ -338,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function initializeCatalog() {
         navigationHistory = [];
-        hideBackButton(); // Hide the back button on the main menu
+        hideBackButton();
         const categoriesPath = `data/${currentLanguage}/categories.json`;
         currentViewFunction = initializeCatalog;
         currentViewPath = categoriesPath;
