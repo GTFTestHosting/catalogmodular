@@ -1,19 +1,19 @@
 [
     {
         "name": "Bases & Premade Ingredients",
-        "image": "images/category-banners/Pepper-Subcat-Banner.jpg",
+        "image": "images/category-banners/other/subcat/bases-banner.jpg",
         "type": "products",
         "dataFile": "data/en/other/prepared_bases/products.json"
     },
     {
         "name": "Tamales & Chiles Rellenos (Frozen)",
-        "image": "images/category-banners/Pepper-Subcat-Banner.jpg",
+        "image": "images/category-banners/other/subcat/tamales-banner.jpg",
         "type": "products",
         "dataFile": "data/en/other/tamales_chiles_rellenos/products.json"
     },
     {
         "name": "Dried Fruit Garnishes",
-        "image": "images/category-banners/Pepper-Subcat-Banner.jpg",
+        "image": "images/category-banners/other/subcat/Pfruit-banner.jpg",
         "type": "products",
         "dataFile": "data/en/other/dry_fruit/products.json"
     }
