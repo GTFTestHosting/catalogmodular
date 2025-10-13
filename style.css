@@ -26,27 +26,32 @@ main {
     flex-direction: column;
 }
 
-/* --- Header Styles --- */
+/* --- Header Styles (UPDATED) --- */
 .site-header {
-    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent for glass effect */
+    background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 16px 40px;
+    padding: 24px 40px;
     border-bottom: 1px solid var(--border-color);
     display: flex; 
-    align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    gap: 20px;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 .header-content {
     display: flex;
+    flex-direction: column; /* Stack logo and brand info */
     align-items: center;
-    gap: 20px;
+    gap: 8px;
 }
 .logo {
     height: 75px;
+}
+.brand-info {
+    text-align: center;
 }
 .brand-info h1 {
     margin: 0;
@@ -60,13 +65,51 @@ main {
     font-size: 0.9rem;
 }
 
-/* --- Language Toggle & Print Button --- */
-.lang-toggle {
+/* --- Main Navigation Styles (UPDATED) --- */
+.main-nav {
+    margin: 0; /* Remove auto margin */
+}
+.main-nav ul {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main-nav a {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.main-nav a:hover {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.main-nav a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* --- Header Controls Wrapper (UPDATED) --- */
+.header-controls {
+    position: absolute; /* Position relative to the header */
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-left: auto;
+    gap: 20px;
 }
+
+/* --- Language Toggle & Print Button --- */
+.lang-toggle {
+    margin-left: 0;
+}
+/* ... (The rest of the file is unchanged, only header styles were modified) ... */
 .lang-toggle span {
     font-weight: 600;
     color: #6b7280;
@@ -139,9 +182,9 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 .category-container {
     display: flex;
-    flex-direction: row; /* Changed to row for columns */
+    flex-direction: row;
     gap: 24px;
-    flex-grow: 1; /* Allow it to fill vertical space */
+    flex-grow: 1;
 }
 
 /* New wrapper for the subcategory grid */
@@ -168,6 +211,27 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 /* --- End of Layout --- */
 
+/* --- Prose styles for new pages --- */
+.page-content-prose {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.page-content-prose h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+.page-content-prose p, .page-content-prose li {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #4b5563;
+}
+.page-content-prose a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
 
 /* --- The Tile (Product Images) --- */
 .tile {
@@ -184,17 +248,13 @@ input:checked + .slider:before { transform: translateX(20px); }
     overflow: hidden;
     position: relative;
 }
-/* New rule for main category tiles to make them grow */
 .category-container > .tile {
     flex: 1;
 }
-/* New rule to scope width/height to subcategory view */
 .subcategory-cell > .tile {
     width: 100%;
     height: 100%;
 }
-
-
 .tile:hover {
     transform: translateY(-8px);
     box-shadow: var(--card-shadow-hover);
