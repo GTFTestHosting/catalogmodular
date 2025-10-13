@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Catalog</title>
+    <title>Graciana Tortilla Factory</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="site-header">
-        <!-- NEW: Placeholder for the back button -->
-        <div id="back-button-placeholder"></div>
-
         <div class="header-content">
             <img src="images/logos/GTF_Logo.png" alt="Company Logo" class="logo">
             <div class="brand-info">
@@ -19,22 +16,34 @@
                 <p data-lang-key="companySubtitle">2025</p>
             </div>
         </div>
-        <div class="lang-toggle">
-            <span>EN</span>
-            <label class="switch">
-                <input type="checkbox" id="lang-toggle-checkbox">
-                <span class="slider round"></span>
-            </label>
-            <span>ES</span>
+
+        <!-- NEW: Main Navigation -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="home" data-lang-key="navHome">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="catalog" data-lang-key="navCatalog">Catalog</a></li>
+                <li><a href="#" class="nav-link" data-page="about" data-lang-key="navAbout">About Us</a></li>
+                <li><a href="#" class="nav-link" data-page="contact" data-lang-key="navContact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-controls">
+            <div id="back-button-placeholder"></div>
+            <div class="lang-toggle">
+                <span>EN</span>
+                <label class="switch">
+                    <input type="checkbox" id="lang-toggle-checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <span>ES</span>
+            </div>
+            <button id="print-button" class="print-button hidden" data-lang-key="printButton">Print Catalog</button>
         </div>
-        <button id="print-button" class="print-button" data-lang-key="printButton">Print Catalog</button>
     </header>
 
     <main>
-        <div class="catalog-container">
-            <div id="main-categories" class="category-container"></div>
-            <div id="sub-categories"></div>
-        </div>
+        <!-- This is the generic container that was missing -->
+        <div id="page-content" class="catalog-container"></div>
 
         <div id="product-modal" class="modal">
             <div class="modal-content">
