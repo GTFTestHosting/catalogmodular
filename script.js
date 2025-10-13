@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.style.backgroundImage = `url("${item.image}")`;
                 tile.innerHTML = `<h2>${item.name}</h2>`; 
                 tile.onclick = () => {
-                    // Push the current subcategory level to history
                     navigationHistory.push({ type: 'category', path: filePath });
                     const nextPath = item.dataFile;
                     if (item.type === 'subcategories') {
@@ -112,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             products.forEach(product => {
                 const tile = document.createElement('div');
+                
                 if (product.type === 'promo-panel') {
                     tile.className = 'promo-panel';
                     if (product.style) tile.classList.add(`promo-${product.style}`);
@@ -122,6 +122,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (product.title) content += `<h3>${product.title}</h3>`;
                     if (product.text) content += `<p>${product.text}</p>`;
                     tile.innerHTML = content;
+
+                } else if (product.type === 'recipe-panel') {
+                    tile.className = 'recipe-panel';
+                    if (product.style) tile.classList.add(`promo-${product.style}`);
+                    if (product.backgroundImage) {
+                        tile.style.backgroundImage = `url("${product.backgroundImage}")`;
+                    }
+                    
+                    const contentWrapper = document.createElement('div');
+                    contentWrapper.className = 'recipe-panel-content';
+                    
+                    let content = '';
+                    if (product.title) content += `<h3>${product.title}</h3>`;
+                    if (product.description) content += `<p class="recipe-description">${product.description}</p>`;
+                    if (product.featuredProducts && Array.isArray(product.featuredProducts)) {
+                        content += `<h4 class="featured-products-title">Featured Products:</h4>`;
+                        content += '<ul>';
+                        product.featuredProducts.forEach(ingredient => {
+                            content += `<li>${ingredient}</li>`;
+                        });
+                        content += '</ul>';
+                    }
+                    contentWrapper.innerHTML = content;
+                    tile.appendChild(contentWrapper);
+
                 } else {
                     tile.className = 'tile';
                     tile.style.backgroundImage = `url("${product.image}")`;
@@ -181,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function showBackButton() {
         backButtonPlaceholder.innerHTML = '';
         const backButton = document.createElement('button');
-        // Use an SVG arrow icon instead of text
         backButton.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -197,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
         backButtonPlaceholder.innerHTML = '';
     }
 
-    // --- THIS IS THE CORRECTED FUNCTION ---
     function goBack() {
         const lastState = navigationHistory.pop();
         if (lastState) {
@@ -215,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function showProductDetails(product) {
         modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent body scroll
         document.getElementById('modal-img').src = product.image;
         document.getElementById('modal-title').textContent = product.name;
         document.getElementById('modal-description').textContent = product.description;
@@ -222,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
     
-    // --- PRINT-SPECIFIC LOGIC ---
+    // --- PRINT-SPECIFIC LOGIC (SIMPLIFIED) ---
     async function handlePrintRequest() {
         printButton.textContent = 'Generating...';
         printButton.disabled = true;
@@ -273,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Build Cover Page
         fullHtml += `
             <div class="print-cover-page">
-                <img src="images/GTF-LOGO-BLACK.png" class="cover-logo" alt="Company Logo">
+                <img src="images/logos/GTF_Logo.png" class="cover-logo" alt="Company Logo">
                 <h1>Product Catalog</h1>
                 <h2>${new Date().getFullYear()}</h2>
                 <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
@@ -339,8 +363,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     printButton.addEventListener('click', handlePrintRequest);
-    closeModal.onclick = () => { modal.style.display = 'none'; };
-    window.onclick = (event) => { if (event.target == modal) { modal.style.display = 'none'; } };
+    closeModal.onclick = () => { 
+        modal.style.display = 'none'; 
+        document.body.style.overflow = ''; // Restore body scroll
+    };
+    window.onclick = (event) => { 
+        if (event.target == modal) { 
+            modal.style.display = 'none'; 
+            document.body.style.overflow = ''; // Restore body scroll
+        } 
+    };
 
     async function initializeCatalog() {
         navigationHistory = [];
@@ -352,6 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoadingMessage(mainCategoriesContainer);
         subCategoriesContainer.classList.add('hidden');
         mainCategoriesContainer.classList.remove('hidden');
+        mainCategoriesContainer.className = 'category-container';
 
         try {
             const response = await fetch(categoriesPath);
@@ -364,7 +397,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.style.backgroundImage = `url("${category.image}")`;
                 tile.innerHTML = `<h2>${category.name}</h2>`;
                 tile.onclick = () => {
-                    // Push the main catalog state to history
                     navigationHistory.push({ type: 'catalog', path: categoriesPath });
                     const nextPath = category.dataFile;
                     if (category.type === 'subcategories') {
