@@ -1,0 +1,10 @@
+{
+    "type": "recipe-panel",
+    "style": "wide",
+    "backgroundImage": "images/promo_panels/cocktail-orange.jpg",
+    "title": "Bloor Orange Paloma",
+    "description": "A spin on the iconic paloma that utilizes tequila, grapefruit, and blood orange soda to give a vibrant pop of color.",
+    "featuredProducts": [
+        "Dehydrated Blood Orange"
+    ]
+}

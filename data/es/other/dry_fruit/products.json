@@ -6,6 +6,7 @@
         "lemon.json",
         "lime.json",
         "dragonfruit.json",
-        "pineapple.json"
+        "pineapple.json",
+        "recipe_cocktail.json"
     ]
 }
