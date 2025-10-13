@@ -1,0 +1,12 @@
+{
+  "type": "recipe-panel",
+  "style": "wide",
+  "backgroundVideo": "videos/birria-tacos.mp4",
+  "title": "Tacos de Birria",
+  "description": "Tacos con birria, un platillo de sabores complejos hecho con una mezcla de varios tipos de chiles y especias.",
+  "featuredProducts": [
+    "Chiles Guajillo",
+    "Chiles Ancho",
+    "Chiles Pasilla"
+  ]
+}

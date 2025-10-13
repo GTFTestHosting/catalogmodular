@@ -1,0 +1,12 @@
+{
+    "type": "recipe-panel",
+    "style": "wide",
+    "backgroundVideo": "videos/birria-tacos.mp4",
+    "title": "Birria Tacos",
+    "description": "Tacos featuring birria, a dish with complex flavors made from a a blend of many types of chiles and spices.",
+    "featuredProducts": [
+        "Guajillo Chiles",
+        "Ancho Chiles",
+        "Pasilla Chiles"
+    ]
+}
