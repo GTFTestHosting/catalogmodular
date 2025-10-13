@@ -1,7 +1,7 @@
 {
-    "name": "Guajillo Chile",
-    "image": "images/spices/peppers/Chile Guajillo.jpg",
-    "description": "Tangy, berry-like, slightly smoky. Mild-medium spice. A staple in birria, pozole, and marinades",
-    "specs": "Whole chile pods, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
+  "name": "Chile Guajillo",
+  "image": "images/spices/peppers/Chile Guajillo.jpg",
+  "description": "Ácido, con sabor a bayas y ligeramente ahumado. Picante suave a medio. Básico en birria, pozole y marinadas.",
+  "specs": "Vainas de chile enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
 }

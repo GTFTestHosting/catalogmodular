@@ -1,20 +1,20 @@
 [
     {
-        "name": "Peppers",
+        "name": "Chiles",
         "image": "images/category-banners/spices/subcat/Pepper-Subcat-Banner.jpg",
         "type": "products",
-        "dataFile": "data/en/spices_and_peppers/peppers/products.json"
+        "dataFile": "data/es/spices_and_peppers/peppers/products.json"
     },
     {
-        "name": "Spices",
+        "name": "Especias",
         "image": "images/category-banners/spices/subcat/Spices-Subcat-Banner.jpg",
         "type": "products",
-        "dataFile": "data/en/spices_and_peppers/spices/products.json"
+        "dataFile": "data/es/spices_and_peppers/spices/products.json"
     },
     {
-        "name": "Nuts, Seeds, & More",
+        "name": "Nueces, Semillas y Más",
         "image": "images/category-banners/spices/subcat/Nuts-and-More-Banner.jpg",
         "type": "products",
-        "dataFile": "data/en/spices_and_peppers/nuts_seeds/products.json"
+        "dataFile": "data/es/spices_and_peppers/nuts_seeds/products.json"
     }
 ]

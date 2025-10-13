@@ -1,7 +1,7 @@
-  {
-    "name": "Piquin Chile",
-    "image": "images/spices/peppers/Chile Piquin.jpg",
-    "description": "Fruity, citrusy, sharp heat. Hot. Popular for table salsas and aguas frescas with chile.",
-    "specs": "Whole chile pods, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Chile Piquín",
+  "image": "images/spices/peppers/Chile Piquin.jpg",
+  "description": "Afrutado, cítrico, con picor intenso. Picante. Popular en salsas de mesa y aguas frescas con chile.",
+  "specs": "Vainas de chile enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

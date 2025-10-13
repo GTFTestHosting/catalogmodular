@@ -1,7 +1,7 @@
-  {
-    "name": "Spicy Fava Beans",
-    "image": "images/spices/reg-spices/Habas con Chile.jpg",
-    "description": "Tangy, spicy broad beans. Snack food.",
-    "specs": "Whole beans, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Habas Picantes",
+  "image": "images/spices/reg-spices/Habas con Chile.jpg",
+  "description": "Habas ácidas y picantes. Botana.",
+  "specs": "Frijoles enteros, empacados en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

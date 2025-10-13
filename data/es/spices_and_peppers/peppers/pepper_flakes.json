@@ -1,7 +1,7 @@
-  {
-    "name": "Chile Flakes",
-    "image": "images/spices/peppers/Hojuelas de Chile.jpg",
-    "description": "Crushed chile flakes, spicy and smoky. Medium-hot. Sprinkled on fruits, pizzas, snacks.",
-    "specs": "Flake form, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Hojuelas de Chile",
+  "image": "images/spices/peppers/Hojuelas de Chile.jpg",
+  "description": "Hojuelas de chile trituradas, picantes y ahumadas. Picante medio-alto. Espolvoreadas sobre frutas, pizzas y botanas.",
+  "specs": "En forma de hojuelas, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

@@ -1,7 +1,7 @@
-  {
-    "name": "Shredded Coconut",
-    "image": "images/spices/reg-spices/Coco Rayado.jpg",
-    "description": "Unsweetened shredded coconut, pleasant and tropical. Used in cocadas, desserts, and atoles.",
-    "specs": "Shredded form, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Coco Rallado",
+  "image": "images/spices/reg-spices/Coco Rayado.jpg",
+  "description": "Coco rallado sin azúcar, agradable y con sabor tropical. Usado en cocadas, postres y atoles.",
+  "specs": "En forma rallada, empacado en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

@@ -1,7 +1,7 @@
-  {
-    "name": "Hibiscus",
-    "image": "images/spices/reg-spices/Jamaica.jpg",
-    "description": "Tart and floral. Used in agua de jamaica and cocktails.",
-    "specs": "Dried whole flowers, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Jamaica",
+  "image": "images/spices/reg-spices/Jamaica.jpg",
+  "description": "Ácida y floral. Usada en agua de jamaica y cócteles.",
+  "specs": "Flores enteras secas, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 lbs. | 5 lbs."
+}

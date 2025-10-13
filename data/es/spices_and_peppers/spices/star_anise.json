@@ -1,7 +1,7 @@
-  {
-    "name": "Star Anise",
-    "image": "images/spices/reg-spices/Anis Estrella.jpg",
-    "description": "Sweet, licorice-like. Used in ponche navideño, pan dulce, café de olla.",
-    "specs": "Whole pods, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Anís Estrella",
+  "image": "images/spices/reg-spices/Anis Estrella.jpg",
+  "description": "Dulce, con sabor a regaliz. Usado en ponche navideño, pan dulce y café de olla.",
+  "specs": "Vainas enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

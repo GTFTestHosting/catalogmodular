@@ -1,7 +1,7 @@
-  {
-    "name": "Granulated Onion",
-    "image": "images/spices/reg-spices/Cebolla Granulada.jpg",
-    "description": "Sweet, onion-like flavor. Used in soups, rice, and adobos.",
-    "specs": "Powdered form, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Cebolla Granulada",
+  "image": "images/spices/reg-spices/Cebolla Granulada.jpg",
+  "description": "Sabor dulce, parecido a la cebolla. Usado en sopas, arroz y adobos.",
+  "specs": "En forma de polvo, empacado en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

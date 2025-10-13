@@ -1,7 +1,7 @@
-  {
-    "name": "Salted Peanuts",
-    "image": "images/spices/reg-spices/Cacahuate con Sal.jpg",
-    "description": "Crunchy, salty, tangy peanuts. Snack or topping for antojitos.",
-    "specs": "Whole nuts, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Cacahuates Salados",
+  "image": "images/spices/reg-spices/Cacahuate con Sal.jpg",
+  "description": "Cacahuates crujientes, salados y ácidos. Como botana o topping para antojitos.",
+  "specs": "Nueces enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

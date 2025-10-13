@@ -1,7 +1,7 @@
-  {
-    "name": "Parsley",
-    "image": "images/spices/reg-spices/Perejil.jpg",
-    "description": "Fresh, grassy herb. Used as a garnish or flavor base.",
-    "specs": "Whole dried leaves, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Perejil",
+  "image": "images/spices/reg-spices/Perejil.jpg",
+  "description": "Hierba fresca y verde. Usada como guarnición o base de sabor.",
+  "specs": "Hojas secas enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

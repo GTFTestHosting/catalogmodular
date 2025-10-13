@@ -1,7 +1,7 @@
-  {
-    "name": "Pasilla Chile",
-    "image": "images/spices/peppers/Chile Pasilla.jpg",
-    "description": "Smoky, raisin-like, with berry notes. Mild-medium. Used in mole negro and pasilla salsas.",
-    "specs": "Whole chile pods, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Chile Pasilla",
+  "image": "images/spices/peppers/Chile Pasilla.jpg",
+  "description": "Ahumado, con sabor a pasas y notas de bayas. Picante suave a medio. Usado en mole negro y salsas de pasilla.",
+  "specs": "Vainas de chile enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

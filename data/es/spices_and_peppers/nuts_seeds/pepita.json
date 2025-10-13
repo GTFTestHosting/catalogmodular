@@ -1,7 +1,7 @@
-  {
-    "name": "Green Pumpkin Seeds",
-    "image": "images/spices/reg-spices/Pepita Verde.jpg",
-    "description": "Rich and nutty. Used in mole verde and snacks.",
-    "specs": "Whole seed kernels, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Pepitas Verdes",
+  "image": "images/spices/reg-spices/Pepita Verde.jpg",
+  "description": "Ricas y con sabor a nuez. Usadas en mole verde y botanas.",
+  "specs": "Semillas enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

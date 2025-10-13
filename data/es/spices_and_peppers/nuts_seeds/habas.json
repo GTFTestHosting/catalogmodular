@@ -1,7 +1,7 @@
-  {
-    "name": "Fava Beans",
-    "image": "images/spices/reg_spices/Habas.jpg",
-    "description": "Broad beans, earthy flavor. Used in soups, snacks.",
-    "specs": "Whole beans, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Habas",
+  "image": "images/spices/reg_spices/Habas.jpg",
+  "description": "Habas, con sabor terroso. Usadas en sopas y botanas.",
+  "specs": "Frijoles enteros, empacados en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

@@ -1,7 +1,7 @@
-  {
-    "name": "Morita Chile",
-    "image": "images/spices/peppers/Chile Morita.jpg",
-    "description": "Smoky, tangy, smaller version of chipotle. Medium-hot. Used in table salsas and marinades.",
-    "specs": "Whole chile pods, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Chile Morita",
+  "image": "images/spices/peppers/Chile Morita.jpg",
+  "description": "Ahumado, ácido, versión más pequeña del chipotle. Picante medio-alto. Usado en salsas de mesa y marinadas.",
+  "specs": "Vainas de chile enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

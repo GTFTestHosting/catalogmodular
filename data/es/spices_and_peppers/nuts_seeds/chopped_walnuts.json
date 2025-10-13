@@ -1,7 +1,7 @@
-  {
-    "name": "Chopped Walnuts",
-    "image": "images/spices/reg_spices/Nuez Granillo.jpg",
-    "description": "Chopped walnuts, rich and earthy. Used in baking, sauces, and chiles en nogada variations.",
-    "specs": "Chopped forms, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Nueces Picadas",
+  "image": "images/spices/reg_spices/Nuez Granillo.jpg",
+  "description": "Nueces picadas, ricas y con sabor terroso. Usadas en repostería, salsas y variaciones de chiles en nogada.",
+  "specs": "Formas picadas, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

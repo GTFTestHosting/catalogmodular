@@ -1,7 +1,7 @@
-  {
-    "name": "Paprika",
-    "image": "images/spices/reg-spices/Paprika.jpg",
-    "description": "Sweet, smoky and mild. Low spice. Used in stews, adobos, and rubs.",
-    "specs": "Powdered form, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Pimentón",
+  "image": "images/spices/reg-spices/Paprika.jpg",
+  "description": "Dulce, ahumado y suave. Poco picante. Usado en guisos, adobos y sazonadores.",
+  "specs": "En forma de polvo, empacado en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

@@ -1,7 +1,7 @@
-  {
-    "name": "Walnuts",
-    "image": "images/spices/reg-spices/Nuez Mitad.jpg",
-    "description": "Rich and earthy. Used in chiles en nogada sauce, deserts, pastries.",
-    "specs": "Walnut halves, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Nueces",
+  "image": "images/spices/reg-spices/Nuez Mitad.jpg",
+  "description": "Ricas y con sabor terroso. Usadas en salsas de chiles en nogada, postres y repostería.",
+  "specs": "Mitades de nuez, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

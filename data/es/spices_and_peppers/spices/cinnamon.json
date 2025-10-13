@@ -1,7 +1,7 @@
-  {
-    "name": "Whole Cinnamon",
-    "image": "images/spices/reg-spices/Canela Entera.jpg",
-    "description": "Fragrant, softer Mexican cinnamon stick. Used in horchata, teas, and stews.",
-    "specs": "Whole cinnamon sticks, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Canela Entera",
+  "image": "images/spices/reg-spices/Canela Entera.jpg",
+  "description": "Aromática, canela mexicana más suave. Usada en horchata, tés y guisos.",
+  "specs": "Palitos de canela enteros, empacados en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

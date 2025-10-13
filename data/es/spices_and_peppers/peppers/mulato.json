@@ -1,7 +1,7 @@
-  {
-    "name": "Mulato Chile",
-    "image": "images/spices/peppers/Chile Mulato.jpg",
-    "description": "Deep, chocolatey, slightly smoky. Mild. Crucial in mole poblano and rich sauces.",
-    "specs": "Whole chile pods, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Chile Mulato",
+  "image": "images/spices/peppers/Chile Mulato.jpg",
+  "description": "Profundo, con sabor a chocolate y ligeramente ahumado. Suave. Crucial en mole poblano y salsas ricas.",
+  "specs": "Vainas de chile enteras, empacadas en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

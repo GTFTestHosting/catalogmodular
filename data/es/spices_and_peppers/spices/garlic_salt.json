@@ -1,7 +1,7 @@
-  {
-    "name": "Garlic Salt",
-    "image": "images/spices/reg-spices/Sal de Ajo.jpg",
-    "description": "Salty, garlicky seasoning. Sprinkled on meats, popcorn, snacks.",
-    "specs": "Powdered form, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Sal de Ajo",
+  "image": "images/spices/reg-spices/Sal de Ajo.jpg",
+  "description": "Condimento salado con ajo. Espolvoreado sobre carnes, palomitas y botanas.",
+  "specs": "En forma de polvo, empacado en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}

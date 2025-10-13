@@ -1,7 +1,7 @@
-  {
-    "name": "Ground California Chile",
-    "image": "images/spices/reg-spices/Chile California Molido.jpg",
-    "description": "Tangy, sweet, mild. Low spice. Used in enchilada sauces and salsas.",
-    "specs": "Powdered form, packaged in oz. or lbs.",
-    "shipping": "Weight: 1 oz. | 1 lbs. | 5 lbs."
-  }
+{
+  "name": "Chile California Molido",
+  "image": "images/spices/reg-spices/Chile California Molido.jpg",
+  "description": "Ácido, dulce, suave. Poco picante. Usado en salsas para enchiladas y otras salsas.",
+  "specs": "En forma de polvo, empacado en oz. o lbs.",
+  "shipping": "Peso: 1 oz. | 1 lbs. | 5 lbs."
+}
