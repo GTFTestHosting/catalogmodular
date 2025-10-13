@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const printButton = document.getElementById('print-button');
     const backButtonPlaceholder = document.getElementById('back-button-placeholder');
     const navLinks = document.querySelectorAll('.nav-link');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const mainNav = document.querySelector('.main-nav');
+    const overlay = document.querySelector('.overlay');
 
     // ---STATE MANAGEMENT---
     let currentLanguage = 'en';
@@ -14,10 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let navigationHistory = [];
 
     // --- ================================================ ---
+    // --- MOBILE NAVIGATION LOGIC ---
+    // --- ================================================ ---
+    function openMobileMenu() {
+        mainNav.classList.add('is-open');
+        overlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        mainNav.classList.remove('is-open');
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    // --- ================================================ ---
     // --- ROUTING & PAGE LOADING LOGIC ---
     // --- ================================================ ---
-
-    // Master function to render the correct page view
     function renderPage(page, options = {}) {
         navLinks.forEach(link => {
             link.classList.toggle('active', link.dataset.page === page);
@@ -38,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Generic function to load HTML content from the /pages/ directory
     async function loadHtmlContent(page) {
         hideBackButton();
         pageContentContainer.innerHTML = `<h2>${translations.loading || 'Loading...'}</h2>`;
@@ -58,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Function to handle clicks on the homepage tiles
     function setupHomeNavTiles() {
         document.querySelectorAll('.home-nav-tile').forEach(tile => {
             tile.addEventListener('click', () => {
@@ -72,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ================================================ ---
     // --- CATALOG-SPECIFIC LOGIC ---
     // --- ================================================ ---
-
     async function initializeCatalog(startCategorySlug = null) {
         navigationHistory = [];
         hideBackButton();
@@ -129,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showBackButton();
         const subCategoriesContainer = document.getElementById('sub-categories');
         const mainCategoriesContainer = document.getElementById('main-categories');
-        if(mainCategoriesContainer) mainCategoriesContainer.classList.add('hidden');
+        if (mainCategoriesContainer) mainCategoriesContainer.classList.add('hidden');
         
         showLoadingMessage(subCategoriesContainer);
 
@@ -171,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showBackButton();
         const subCategoriesContainer = document.getElementById('sub-categories');
         const mainCategoriesContainer = document.getElementById('main-categories');
-        if(mainCategoriesContainer) mainCategoriesContainer.classList.add('hidden');
+        if (mainCategoriesContainer) mainCategoriesContainer.classList.add('hidden');
 
         showLoadingMessage(subCategoriesContainer);
 
@@ -312,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-specs').textContent = product.specs;
         document.getElementById('modal-shipping').textContent = product.shipping;
     }
-
+    
     // --- PRINT LOGIC ---
     async function handlePrintRequest() {
         printButton.textContent = 'Generating...';
@@ -411,10 +424,15 @@ document.addEventListener('DOMContentLoaded', () => {
         printContainer.innerHTML = fullHtml;
     }
 
+
     // ---INITIALIZATION AND EVENT LISTENERS---
+    hamburgerBtn.addEventListener('click', openMobileMenu);
+    overlay.addEventListener('click', closeMobileMenu);
+    
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
+            closeMobileMenu();
             renderPage(link.dataset.page);
         });
     });
