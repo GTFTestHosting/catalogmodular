@@ -1,6 +1,6 @@
 [
     {
-        "name": "Bases e Ingredientes Preparados",
+        "name": "Bases y Ingredientes Preparados",
         "image": "images/category-banners/other/subcat/bases-banner.jpg",
         "type": "products",
         "dataFile": "data/es/other/prepared_bases/products.json"
