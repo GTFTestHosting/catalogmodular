@@ -1,11 +1,10 @@
 {
     "type": "recipe-panel",
     "style": "wide",
-    "backgroundImage": "images/recipes/tacos-al-pastor.jpg",
-    "title": "Tacos al Pastor",
-    "description": "A classic dish featuring marinated pork, pineapple, and our authentic corn tortillas.",
+    "backgroundImage": "images/promo_panels/torta.jpg",
+    "title": "Tortas",
+    "description": "The iconic mexican sandwich. Meat, beans, cheese, and pickled jalapenos stuffed inside a toasted telera roll.",
     "featuredProducts": [
-        "Street Taco Corn Tortillas",
-        "Guajillo Peppers"
+        "Telera Brea"
     ]
 }
