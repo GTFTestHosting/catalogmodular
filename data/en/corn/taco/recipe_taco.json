@@ -1,7 +1,7 @@
 {
     "type": "recipe-panel",
     "style": "wide",
-    "backgroundImage": "images/recipes/tacos-al-pastor.jpg",
+    "backgroundVideo": "videos/tacos-al-pastor.mp4",
     "title": "Tacos al Pastor",
     "description": "A classic dish featuring marinated pork, pineapple, and our authentic corn tortillas.",
     "featuredProducts": [

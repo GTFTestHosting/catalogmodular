@@ -126,7 +126,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (product.type === 'recipe-panel') {
                     tile.className = 'recipe-panel';
                     if (product.style) tile.classList.add(`promo-${product.style}`);
-                    if (product.backgroundImage) {
+                    
+                    if (product.backgroundVideo) {
+                        const video = document.createElement('video');
+                        video.autoplay = true;
+                        video.loop = true;
+                        video.muted = true;
+                        video.playsInline = true;
+                        
+                        const source = document.createElement('source');
+                        source.src = product.backgroundVideo;
+                        source.type = 'video/mp4';
+                        
+                        video.appendChild(source);
+                        tile.appendChild(video);
+                    } else if (product.backgroundImage) {
                         tile.style.backgroundImage = `url("${product.backgroundImage}")`;
                     }
                     

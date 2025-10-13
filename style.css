@@ -181,11 +181,9 @@ input:checked + .slider:before { transform: translateX(20px); }
     overflow: hidden;
     position: relative;
 }
-
 .category-container > .tile {
     flex: 1;
 }
-
 .subcategory-cell > .tile {
     width: 100%;
     height: 100%;
@@ -244,7 +242,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     margin: 0;
 }
 
-/* --- NEW: Recipe Panel Styles --- */
+/* --- Recipe Panel Styles --- */
 .recipe-panel {
     border-radius: 16px;
     padding: 24px;
@@ -260,6 +258,18 @@ input:checked + .slider:before { transform: translateX(20px); }
     background-position: center;
     color: white;
 }
+.recipe-panel video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+}
 .recipe-panel:hover {
     transform: translateY(-8px);
     box-shadow: var(--card-shadow-hover);
@@ -270,10 +280,11 @@ input:checked + .slider:before { transform: translateX(20px); }
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 70%);
     pointer-events: none;
+    z-index: 1;
 }
 .recipe-panel-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 .recipe-panel h3 {
     font-size: 1.5rem;
@@ -347,7 +358,9 @@ input:checked + .slider:before { transform: translateX(20px); }
     font-weight: 600;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-block; 
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
     width: auto;
 }
 .back-button:hover {
