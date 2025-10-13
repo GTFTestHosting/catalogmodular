@@ -1,9 +1,12 @@
 {
-    "companyTitle": "Catálogo de productos",
+    "companyTitle": "Catálogo de Productos",
     "companySubtitle": "2025",
     "modalSpecs": "Especificaciones",
     "modalShipping": "Información de Envío",
     "footerRights": "© 2025 Graciana Tortilla Factory. Todos los derechos reservados.",
     "footerContact": "Contáctenos:",
-    "backButton": "Volver"
+    "backButton": "Volver",
+    "loading": "Cargando...",
+    "printButton": "Imprimir Catálogo",
+    "featuredProductsTitle": "Productos Destacados:"
 }

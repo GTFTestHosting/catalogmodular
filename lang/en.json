@@ -3,8 +3,10 @@
     "companySubtitle": "2025",
     "modalSpecs": "Specifications",
     "modalShipping": "Shipping Information",
-    "footerRights": "© Graciana Tortilla Factory. All Rights Reserved.",
+    "footerRights": "© 2025 Graciana Tortilla Factory. All Rights Reserved.",
     "footerContact": "Contact us:",
     "backButton": "Back",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "printButton": "Print Catalog",
+    "featuredProductsTitle": "Featured Products:"
 }

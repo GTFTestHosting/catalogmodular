@@ -126,21 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (product.type === 'recipe-panel') {
                     tile.className = 'recipe-panel';
                     if (product.style) tile.classList.add(`promo-${product.style}`);
-                    
-                    if (product.backgroundVideo) {
-                        const video = document.createElement('video');
-                        video.autoplay = true;
-                        video.loop = true;
-                        video.muted = true;
-                        video.playsInline = true;
-                        
-                        const source = document.createElement('source');
-                        source.src = product.backgroundVideo;
-                        source.type = 'video/mp4';
-                        
-                        video.appendChild(source);
-                        tile.appendChild(video);
-                    } else if (product.backgroundImage) {
+                    if (product.backgroundImage) {
                         tile.style.backgroundImage = `url("${product.backgroundImage}")`;
                     }
                     
@@ -151,7 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (product.title) content += `<h3>${product.title}</h3>`;
                     if (product.description) content += `<p class="recipe-description">${product.description}</p>`;
                     if (product.featuredProducts && Array.isArray(product.featuredProducts)) {
-                        content += `<h4 class="featured-products-title">Featured Products:</h4>`;
+                        
+                        // Get the translated title from the language pack, with a fallback
+                        const featuredTitle = translations.featuredProductsTitle || 'Featured Products:';
+                        content += `<h4 class="featured-products-title">${featuredTitle}</h4>`;
+
                         content += '<ul>';
                         product.featuredProducts.forEach(ingredient => {
                             content += `<li>${ingredient}</li>`;
