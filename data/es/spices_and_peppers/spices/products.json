@@ -1,3 +1,23 @@
-[
-    "data/en/spices_and_peppers/spices/cumin_powder.json"
-]
+{
+    "basePath": "data/en/spices_and_peppers/spices/",
+    "files": [
+        "cumin.json",
+        "ground_cumin.json",
+        "bay_leaves.json",
+        "cayenne.json",
+        "clove.json",
+        "whole_black_pepper.json",
+        "cinnamon.json",
+        "garlic_salt.json",
+        "granulated_garlic.json",
+        "granulated_onion.json",
+        "ground_black_pepper.json",
+        "ground_white_pepper.json",
+        "ground_california.json",
+        "paprika.json",
+        "oregano.json",
+        "parsley.json",
+        "minced_onion.json",
+        "star_anise.json"
+    ]
+}

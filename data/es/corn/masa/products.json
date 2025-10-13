@@ -1,0 +1,14 @@
+{
+    "basePath": "data/en/corn/masa/",
+    "files": [
+        "5lbs_masa_w.json",
+        "5lbs_masa_y.json",
+        "5lbs_masa_b.json",
+        "10lbs_masa_w.json",
+        "10lbs_masa_y.json",
+        "10lbs_masa_b.json",
+        "5lbs_masa_prep.json",
+        "5lbs_masa_unprep.json",
+        "5lbs_nixtamal.json"
+    ]
+}

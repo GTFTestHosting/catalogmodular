@@ -1,0 +1,11 @@
+{
+    "basePath": "data/en/flour/regular/",
+    "files": [
+        "snack.json",
+        "gordita.json",
+        "medium.json",
+        "12_inch.json",
+        "13_inch.json",
+        "14_inch.json"
+    ]
+}

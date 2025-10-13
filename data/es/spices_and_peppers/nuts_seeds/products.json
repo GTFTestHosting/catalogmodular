@@ -1,0 +1,28 @@
+{
+    "basePath": "data/en/spices_and_peppers/nuts_seeds/",
+    "files": [
+        "almonds.json",
+        "walnuts.json",
+        "salted_peanuts.json",
+        "spicy_peanuts.json",
+        "arbol_peanuts.json",
+        "habanero_peanuts.json",
+        "japanese_peanuts.json",
+        "spicy_habas.json",
+        "garbanzo.json",
+        "lentils.json",
+        "sesame.json",
+        "pepita.json",
+        "chia.json",
+        "coconut.json",
+        "sprinkles.json",
+        "prunes.json",
+        "raisins.json",
+        "tamarind.json",
+        "hibiscus.json",
+        "mango.json",
+        "tajin.json",
+        "square_pasta.json",
+        "wheel_pasta.json"
+    ]
+}

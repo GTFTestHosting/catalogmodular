@@ -1,0 +1,9 @@
+{
+    "basePath": "data/en/corn/enchilada/",
+    "files": [
+        "enchilada_reg_w.json",
+        "enchilada_reg_y.json",
+        "enchilada_heavy_w.json",
+        "enchilada_heavy_y.json"
+    ]
+}

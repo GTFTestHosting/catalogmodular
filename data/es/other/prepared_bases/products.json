@@ -1,0 +1,14 @@
+{
+    "basePath": "data/en/other/prepared_bases/",
+    "files": [
+        "sopes_w.json",
+        "sopes_y.json",
+        "tostadas.json",
+        "tostaditas.json",
+        "chips_1lbs.json",
+        "chips_10lbs.json",
+        "teleras.json",
+        "burger.json",
+        "recipe_torta.json"
+    ]
+}

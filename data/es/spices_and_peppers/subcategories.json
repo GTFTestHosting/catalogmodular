@@ -1,14 +1,20 @@
 [
     {
         "name": "Peppers",
-        "image": "images/category-banners/Pepper-Subcat-Banner.jpg",
+        "image": "images/category-banners/spices/subcat/Pepper-Subcat-Banner.jpg",
         "type": "products",
         "dataFile": "data/en/spices_and_peppers/peppers/products.json"
     },
     {
-        "name": "Spices & More",
-        "image": "images/category-banners/Spices-Subcat-Banner.jpg",
+        "name": "Spices",
+        "image": "images/category-banners/spices/subcat/Spices-Subcat-Banner.jpg",
         "type": "products",
         "dataFile": "data/en/spices_and_peppers/spices/products.json"
+    },
+    {
+        "name": "Nuts, Seeds, & More",
+        "image": "images/category-banners/spices/subcat/Nuts-and-More-Banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/spices_and_peppers/nuts_seeds/products.json"
     }
 ]

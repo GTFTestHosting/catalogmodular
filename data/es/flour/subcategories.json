@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Regular Flour Tortillas",
+        "image": "images/category-banners/flour/subcat/reg-flour-banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/flour/regular/products.json"
+    },
+    {
+        "name": "Flavored Tortillas & Wraps",
+        "image": "images/category-banners/flour/subcat/flavor-flour-banner.jpg",
+        "type": "products",
+        "dataFile": "data/en/flour/specialty/products.json"
+    }
+]

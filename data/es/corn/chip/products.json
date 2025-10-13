@@ -1,0 +1,19 @@
+{
+    "basePath": "data/es/corn/chip/",
+    "files": [
+        "chip_reg_w.json",
+        "chip_reg_y.json",
+        "chip_heavy.json",
+        "chip_5dz_w.json",
+        "chip_5dz_red.json",
+        "chip_5dz_green.json",
+        "chip_5dz_blue.json",
+        "1054.json",
+        "1060.json",
+        "1060s.json",
+        "1066.json",
+        "1067.json",
+        "1087.json",
+        "1088.json"
+    ]
+}
