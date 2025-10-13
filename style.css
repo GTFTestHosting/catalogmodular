@@ -26,7 +26,7 @@ main {
     flex-direction: column;
 }
 
-/* --- Header Styles (UPDATED) --- */
+/* --- Header Styles --- */
 .site-header {
     background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
@@ -34,8 +34,8 @@ main {
     padding: 24px 40px;
     border-bottom: 1px solid var(--border-color);
     display: flex; 
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
+    flex-direction: column; 
+    align-items: center; 
     gap: 20px;
     position: sticky;
     top: 0;
@@ -43,31 +43,16 @@ main {
 }
 .header-content {
     display: flex;
-    flex-direction: column; /* Stack logo and brand info */
+    flex-direction: column; 
     align-items: center;
-    gap: 8px;
 }
 .logo {
     height: 75px;
 }
-.brand-info {
-    text-align: center;
-}
-.brand-info h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ff5919;
-}
-.brand-info p {
-    margin: 0;
-    color: #6b7280;
-    font-size: 0.9rem;
-}
 
-/* --- Main Navigation Styles (UPDATED) --- */
+/* --- Main Navigation Styles --- */
 .main-nav {
-    margin: 0; /* Remove auto margin */
+    margin: 0;
 }
 .main-nav ul {
     display: flex;
@@ -94,9 +79,9 @@ main {
     color: #fff;
 }
 
-/* --- Header Controls Wrapper (UPDATED) --- */
+/* --- Header Controls Wrapper --- */
 .header-controls {
-    position: absolute; /* Position relative to the header */
+    position: absolute; 
     top: 50%;
     right: 40px;
     transform: translateY(-50%);
@@ -107,9 +92,11 @@ main {
 
 /* --- Language Toggle & Print Button --- */
 .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-left: 0;
 }
-/* ... (The rest of the file is unchanged, only header styles were modified) ... */
 .lang-toggle span {
     font-weight: 600;
     color: #6b7280;
@@ -145,7 +132,6 @@ input:checked + .slider { background-color: var(--primary-color); }
 input:checked + .slider:before { transform: translateX(20px); }
 
 .print-button {
-    margin-left: 20px;
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 600;
@@ -173,21 +159,12 @@ input:checked + .slider:before { transform: translateX(20px); }
     display: flex;
     flex-direction: column;
 }
-
-#sub-categories {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
 .category-container {
     display: flex;
     flex-direction: row;
     gap: 24px;
     flex-grow: 1;
 }
-
-/* New wrapper for the subcategory grid */
 .subcategory-wrapper {
     flex-grow: 1;
     display: grid;
@@ -195,13 +172,9 @@ input:checked + .slider:before { transform: translateX(20px); }
     grid-auto-rows: 1fr;
     gap: 24px;
 }
-
-/* New cell container for each subcategory tile */
 .subcategory-cell {
     display: flex;
 }
-
-/* Product grid remains separate */
 .product-grid {
     flex-grow: 1;
     display: grid;
@@ -209,7 +182,11 @@ input:checked + .slider:before { transform: translateX(20px); }
     gap: 24px;
     grid-auto-flow: dense;
 }
-/* --- End of Layout --- */
+#sub-categories {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
 
 /* --- Prose styles for new pages --- */
 .page-content-prose {
@@ -231,7 +208,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     color: var(--primary-color);
     font-weight: 600;
 }
-
 
 /* --- The Tile (Product Images) --- */
 .tile {
