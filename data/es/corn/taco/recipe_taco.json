@@ -2,9 +2,9 @@
     "type": "recipe-panel",
     "style": "wide",
     "backgroundVideo": "videos/asada-tacos.mp4",
-    "title": "Carne Asada Tacos",
-    "description": "Classic street style tacos featuring diced pieces of grilled steak over two yellow corn tortillas.",
+    "title": "Tacos de Carne Asada",
+    "description": "Tacos clásicos estilo callejero con trozos de carne asada sobre dos tortillas de maíz amarillo.",
     "featuredProducts": [
-        "5\" Yellow Taco Tortillas"
+        "Tortillas de Taco Amarillo de 5\""
     ]
 }

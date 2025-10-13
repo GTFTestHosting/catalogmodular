@@ -1,9 +1,8 @@
-    {
-        "type": "promo-panel",
-        "style": "wide",
-        "title": "Customer Favorite!",
-        "text": "\"The best corn tortillas I've ever had! Truly authentic flavor.\"",
-        "backgroundColor": "#eef2ff",
-        "textColor": "#4338ca"
-    }
-    
+{
+    "type": "promo-panel",
+    "style": "wide",
+    "title": "¡Favorito de los Clientes!",
+    "text": "\"¡Las mejores tortillas de maíz que he probado! Sabor verdaderamente auténtico.\"",
+    "backgroundColor": "#eef2ff",
+    "textColor": "#4338ca"
+}
