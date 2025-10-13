@@ -1,12 +1,25 @@
 {
     "companyTitle": "Catálogo de Productos",
     "companySubtitle": "2025",
+    "printButton": "Imprimir Catálogo",
     "modalSpecs": "Especificaciones",
     "modalShipping": "Información de Envío",
     "footerRights": "© 2025 Graciana Tortilla Factory. Todos los derechos reservados.",
     "footerContact": "Contáctenos:",
-    "backButton": "Volver",
     "loading": "Cargando...",
-    "printButton": "Imprimir Catálogo",
-    "featuredProductsTitle": "Productos Destacados:"
+    "backButton": "Volver",
+    "featuredProductsTitle": "Productos Destacados:",
+    "navHome": "Inicio",
+    "navCatalog": "Catálogo",
+    "navAbout": "Sobre Nosotros",
+    "navContact": "Contacto",
+    "homeTitle": "Bienvenido a Nuestro Catálogo Digital",
+    "homeParagraph1": "Descubra nuestra amplia gama de productos auténticos, elaborados pensando en la tradición y la calidad. Desde nuestras tortillas de maíz y harina de autor hasta una vibrante selección de especias y chiles, nos dedicamos a llevar los mejores sabores a su mesa.",
+    "homeParagraph2": "Utilice la navegación de arriba para explorar nuestras ofertas. Estamos orgullosos de compartir con usted nuestra pasión por la comida auténtica.",
+    "aboutTitle": "Sobre Nosotros",
+    "aboutParagraph1": "Fundada en 1980, Graciana Tortilla Factory comenzó con una simple misión: crear las tortillas más auténticas y deliciosas utilizando métodos tradicionales transmitidos de generación en generación. Lo que comenzó en una pequeña cocina familiar se ha convertido en una marca querida, pero nuestro compromiso con la calidad y la autenticidad nunca ha flaqueado.",
+    "aboutParagraph2": "Obtenemos los mejores ingredientes y nos enorgullecemos de nuestro oficio, asegurando que cada producto que hacemos sea uno que estemos orgullosos de servir en nuestra propia mesa familiar. Gracias por ser parte de nuestra historia.",
+    "contactTitle": "Contacto",
+    "contactParagraph1": "¡Nos encantaría saber de usted! Si tiene una pregunta sobre nuestros productos, una consulta de ventas o simplemente quiere compartir sus comentarios, no dude en comunicarse."
 }
+

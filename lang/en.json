@@ -1,12 +1,25 @@
 {
     "companyTitle": "Product Catalog",
     "companySubtitle": "2025",
+    "printButton": "Print Catalog",
     "modalSpecs": "Specifications",
     "modalShipping": "Shipping Information",
     "footerRights": "© 2025 Graciana Tortilla Factory. All Rights Reserved.",
     "footerContact": "Contact us:",
-    "backButton": "Back",
     "loading": "Loading...",
-    "printButton": "Print Catalog",
-    "featuredProductsTitle": "Featured Products:"
+    "backButton": "Back",
+    "featuredProductsTitle": "Featured Products:",
+    "navHome": "Home",
+    "navCatalog": "Catalog",
+    "navAbout": "About Us",
+    "navContact": "Contact",
+    "homeTitle": "Welcome to Our Digital Catalog",
+    "homeParagraph1": "Discover our wide range of authentic products, crafted with tradition and quality in mind. From our signature corn and flour tortillas to a vibrant selection of spices and peppers, we are dedicated to bringing the best flavors to your table.",
+    "homeParagraph2": "Use the navigation above to explore our offerings. We are proud to share our passion for authentic food with you.",
+    "aboutTitle": "About Us",
+    "aboutParagraph1": "Founded in 1980, Graciana Tortilla Factory began with a simple mission: to create the most authentic and delicious tortillas using traditional methods passed down through generations. What started in a small family kitchen has grown into a beloved brand, but our commitment to quality and authenticity has never wavered.",
+    "aboutParagraph2": "We source the finest ingredients and take pride in our craft, ensuring that every product we make is one we would be proud to serve at our own family table. Thank you for being a part of our story.",
+    "contactTitle": "Contact",
+    "contactParagraph1": "We would love to hear from you! If you have a question about our products, a sales inquiry, or just want to share your feedback, please don't hesitate to reach out."
 }
+
