@@ -1,20 +1,20 @@
 [
     {
-        "name": "Bases & Premade Ingredients",
+        "name": "Bases e Ingredientes Preparados",
         "image": "images/category-banners/other/subcat/bases-banner.jpg",
         "type": "products",
-        "dataFile": "data/en/other/prepared_bases/products.json"
+        "dataFile": "data/es/other/prepared_bases/products.json"
     },
     {
-        "name": "Frozen Tamales & Chiles Rellenos",
+        "name": "Tamales y Chiles Rellenos Congelados",
         "image": "images/category-banners/other/subcat/tamales-banner.jpg",
         "type": "products",
-        "dataFile": "data/en/other/tamales_chiles_rellenos/products.json"
+        "dataFile": "data/es/other/tamales_chiles_rellenos/products.json"
     },
     {
-        "name": "Dried Fruit Garnishes",
+        "name": "Frutas Deshidratadas",
         "image": "images/category-banners/other/subcat/fruit-banner.jpg",
         "type": "products",
-        "dataFile": "data/en/other/dry_fruit/products.json"
+        "dataFile": "data/es/other/dry_fruit/products.json"
     }
 ]
