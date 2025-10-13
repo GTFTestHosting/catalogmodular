@@ -1,7 +1,7 @@
 {
     "type": "recipe-panel",
     "style": "wide",
-    "backgroundImage": "images/promo_panels/cocktail-orange.jpg",
+    "backgroundVideo": "videos/cocktail-orange.mp4",
     "title": "Paloma de Naranja Sanguina",
     "description": "Una versión de la icónica paloma que utiliza tequila, toronja y refresco de naranja sanguina para un toque vibrante de color.",
     "featuredProducts": [

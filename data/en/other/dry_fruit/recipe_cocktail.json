@@ -1,7 +1,7 @@
 {
     "type": "recipe-panel",
     "style": "wide",
-    "backgroundImage": "images/promo_panels/cocktail-orange.jpg",
+    "backgroundVideo": "videos/cocktail-orange.mp4",
     "title": "Blood Orange Paloma",
     "description": "A spin on the iconic paloma that utilizes tequila, grapefruit, and blood orange soda to give a vibrant pop of color.",
     "featuredProducts": [
