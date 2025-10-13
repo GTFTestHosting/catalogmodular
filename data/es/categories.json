@@ -3,24 +3,24 @@
         "name": "Productos de Maíz",
         "image": "images/category-banners/corn/Corn-Banner.jpg",
         "type": "subcategories",
-        "dataFile": "data/en/corn/subcategories.json" 
+        "dataFile": "data/es/corn/subcategories.json" 
     },
     {
         "name": "Tortillas de Harina",
         "image": "images/category-banners/flour/Flour-Banner.jpg",
         "type": "subcategories",
-        "dataFile": "data/en/flour/subcategories.json" 
+        "dataFile": "data/es/flour/subcategories.json" 
     },
     {
         "name": "Productos Preparados",
         "image": "images/category-banners/other/Other-Banner.jpg",
         "type": "subcategories",
-        "dataFile": "data/en/other/subcategories.json" 
+        "dataFile": "data/es/other/subcategories.json" 
     },
     {
         "name": "Especias y Chiles",
         "image": "images/category-banners/spices/Spices-Banner.jpg",
         "type": "subcategories",
-        "dataFile": "data/en/spices_and_peppers/subcategories.json" 
+        "dataFile": "data/es/spices_and_peppers/subcategories.json" 
     }
 ]

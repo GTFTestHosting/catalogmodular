@@ -3,30 +3,30 @@
         "name": "Tortillas para Tacos",
         "image": "images/category-banners/corn/subcat/taco-banner.jpg",
         "type": "products",
-        "dataFile": "data/en/corn/taco/products.json"
+        "dataFile": "data/es/corn/taco/products.json"
     },
     {
         "name": "Tortillas Regulares",
         "image": "images/category-banners/corn/subcat/regular-tortilla-banner.jpg",
         "type": "products",
-        "dataFile": "data/en/corn/regular/products.json"
+        "dataFile": "data/es/corn/regular/products.json"
     },
     {
         "name": "Tortillas para Enchiladas",
         "image": "images/category-banners/corn/subcat/enchilada-banner.jpg",
         "type": "products",
-        "dataFile": "data/en/corn/enchilada/products.json"
+        "dataFile": "data/es/corn/enchilada/products.json"
     },
     {
         "name": "Tortilla para freir",
         "image": "images/category-banners/corn/subcat/chip-tortilla-banner.jpg",
         "type": "products",
-        "dataFile": "data/en/corn/chip/products.json"
+        "dataFile": "data/es/corn/chip/products.json"
     },
     {
         "name": "Masa",
         "image": "images/category-banners/corn/subcat/masa-banner.jpg",
         "type": "products",
-        "dataFile": "data/en/corn/masa/products.json"
+        "dataFile": "data/es/corn/masa/products.json"
     }
 ]
