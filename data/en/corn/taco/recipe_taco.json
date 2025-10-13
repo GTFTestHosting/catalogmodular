@@ -1,11 +1,10 @@
 {
     "type": "recipe-panel",
     "style": "wide",
-    "backgroundVideo": "videos/tacos-al-pastor.mp4",
-    "title": "Tacos al Pastor",
-    "description": "A classic dish featuring marinated pork, pineapple, and our authentic corn tortillas.",
+    "backgroundVideo": "videos/asada-tacos.mp4",
+    "title": "Carne Asada Tacos",
+    "description": "Classic street style tacos featuring diced pieces of grilled steak over two yellow corn tortillas.",
     "featuredProducts": [
-        "Street Taco Corn Tortillas",
-        "Guajillo Peppers"
+        "4 1/2 Yellow Taco Toritllas"
     ]
 }
