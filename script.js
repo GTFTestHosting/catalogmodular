@@ -462,7 +462,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---APPLICATION START---
     async function startApp() {
         await loadLanguage(currentLanguage);
-        renderPage('home');
+        // THIS IS THE KEY FIX: Use a timeout to ensure the DOM is fully ready
+        setTimeout(() => {
+            renderPage('home');
+        }, 0);
     }
     
     startApp();
