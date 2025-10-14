@@ -162,6 +162,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
     
     #back-button-placeholder {
+        position: static; /* This is the key change to add */
         margin: 0;
     }
 }
