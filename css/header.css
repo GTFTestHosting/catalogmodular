@@ -38,13 +38,14 @@
 /* --- Header Controls Wrapper --- */
 .header-controls {
     position: absolute; 
-    top: 50%;
+    top: auto; /* Remove top alignment */
+    bottom: 44px; /* Position relative to the bottom */
     right: 40px;
-    transform: translateY(-50%);
+    transform: translateY(50%); /* Center vertically on the new bottom position */
     display: flex;
     align-items: center;
     gap: 20px;
-    transition: top 0.3s ease;
+    transition: bottom 0.3s ease;
 }
 
 /* --- Language Toggle & Print Button --- */
@@ -112,11 +113,12 @@ input:checked + .slider:before { transform: translateX(20px); }
 /* --- Back Button --- */
 #back-button-placeholder {
     position: absolute;
-    top: 50%;
+    top: auto; /* Remove top alignment */
+    bottom: 44px; /* Position relative to the bottom */
     left: 40px;
-    transform: translateY(-50%);
+    transform: translateY(50%); /* Center vertically on the new bottom position */
     margin-right: 0;
-    transition: top 0.3s ease;
+    transition: bottom 0.3s ease;
 }
 .back-button {
     padding: 10px 20px;
@@ -202,4 +204,5 @@ input:checked + .slider:before { transform: translateX(20px); }
         margin: 0;
     }
 }
+
 
