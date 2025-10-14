@@ -548,6 +548,17 @@ input:checked + .slider:before { transform: translateX(20px); }
         padding: 16px 24px;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-content { 
+        order: 2; /* This moves the logo to the right side */
+    }
+
+    /* Show hamburger, hide desktop nav & controls */
+    .hamburger-btn {
+        display: block;
+        order: 1; /* This moves the hamburger button to the left side */
     }
     
     /* Hide desktop nav and controls, show hamburger */
