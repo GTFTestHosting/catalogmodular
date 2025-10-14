@@ -1,10 +1,8 @@
 /* --- Header Styles --- */
 .site-header {
-    /* Glassmorphism Effect */
     background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    
     padding: 24px 40px;
     border-bottom: 1px solid var(--border-color);
     display: flex; 
@@ -14,8 +12,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    /* REMOVED: The conflicting 'position: relative;' has been removed. */
-    /* Animate the gap for a smooth collapse, instead of padding */
+    /* THIS IS THE KEY CHANGE: Animate the gap for a smooth collapse, not padding */
     transition: gap 0.3s ease;
 }
 .header-content {
@@ -38,14 +35,12 @@
 /* --- Header Controls Wrapper --- */
 .header-controls {
     position: absolute; 
-    top: auto; /* Remove top alignment */
-    bottom: 44px; /* Position relative to the bottom */
+    top: 50%;
     right: 40px;
-    transform: translateY(50%); /* Center vertically on the new bottom position */
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     gap: 20px;
-    transition: bottom 0.3s ease;
 }
 
 /* --- Language Toggle & Print Button --- */
@@ -156,8 +151,6 @@ input:checked + .slider:before { transform: translateX(20px); }
         opacity: 0;
         transition-delay: 0s;
     }
-
-    /* The header-controls and back-button don't need changes as they center with flexbox */
 }
 
 
