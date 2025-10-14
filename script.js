@@ -316,7 +316,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function showLoadingMessage(container) {
-        container.innerHTML = `<h2>${translations.loading || 'Loading...'}</h2>`;
+        if(container) {
+            container.innerHTML = `<h2>${translations.loading || 'Loading...'}</h2>`;
+        }
     }
 
     function showProductDetails(product) {
@@ -330,13 +332,109 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // --- PRINT LOGIC ---
-    // ...(Full print logic is here, but omitted for brevity in this response)
+    async function handlePrintRequest() {
+        printButton.textContent = 'Generating...';
+        printButton.disabled = true;
+
+        try {
+            const fullCatalogData = await fetchAllData(`data/${currentLanguage}/categories.json`);
+            buildPrintHtml(fullCatalogData);
+            window.print();
+        } catch (error) {
+            console.error("Failed to generate print view:", error);
+            alert("Sorry, there was an error generating the catalog for printing.");
+        } finally {
+            printButton.textContent = translations.printButton || 'Print Catalog';
+            printButton.disabled = false;
+        }
+    }
+
+    async function fetchAllData(filePath) {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`Failed to fetch ${filePath}`);
+        const items = await response.json();
+
+        const processedItems = await Promise.all(items.map(async (item) => {
+            if (item.type === 'subcategories') {
+                item.children = await fetchAllData(item.dataFile);
+            } else if (item.type === 'products') {
+                 try {
+                    const manifestResponse = await fetch(item.dataFile);
+                    const manifest = await manifestResponse.json();
+                    if (manifest && Array.isArray(manifest.files)) {
+                        const productPromises = manifest.files.map(file => fetch(manifest.basePath + file).then(res => res.json()));
+                        item.products = await Promise.all(productPromises);
+                    } else {
+                        item.products = [];
+                    }
+                } catch (e) {
+                    console.warn(`Could not process manifest for ${item.name}`, e);
+                    item.products = [];
+                }
+            }
+            return item;
+        }));
+        
+        return processedItems;
+    }
+
+    function buildPrintHtml(data) {
+        const printContainer = document.getElementById('print-view');
+        printContainer.innerHTML = '';
+
+        let fullHtml = `
+            <div class="print-cover-page">
+                <img src="images/logos/GTF_Logo.png" class="cover-logo" alt="Company Logo">
+                <h1>Product Catalog</h1>
+                <h2>${new Date().getFullYear()}</h2>
+                <p>${translations.companyTitle || 'Graciana Tortilla Factory'}</p>
+            </div>`;
+
+        function renderProducts(products) {
+            return products.map(product => `
+                <div class="print-product">
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="print-product-details">
+                        <h3>${product.name}</h3>
+                        <p>${product.description || ''}</p>
+                        <p><strong>${translations.modalSpecs || 'Specifications'}:</strong> ${product.specs || ''}</p>
+                        <p><strong>${translations.modalShipping || 'Shipping'}:</strong> ${product.shipping || ''}</p>
+                    </div>
+                </div>`).join('');
+        }
+
+        function renderLevel(items) {
+            let html = '';
+            items.forEach(item => {
+                if (item.children) {
+                     html += `<div class="print-subcategory"><h2>${item.name}</h2>${renderLevel(item.children)}</div>`;
+                } else if (item.products) {
+                     html += `<div class="print-subcategory"><h2>${item.name}</h2><div class="print-product-list">${renderProducts(item.products)}</div></div>`;
+                }
+            });
+            return html;
+        }
+        
+        data.forEach(category => {
+            fullHtml += `
+                <section class="print-category">
+                    <div class="print-category-header">
+                        <img src="${category.image}" class="category-banner" alt="${category.name} Banner">
+                        <h1>${category.name}</h1>
+                    </div>
+                    ${renderLevel(category.children || (category.products ? [category] : []))}
+                </section>`;
+        });
+        
+        printContainer.innerHTML = fullHtml;
+    }
+
 
     // ---INITIALIZATION AND EVENT LISTENERS---
-    hamburgerBtn.addEventListener('click', openMobileMenu);
-    overlay.addEventListener('click', closeMobileMenu);
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMobileMenu);
+    if (overlay) overlay.addEventListener('click', closeMobileMenu);
     
-    navLinks.forEach(link => {
+    document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             closeMobileMenu();
@@ -344,24 +442,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    langToggle.addEventListener('change', async () => {
-        const newLang = langToggle.checked ? 'es' : 'en';
-        await loadLanguage(newLang);
-        const activeLink = document.querySelector('.nav-link.active');
-        if (activeLink) {
-            renderPage(activeLink.dataset.page);
-        }
-    });
+    if (langToggle) {
+        langToggle.addEventListener('change', async () => {
+            const newLang = langToggle.checked ? 'es' : 'en';
+            await loadLanguage(newLang);
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                renderPage(activeLink.dataset.page);
+            }
+        });
+    }
     
-    if(printButton) printButton.addEventListener('click', handlePrintRequest);
+    if (printButton) printButton.addEventListener('click', handlePrintRequest);
 
-    closeModal.onclick = () => { 
-        modal.style.display = 'none'; 
-        document.body.style.overflow = '';
-    };
+    if (closeModal) {
+        closeModal.onclick = () => { 
+            if (modal) modal.style.display = 'none'; 
+            document.body.style.overflow = '';
+        };
+    }
     window.onclick = (event) => { 
         if (event.target == modal) { 
-            modal.style.display = 'none'; 
+            if (modal) modal.style.display = 'none'; 
             document.body.style.overflow = '';
         } 
     };
