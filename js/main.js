@@ -16,7 +16,8 @@ const closeModal = document.querySelector('.close-button');
 
 // --- SCROLL LOGIC ---
 function handleHeaderScroll() {
-    if (window.scrollY > 50) {
+    // THIS IS THE KEY CHANGE: Threshold is now 1px
+    if (window.scrollY > 1) {
         siteHeader.classList.add('is-scrolled');
     } else {
         siteHeader.classList.remove('is-scrolled');
