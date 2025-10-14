@@ -2,21 +2,12 @@ import { pushHistory } from './state.js';
 import { showBackButton, hideBackButton, showLoadingMessage, showProductDetails } from './ui.js';
 import { createSlug } from './utils.js';
 
-// Get a reference to the main content container where the catalog will be rendered.
 const pageContentContainer = document.getElementById('page-content');
 
-/**
- * Initializes the main catalog view by fetching and displaying the top-level categories.
- * This function also handles deep-linking to a specific category from another page.
- * @param {object} appState - The current state of the application (language, etc.).
- * @param {string|null} startCategorySlug - Optional slug to navigate directly to a category.
- */
 export async function initializeCatalog(appState, startCategorySlug = null) {
-    // When starting the catalog, reset its specific navigation history and hide the back button.
     appState.navigationHistory = []; 
     hideBackButton();
 
-    // Dynamically create the necessary containers for the catalog view.
     pageContentContainer.innerHTML = `
         <div id="main-categories" class="category-container"></div>
         <div id="sub-categories"></div>
@@ -30,7 +21,6 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
         const response = await fetch(categoriesPath);
         const categories = await response.json();
 
-        // If a start category is provided (e.g., from the homepage), find and navigate to it directly.
         if (startCategorySlug) {
             const targetCategory = categories.find(cat => createSlug(cat.name) === startCategorySlug);
             if (targetCategory) {
@@ -40,13 +30,15 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
                 } else {
                     displayProductLevel(targetCategory.dataFile, appState);
                 }
-                return; // Skip rendering the main menu.
+                return;
             }
         }
 
-        // If no start category, render the main category tiles as usual.
         mainCategoriesContainer.innerHTML = '';
         categories.forEach(category => {
+            const cell = document.createElement('div');
+            cell.className = 'category-cell';
+
             const tile = document.createElement('div');
             tile.className = 'tile';
             tile.style.backgroundImage = `url("${category.image}")`;
@@ -60,7 +52,9 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
                     displayProductLevel(nextPath, appState);
                 }
             };
-            mainCategoriesContainer.appendChild(tile);
+            
+            cell.appendChild(tile);
+            mainCategoriesContainer.appendChild(cell);
         });
     } catch (error) {
         console.error("Error initializing catalog:", error);
@@ -68,11 +62,6 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
     }
 }
 
-/**
- * Displays a grid of subcategories.
- * @param {string} filePath - The path to the JSON file listing the subcategories.
- * @param {object} appState - The current state of the application.
- */
 export async function displayCategoryLevel(filePath, appState) {
     showBackButton(appState.translations);
     const subCategoriesContainer = document.getElementById('sub-categories');
@@ -115,11 +104,6 @@ export async function displayCategoryLevel(filePath, appState) {
     }
 }
 
-/**
- * Displays a grid of products from a manifest file.
- * @param {string} manifestFilePath - The path to the products.json manifest file.
- * @param {object} appState - The current state of the application.
- */
 export async function displayProductLevel(manifestFilePath, appState) {
     showBackButton(appState.translations);
     const subCategoriesContainer = document.getElementById('sub-categories');
