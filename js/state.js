@@ -19,3 +19,4 @@ export function pushHistory(historyState) {
 export function popHistory() {
     return state.navigationHistory.pop();
 }
+
