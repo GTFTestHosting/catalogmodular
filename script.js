@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     const mainNav = document.querySelector('.main-nav');
     const overlay = document.querySelector('.overlay');
-    const siteHeader = document.querySelector('.site-header');
 
     // ---STATE MANAGEMENT---
     let currentLanguage = 'en';
@@ -21,14 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- MOBILE NAVIGATION LOGIC ---
     // --- ================================================ ---
     function openMobileMenu() {
-        siteHeader.classList.add('menu-is-open');
         mainNav.classList.add('is-open');
         overlay.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
 
     function closeMobileMenu() {
-        siteHeader.classList.remove('menu-is-open');
         mainNav.classList.remove('is-open');
         overlay.classList.add('hidden');
         document.body.style.overflow = '';
