@@ -1,7 +1,8 @@
-import { state, setLanguage, setTranslations } from './state.js';
-import { openMobileMenu, closeMobileMenu, showProductDetails, applyStaticTranslations } from './ui.js';
+import { state, setLanguage, setTranslations, popHistory } from './state.js';
+import { openMobileMenu, closeMobileMenu, applyStaticTranslations, showBackButton } from './ui.js';
 import { renderPage } from './router.js';
 import { handlePrintRequest } from './print.js';
+import { displayCategoryLevel } from './catalog.js';
 
 // --- ELEMENT REFERENCES ---
 const langToggle = document.getElementById('lang-toggle-checkbox');
@@ -25,6 +26,19 @@ async function loadLanguage(lang) {
         console.error(`Failed to load language ${lang}:`, error);
     }
 }
+
+// --- NAVIGATION LOGIC ---
+function goBack() {
+    const lastState = popHistory();
+    if (lastState) {
+        if (lastState.type === 'catalog') {
+            renderPage('catalog', state);
+        } else if (lastState.type === 'category') {
+            displayCategoryLevel(lastState.path, state);
+        }
+    }
+}
+
 
 // --- INITIALIZATION AND EVENT LISTENERS ---
 if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMobileMenu);
@@ -64,6 +78,10 @@ window.onclick = (event) => {
     } 
 };
 
+// Make goBack globally accessible to other modules that need it
+window.app = { goBack };
+
+
 // --- APPLICATION START ---
 async function startApp() {
     await loadLanguage(state.currentLanguage);
@@ -73,3 +91,4 @@ async function startApp() {
 }
 
 startApp();
+
