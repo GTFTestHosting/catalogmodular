@@ -21,6 +21,10 @@
 .logo {
     height: 75px;
 }
+.logo-link {
+    line-height: 0; /* Prevents extra space under the image */
+}
+
 
 /* --- Header Controls Wrapper --- */
 .header-controls {
