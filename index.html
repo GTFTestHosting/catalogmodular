@@ -9,14 +9,13 @@
 <body>
 
     <header class="site-header">
+        <!-- MOVED: The back button is now a direct child of the header -->
+        <div id="back-button-placeholder"></div>
+
         <div class="header-content">
-            <!-- The logo is now a clickable link -->
-            <a href="#" class="nav-link logo-link" data-page="home" aria-label="Go to homepage">
-                <img src="images/logos/GTF_Logo.png" alt="Company Logo" class="logo">
-            </a>
+            <img src="images/logos/GTF_Logo.png" alt="Company Logo" class="logo">
         </div>
 
-        <!-- Hamburger button - will be shown only on mobile -->
         <button class="hamburger-btn" aria-label="Open navigation menu">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
@@ -30,8 +29,8 @@
             </ul>
         </nav>
 
+        <!-- The back button is no longer inside this container -->
         <div class="header-controls">
-            <div id="back-button-placeholder"></div>
             <div class="lang-toggle">
                 <span>EN</span>
                 <label class="switch">

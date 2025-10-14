@@ -12,6 +12,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    position: relative; /* Anchor for absolutely positioned children */
 }
 .header-content {
     display: flex;
@@ -21,6 +22,10 @@
 .logo {
     height: 75px;
 }
+.logo-link {
+    line-height: 0; /* Prevents extra space under the image */
+}
+
 
 /* --- Header Controls Wrapper --- */
 .header-controls {
@@ -97,7 +102,11 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 /* --- Back Button --- */
 #back-button-placeholder {
-    margin-right: 24px;
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    margin-right: 0;
 }
 .back-button {
     padding: 10px 20px;
@@ -152,17 +161,17 @@ input:checked + .slider:before { transform: translateX(20px); }
         display: none;
     }
     
-    /* This is the new rule for the back button */
     .back-button {
         background: none;
         border: none;
         box-shadow: none;
-        padding: 8px; /* Match the hamburger button's padding */
+        padding: 8px;
         margin: 0;
     }
     
     #back-button-placeholder {
-        position: static; /* This is the key change to add */
+        position: static;
+        transform: none;
         margin: 0;
     }
 }
