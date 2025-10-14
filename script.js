@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const langToggle = document.getElementById('lang-toggle-checkbox');
     const printButton = document.getElementById('print-button');
     const backButtonPlaceholder = document.getElementById('back-button-placeholder');
-    const navLinks = document.querySelectorAll('.nav-link');
     const hamburgerBtn = document.querySelector('.hamburger-btn');
-    const mainNav = document.querySelector('.main-nav');
     const overlay = document.querySelector('.overlay');
-    const siteHeader = document.querySelector('.site-header');
+
+    // CORRECTED: References to both nav elements
+    const mainNav = document.querySelector('.main-nav');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const allNavLinks = document.querySelectorAll('.nav-link');
 
     // ---STATE MANAGEMENT---
     let currentLanguage = 'en';
@@ -18,18 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let navigationHistory = [];
 
     // --- ================================================ ---
-    // --- MOBILE NAVIGATION LOGIC ---
+    // --- MOBILE NAVIGATION LOGIC (CORRECTED) ---
     // --- ================================================ ---
     function openMobileMenu() {
-        if (siteHeader) siteHeader.classList.add('menu-is-open');
-        if (mainNav) mainNav.classList.add('is-open');
+        if (mobileNav) mobileNav.classList.add('is-open'); // Targets the correct mobile nav
         if (overlay) overlay.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
 
     function closeMobileMenu() {
-        if (siteHeader) siteHeader.classList.remove('menu-is-open');
-        if (mainNav) mainNav.classList.remove('is-open');
+        if (mobileNav) mobileNav.classList.remove('is-open'); // Targets the correct mobile nav
         if (overlay) overlay.classList.add('hidden');
         document.body.style.overflow = '';
     }
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ROUTING & PAGE LOADING LOGIC ---
     // --- ================================================ ---
     function renderPage(page, options = {}) {
-        document.querySelectorAll('.nav-link').forEach(link => {
+        allNavLinks.forEach(link => {
             link.classList.toggle('active', link.dataset.page === page);
         });
         if(printButton) printButton.classList.toggle('hidden', page !== 'catalog');
@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMobileMenu);
     if (overlay) overlay.addEventListener('click', closeMobileMenu);
     
-    document.querySelectorAll('.nav-link').forEach(link => {
+    allNavLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             closeMobileMenu();
