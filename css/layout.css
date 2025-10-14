@@ -5,11 +5,14 @@
     display: flex;
     flex-direction: column;
 }
+
+/* THIS IS THE KEY CHANGE: Convert from flex to grid */
 .category-container {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
     flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 24px;
 }
 .subcategory-wrapper {
     flex-grow: 1;
@@ -18,7 +21,8 @@
     grid-auto-rows: 1fr;
     gap: 24px;
 }
-.subcategory-cell {
+/* We can add a cell class for the main categories for consistency */
+.category-cell, .subcategory-cell {
     display: flex;
 }
 .product-grid {

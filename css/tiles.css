@@ -13,13 +13,13 @@
     overflow: hidden;
     position: relative;
 }
-.category-container > .tile {
-    flex: 1;
-}
-.subcategory-cell > .tile {
+
+/* UPDATED SELECTOR */
+.category-cell > .tile, .subcategory-cell > .tile {
     width: 100%;
     height: 100%;
 }
+
 .tile:hover {
     transform: translateY(-8px);
     box-shadow: var(--card-shadow-hover);
@@ -165,3 +165,4 @@
     grid-column: span 2;
     grid-row: span 2;
 }
+
