@@ -1,0 +1,167 @@
+/* --- The Tile --- */
+.tile {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 0;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 280px;
+    display: flex;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    position: relative;
+}
+.category-container > .tile {
+    flex: 1;
+}
+.subcategory-cell > .tile {
+    width: 100%;
+    height: 100%;
+}
+.tile:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--card-shadow-hover);
+}
+.tile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+    pointer-events: none;
+}
+.tile h2 {
+    margin: 0;
+    padding: 24px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+    align-self: flex-end;
+    z-index: 1;
+    line-height: 1.4;
+    background: none;
+}
+
+/* --- Promo Panel Styles --- */
+.promo-panel {
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 280px; 
+}
+.promo-panel:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--card-shadow-hover);
+}
+.promo-panel h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+.promo-panel p {
+    font-size: 1rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0;
+}
+
+/* --- Recipe Panel Styles --- */
+.recipe-panel {
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+.recipe-panel video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+}
+.recipe-panel:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--card-shadow-hover);
+}
+.recipe-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+.recipe-panel-content {
+    position: relative;
+    z-index: 2;
+}
+.recipe-panel h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+.recipe-panel .recipe-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    font-style: normal;
+    opacity: 0.9;
+}
+.recipe-panel .featured-products-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px 0;
+    opacity: 0.7;
+}
+.recipe-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.recipe-panel li {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* --- Panel Size Modifiers --- */
+.promo-panel.promo-wide, .recipe-panel.promo-wide {
+    grid-column: span 2;
+}
+.promo-panel.promo-tall, .recipe-panel.promo-tall {
+    grid-row: span 2;
+}
+.promo-panel.promo-large, .recipe-panel.promo-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}

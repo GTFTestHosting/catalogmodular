@@ -1,0 +1,77 @@
+/* --- Layout --- */
+.catalog-container {
+    padding: 40px;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+.category-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    flex-grow: 1;
+}
+.subcategory-wrapper {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 24px;
+}
+.subcategory-cell {
+    display: flex;
+}
+.product-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    grid-auto-flow: dense;
+}
+#sub-categories {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Prose styles for new pages --- */
+.page-content-prose {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.page-content-prose h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+.page-content-prose p, .page-content-prose li {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #4b5563;
+}
+.page-content-prose a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* --- Footer --- */
+.site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-top: 1px solid var(--border-color);
+    color: #6b7280;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.9rem;
+}
+.site-footer p { margin: 5px 0; }
+.site-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+.site-footer a:hover { text-decoration: underline; }

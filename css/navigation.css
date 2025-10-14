@@ -1,0 +1,52 @@
+/* --- Main Navigation Styles --- */
+.main-nav {
+    margin: 0 auto;
+}
+.main-nav ul {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main-nav a {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.main-nav a:hover {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.main-nav a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* --- Hamburger Button & Mobile Nav (Hidden by Default) --- */
+.hamburger-btn, .mobile-nav {
+    display: none;
+}
+.hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 110;
+}
+.hamburger-btn svg {
+    stroke: var(--text-color);
+}
+
+/* --- Overlay for Mobile Menu --- */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 105; /* Lower than the sidebar */
+    transition: opacity 0.3s ease;
+}
