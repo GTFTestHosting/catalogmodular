@@ -6,8 +6,15 @@
     flex-direction: column;
 }
 
-/* THIS IS THE KEY CHANGE: Both containers now use the same powerful grid layout */
-.category-container, .subcategory-wrapper {
+/* Make both main and sub containers flex columns */
+#main-categories, #sub-categories {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* THIS IS THE KEY CHANGE: Both wrappers now use the same powerful grid layout */
+.category-wrapper, .subcategory-wrapper {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -15,7 +22,7 @@
     gap: 24px;
 }
 
-.subcategory-cell, .category-cell { /* Added .category-cell for consistency */
+.category-cell, .subcategory-cell {
     display: flex;
 }
 .product-grid {
@@ -24,11 +31,6 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
     grid-auto-flow: dense;
-}
-#sub-categories {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 /* --- Prose styles for new pages --- */

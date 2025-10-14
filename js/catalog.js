@@ -9,7 +9,7 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
     hideBackButton();
 
     pageContentContainer.innerHTML = `
-        <div id="main-categories" class="category-container"></div>
+        <div id="main-categories"></div>
         <div id="sub-categories"></div>
     `;
     const mainCategoriesContainer = document.getElementById('main-categories');
@@ -35,6 +35,11 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
         }
 
         mainCategoriesContainer.innerHTML = '';
+        
+        // THIS IS THE KEY CHANGE: Create a dedicated wrapper for the grid
+        const gridWrapper = document.createElement('div');
+        gridWrapper.className = 'category-wrapper';
+
         categories.forEach(category => {
             const cell = document.createElement('div');
             cell.className = 'category-cell';
@@ -54,8 +59,11 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
             };
             
             cell.appendChild(tile);
-            mainCategoriesContainer.appendChild(cell);
+            gridWrapper.appendChild(cell); // Add cell to the new wrapper
         });
+        
+        mainCategoriesContainer.appendChild(gridWrapper); // Add the wrapper to the main container
+
     } catch (error) {
         console.error("Error initializing catalog:", error);
         mainCategoriesContainer.innerHTML = `<p>Error loading catalog.</p>`;
