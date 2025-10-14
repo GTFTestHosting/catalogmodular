@@ -121,3 +121,17 @@ input:checked + .slider:before { transform: translateX(20px); }
     background-color: rgba(255, 255, 255, 0.8);
     transform: translateY(-2px);
 }
+
+/* --- Responsive Overrides for Header --- */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 16px 24px;
+        flex-direction: row; /* Switch to horizontal layout */
+        justify-content: space-between; /* Push items to opposite ends */
+        align-items: center;
+    }
+
+    .header-content {
+        order: 2; /* This moves the logo to the right side */
+    }
+}

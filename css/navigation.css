@@ -57,12 +57,12 @@
     .main-nav, .header-controls {
        display: none;
     }
-    .hamburger-btn, .mobile-nav {
+    .hamburger-btn {
         display: block;
+        order: 1; /* This moves the hamburger button to the left side */
     }
-
-    /* Mobile Nav Sidebar Styles */
     .mobile-nav {
+        display: block;
         position: fixed;
         top: 0;
         bottom: 0;
@@ -73,7 +73,7 @@
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
         padding: 80px 30px 30px;
-        z-index: 108; /* Higher than the overlay */
+        z-index: 108;
         margin: 0;
     }
     .mobile-nav.is-open {
