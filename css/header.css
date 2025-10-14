@@ -130,16 +130,31 @@ input:checked + .slider:before { transform: translateX(20px); }
 @media (max-width: 768px) {
     .site-header {
         padding: 16px 24px;
-        flex-direction: row; /* Switch to horizontal layout */
-        justify-content: space-between; /* Push items to opposite ends */
+        /* THIS IS THE KEY CHANGE: Use Grid for precise control */
+        display: grid;
+        grid-template-columns: auto 1fr; /* Left column for buttons, right for logo */
+        grid-template-rows: auto auto; /* Two rows for stacking buttons */
+        gap: 16px;
         align-items: center;
     }
 
     .header-content {
-        order: 2; /* This moves the logo to the right side */
+        grid-column: 2; /* Place logo in the second column */
+        grid-row: 1 / span 2; /* Make it span both rows */
+        justify-self: end; /* Align it to the far right */
     }
     
+    /* Show the header-controls container on mobile */
     .header-controls {
+        display: block;
+        position: static; /* Override absolute positioning */
+        transform: none;
+        grid-column: 1; /* Place in the first column */
+        grid-row: 2; /* Place in the second row (under the hamburger) */
+    }
+
+    /* Hide the other buttons inside the container */
+    .header-controls .lang-toggle, .header-controls .print-button {
         display: none;
     }
 }
