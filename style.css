@@ -41,7 +41,9 @@ main {
     z-index: 100;
 }
 .header-content {
-    /* This is now just the logo */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
 }
 .logo {
     height: 75px;
@@ -49,10 +51,7 @@ main {
 
 /* --- Main Navigation Styles --- */
 .main-nav {
-    /* On desktop, it takes up the middle space */
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
+    margin: 0 auto;
 }
 .main-nav ul {
     display: flex;
@@ -81,12 +80,12 @@ main {
 
 /* --- Hamburger Button (Mobile Only) --- */
 .hamburger-btn {
-    display: none;
+    display: none; /* Hidden by default */
     background: none;
     border: none;
     cursor: pointer;
     padding: 8px;
-    z-index: 110;
+    z-index: 110; /* Above everything in the header */
 }
 .hamburger-btn svg {
     stroke: var(--text-color);
@@ -98,6 +97,7 @@ main {
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-left: auto;
 }
 
 /* --- Language Toggle & Print Button --- */
@@ -167,7 +167,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 105; /* Lower than the sidebar */
+    z-index: 105; /* Lower than the OPEN sidebar's header */
     transition: opacity 0.3s ease;
 }
 
@@ -533,27 +533,27 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 
 /* --- Responsive Overrides --- */
-@media (max-width: 768px) {
+@@media (max-width: 768px) {
     .site-header {
+        padding: 16px 24px;
+        flex-direction: row;
         justify-content: space-between;
     }
-
-    /* Hide the desktop nav and controls */
-    .main-nav, .header-controls {
-       display: none;
+    
+    /* This is the key: Lifts the header's stacking order when the menu is open */
+    .site-header.menu-is-open {
+        z-index: 107;
     }
 
-    /* Show the hamburger button */
+    /* Show hamburger, hide desktop nav & controls */
     .hamburger-btn {
         display: block;
     }
-
-    /* Style the nav as a full-height sidebar */
     .main-nav {
-        display: block; /* Override none from above */
+        /* Transform the nav into a fixed sidebar */
         position: fixed;
         top: 0;
-        bottom: 0; /* Ensures full height */
+        bottom: 0;
         left: 0;
         width: 280px;
         background-color: #fff;
@@ -561,7 +561,6 @@ input:checked + .slider:before { transform: translateX(20px); }
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
         padding: 80px 30px 30px;
-        z-index: 108; /* Higher than the overlay */
         margin: 0;
     }
     .main-nav.is-open {
@@ -574,6 +573,11 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
     .main-nav a {
         font-size: 1.25rem;
+    }
+
+    /* For the desktop view hidden on mobile, we need a different strategy */
+    .main-nav:not(.is-open) {
+        display: none;
     }
 
     .header-controls {
