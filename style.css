@@ -52,7 +52,7 @@ main {
 
 /* --- Main Navigation Styles --- */
 .main-nav {
-    margin: 0;
+    margin: 0 auto;
 }
 .main-nav ul {
     display: flex;
@@ -77,6 +77,22 @@ main {
 .main-nav a.active {
     background-color: var(--primary-color);
     color: #fff;
+}
+
+/* --- THIS IS THE KEY FIX: Hide mobile elements by default --- */
+.hamburger-btn, .mobile-nav {
+    display: none;
+}
+
+/* --- Header Controls Wrapper --- */
+.header-controls {
+    position: absolute; 
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 /* --- Hamburger Button (Mobile Only) --- */
@@ -532,9 +548,8 @@ input:checked + .slider:before { transform: translateX(20px); }
         padding: 16px 24px;
         flex-direction: row;
         justify-content: space-between;
-        gap: 16px;
     }
-
+    
     /* Hide desktop nav and controls, show hamburger */
     .main-nav, .header-controls {
        display: none;
@@ -545,6 +560,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 
     /* Mobile Nav Sidebar Styles */
     .mobile-nav {
+        display: block; /* Show the mobile nav container */
         position: fixed;
         top: 0;
         bottom: 0;
