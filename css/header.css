@@ -134,4 +134,9 @@ input:checked + .slider:before { transform: translateX(20px); }
     .header-content {
         order: 2; /* This moves the logo to the right side */
     }
+    
+    .header-controls {
+        display: none;
+    }
 }
+

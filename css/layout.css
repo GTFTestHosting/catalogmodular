@@ -75,3 +75,22 @@
     font-weight: 500;
 }
 .site-footer a:hover { text-decoration: underline; }
+
+
+/* --- Responsive Overrides for Layout --- */
+@media (max-width: 768px) {
+    .catalog-container { padding: 24px; }
+    
+    .category-container {
+        flex-direction: column;
+    }
+    
+    .subcategory-wrapper, .product-grid { 
+        gap: 16px; 
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
