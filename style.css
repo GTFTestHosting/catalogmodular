@@ -34,7 +34,6 @@ main {
     padding: 24px 40px;
     border-bottom: 1px solid var(--border-color);
     display: flex; 
-    flex-direction: column; 
     align-items: center; 
     gap: 20px;
     position: sticky;
@@ -42,9 +41,7 @@ main {
     z-index: 100;
 }
 .header-content {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
+    /* This is now just the logo */
 }
 .logo {
     height: 75px;
@@ -52,7 +49,10 @@ main {
 
 /* --- Main Navigation Styles --- */
 .main-nav {
-    margin: 0;
+    /* On desktop, it takes up the middle space */
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 }
 .main-nav ul {
     display: flex;
@@ -81,12 +81,12 @@ main {
 
 /* --- Hamburger Button (Mobile Only) --- */
 .hamburger-btn {
-    display: none; /* Hidden by default */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 8px;
-    z-index: 110; /* Above everything in the header */
+    z-index: 110;
 }
 .hamburger-btn svg {
     stroke: var(--text-color);
@@ -95,10 +95,6 @@ main {
 
 /* --- Header Controls Wrapper --- */
 .header-controls {
-    position: absolute; 
-    top: 50%;
-    right: 40px;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
     gap: 20px;
@@ -539,18 +535,22 @@ input:checked + .slider:before { transform: translateX(20px); }
 /* --- Responsive Overrides --- */
 @media (max-width: 768px) {
     .site-header {
-        padding: 16px 24px;
-        flex-direction: row;
         justify-content: space-between;
-        gap: 16px;
     }
 
-    /* Show hamburger, hide desktop nav & controls */
+    /* Hide the desktop nav and controls */
+    .main-nav, .header-controls {
+       display: none;
+    }
+
+    /* Show the hamburger button */
     .hamburger-btn {
         display: block;
     }
+
+    /* Style the nav as a full-height sidebar */
     .main-nav {
-        /* This is the key: transform the nav into a fixed sidebar */
+        display: block; /* Override none from above */
         position: fixed;
         top: 0;
         bottom: 0; /* Ensures full height */
