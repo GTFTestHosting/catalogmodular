@@ -21,10 +21,6 @@
 .logo {
     height: 75px;
 }
-.logo-link {
-    line-height: 0; /* Prevents extra space under the image */
-}
-
 
 /* --- Header Controls Wrapper --- */
 .header-controls {
@@ -126,36 +122,47 @@ input:checked + .slider:before { transform: translateX(20px); }
     transform: translateY(-2px);
 }
 
+
 /* --- Responsive Overrides for Header --- */
 @media (max-width: 768px) {
     .site-header {
         padding: 16px 24px;
-        /* THIS IS THE KEY CHANGE: Use Grid for precise control */
         display: grid;
-        grid-template-columns: auto 1fr; /* Left column for buttons, right for logo */
-        grid-template-rows: auto auto; /* Two rows for stacking buttons */
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
         gap: 16px;
         align-items: center;
     }
 
     .header-content {
-        grid-column: 2; /* Place logo in the second column */
-        grid-row: 1 / span 2; /* Make it span both rows */
-        justify-self: end; /* Align it to the far right */
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        justify-self: end;
     }
     
-    /* Show the header-controls container on mobile */
     .header-controls {
         display: block;
-        position: static; /* Override absolute positioning */
+        position: static;
         transform: none;
-        grid-column: 1; /* Place in the first column */
-        grid-row: 2; /* Place in the second row (under the hamburger) */
+        grid-column: 1;
+        grid-row: 2;
     }
-
-    /* Hide the other buttons inside the container */
+    
     .header-controls .lang-toggle, .header-controls .print-button {
         display: none;
+    }
+    
+    /* This is the new rule for the back button */
+    .back-button {
+        background: none;
+        border: none;
+        box-shadow: none;
+        padding: 8px; /* Match the hamburger button's padding */
+        margin: 0;
+    }
+    
+    #back-button-placeholder {
+        margin: 0;
     }
 }
 
