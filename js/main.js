@@ -1,10 +1,11 @@
 import { state, setLanguage, setTranslations, popHistory } from './state.js';
-import { openMobileMenu, closeMobileMenu, applyStaticTranslations, showBackButton } from './ui.js';
+import { openMobileMenu, closeMobileMenu, applyStaticTranslations } from './ui.js';
 import { renderPage } from './router.js';
 import { handlePrintRequest } from './print.js';
 import { displayCategoryLevel } from './catalog.js';
 
 // --- ELEMENT REFERENCES ---
+const siteHeader = document.querySelector('.site-header');
 const langToggle = document.getElementById('lang-toggle-checkbox');
 const printButton = document.getElementById('print-button');
 const hamburgerBtn = document.querySelector('.hamburger-btn');
@@ -12,6 +13,15 @@ const overlay = document.querySelector('.overlay');
 const allNavLinks = document.querySelectorAll('.nav-link');
 const modal = document.getElementById('product-modal');
 const closeModal = document.querySelector('.close-button');
+
+// --- SCROLL LOGIC ---
+function handleHeaderScroll() {
+    if (window.scrollY > 50) {
+        siteHeader.classList.add('is-scrolled');
+    } else {
+        siteHeader.classList.remove('is-scrolled');
+    }
+}
 
 // --- LANGUAGE LOGIC ---
 async function loadLanguage(lang) {
@@ -39,8 +49,9 @@ function goBack() {
     }
 }
 
-
 // --- INITIALIZATION AND EVENT LISTENERS ---
+window.addEventListener('scroll', handleHeaderScroll);
+
 if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMobileMenu);
 if (overlay) overlay.addEventListener('click', closeMobileMenu);
 

@@ -1,8 +1,10 @@
 /* --- Header Styles --- */
 .site-header {
+    /* Glassmorphism Effect */
     background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    
     padding: 24px 40px;
     border-bottom: 1px solid var(--border-color);
     display: flex; 
@@ -12,7 +14,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    position: relative; /* Anchor for absolutely positioned children */
+    position: relative;
+    /* Add transition for smooth padding change on scroll */
+    transition: padding 0.3s ease;
 }
 .header-content {
     display: flex;
@@ -21,11 +25,14 @@
 }
 .logo {
     height: 75px;
+    /* Add transition for smooth hiding animation */
+    transition: max-height 0.3s ease, margin 0.3s ease, opacity 0.3s ease;
+    max-height: 75px; /* Explicitly set max-height for transition */
+    overflow: hidden;
 }
 .logo-link {
     line-height: 0; /* Prevents extra space under the image */
 }
-
 
 /* --- Header Controls Wrapper --- */
 .header-controls {
@@ -36,6 +43,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    transition: top 0.3s ease; /* Animate position change */
 }
 
 /* --- Language Toggle & Print Button --- */
@@ -107,6 +115,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     left: 40px;
     transform: translateY(-50%);
     margin-right: 0;
+    transition: top 0.3s ease; /* Animate position change */
 }
 .back-button {
     padding: 10px 20px;
@@ -129,6 +138,27 @@ input:checked + .slider:before { transform: translateX(20px); }
 .back-button:hover {
     background-color: rgba(255, 255, 255, 0.8);
     transform: translateY(-2px);
+}
+
+
+/* --- DESKTOP SCROLL EFFECTS --- */
+@media (min-width: 769px) {
+    .site-header.is-scrolled {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        gap: 12px;
+    }
+    
+    .site-header.is-scrolled .logo {
+        max-height: 0;
+        margin: 0;
+        opacity: 0;
+    }
+
+    .site-header.is-scrolled #back-button-placeholder,
+    .site-header.is-scrolled .header-controls {
+        top: 50%; /* This keeps the buttons vertically centered in the smaller header */
+    }
 }
 
 
