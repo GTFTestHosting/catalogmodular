@@ -114,7 +114,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 #back-button-placeholder {
     position: absolute;
     top: auto; /* Remove top alignment */
-    bottom: 44px; /* Position relative to the bottom */
+    bottom: 22px; /* Position relative to the bottom */
     left: 40px;
     transform: translateY(50%); /* Center vertically on the new bottom position */
     margin-right: 0;
