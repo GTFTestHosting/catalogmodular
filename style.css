@@ -523,28 +523,37 @@ input:checked + .slider:before { transform: translateX(20px); }
     display: none;
 }
 
+/* --- Overlay for Mobile Menu --- */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 105;
+    transition: opacity 0.3s ease;
+}
+
 /* --- Responsive Overrides --- */
 @media (max-width: 768px) {
     .site-header {
-        padding: 16px 24px;
-        flex-direction: row;
         justify-content: space-between;
     }
-    
-    /* This is the key: Lifts the header's stacking order when the menu is open */
-    .site-header.menu-is-open {
-        z-index: 107;
+
+    /* Hide the desktop nav and controls */
+    .main-nav, .header-controls {
+       display: none;
     }
 
-    /* Show hamburger, hide desktop nav & controls */
+    /* Show the hamburger button */
     .hamburger-btn {
         display: block;
     }
+
+    /* Style the nav as a full-height sidebar */
     .main-nav {
-        /* Transform the nav into a fixed sidebar */
+        display: block; /* Override none from above */
         position: fixed;
         top: 0;
-        bottom: 0;
+        bottom: 0; /* Ensures full height */
         left: 0;
         width: 280px;
         background-color: #fff;
@@ -552,8 +561,8 @@ input:checked + .slider:before { transform: translateX(20px); }
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
         padding: 80px 30px 30px;
+        z-index: 108; /* Higher than the overlay */
         margin: 0;
-        /* The z-index is relative to the header, which is now lifted by .menu-is-open */
     }
     .main-nav.is-open {
         transform: translateX(0);
@@ -565,11 +574,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
     .main-nav a {
         font-size: 1.25rem;
-    }
-
-    /* For the desktop view hidden on mobile, we need a different strategy */
-    .main-nav:not(.is-open) {
-        display: none;
     }
 
     .header-controls {
