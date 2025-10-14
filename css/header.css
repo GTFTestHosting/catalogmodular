@@ -14,9 +14,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    /* REMOVED: The conflicting 'position: relative;' has been removed */
-    /* Add transition for smooth padding change on scroll */
-    transition: padding 0.3s ease;
+    position: relative;
+    /* Animate the gap for a smooth collapse, instead of padding */
+    transition: gap 0.3s ease;
 }
 .header-content {
     display: flex;
@@ -25,13 +25,14 @@
 }
 .logo {
     height: 75px;
-    /* Add transition for smooth hiding animation */
-    transition: max-height 0.3s ease, margin 0.3s ease, opacity 0.3s ease;
-    max-height: 75px; /* Explicitly set max-height for transition */
+    /* Animate max-height and opacity for a smooth fade-out */
+    transition: max-height 0.3s ease, opacity 0.3s ease 0.1s;
+    max-height: 75px;
+    opacity: 1;
     overflow: hidden;
 }
 .logo-link {
-    line-height: 0; /* Prevents extra space under the image */
+    line-height: 0;
 }
 
 /* --- Header Controls Wrapper --- */
@@ -43,7 +44,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    transition: top 0.3s ease; /* Animate position change */
+    transition: top 0.3s ease;
 }
 
 /* --- Language Toggle & Print Button --- */
@@ -115,7 +116,7 @@ input:checked + .slider:before { transform: translateX(20px); }
     left: 40px;
     transform: translateY(-50%);
     margin-right: 0;
-    transition: top 0.3s ease; /* Animate position change */
+    transition: top 0.3s ease;
 }
 .back-button {
     padding: 10px 20px;
@@ -144,21 +145,17 @@ input:checked + .slider:before { transform: translateX(20px); }
 /* --- DESKTOP SCROLL EFFECTS --- */
 @media (min-width: 769px) {
     .site-header.is-scrolled {
-        padding-top: 16px;
-        padding-bottom: 16px;
-        gap: 12px;
+        /* Reduce the gap to make the header thinner */
+        gap: 0;
     }
     
     .site-header.is-scrolled .logo {
         max-height: 0;
-        margin: 0;
         opacity: 0;
+        transition-delay: 0s;
     }
 
-    .site-header.is-scrolled #back-button-placeholder,
-    .site-header.is-scrolled .header-controls {
-        top: 50%; /* This keeps the buttons vertically centered in the smaller header */
-    }
+    /* The header-controls and back-button don't need changes as they center with flexbox */
 }
 
 
