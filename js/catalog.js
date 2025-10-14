@@ -10,7 +10,7 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
 
     pageContentContainer.innerHTML = `
         <div id="main-categories"></div>
-        <div id="sub-categories"></div>
+        <div id="sub-categories" class="hidden"></div>
     `;
     const mainCategoriesContainer = document.getElementById('main-categories');
     
@@ -35,10 +35,10 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
         }
 
         mainCategoriesContainer.innerHTML = '';
-        
+
         // THIS IS THE KEY CHANGE: Create a dedicated wrapper for the grid
         const gridWrapper = document.createElement('div');
-        gridWrapper.className = 'category-wrapper';
+        gridWrapper.className = 'category-wrapper'; // Use the class defined in layout.css
 
         categories.forEach(category => {
             const cell = document.createElement('div');
@@ -75,6 +75,7 @@ export async function displayCategoryLevel(filePath, appState) {
     const subCategoriesContainer = document.getElementById('sub-categories');
     const mainCategoriesContainer = document.getElementById('main-categories');
     if (mainCategoriesContainer) mainCategoriesContainer.classList.add('hidden');
+    if (subCategoriesContainer) subCategoriesContainer.classList.remove('hidden');
     
     showLoadingMessage(subCategoriesContainer, appState.translations);
 
