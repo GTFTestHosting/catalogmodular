@@ -6,13 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const langToggle = document.getElementById('lang-toggle-checkbox');
     const printButton = document.getElementById('print-button');
     const backButtonPlaceholder = document.getElementById('back-button-placeholder');
+    const navLinks = document.querySelectorAll('.nav-link');
     const hamburgerBtn = document.querySelector('.hamburger-btn');
-    const overlay = document.querySelector('.overlay');
-
-    // CORRECTED: References to both nav elements
     const mainNav = document.querySelector('.main-nav');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const allNavLinks = document.querySelectorAll('.nav-link');
+    const overlay = document.querySelector('.overlay');
 
     // ---STATE MANAGEMENT---
     let currentLanguage = 'en';
@@ -20,17 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let navigationHistory = [];
 
     // --- ================================================ ---
-    // --- MOBILE NAVIGATION LOGIC (CORRECTED) ---
+    // --- MOBILE NAVIGATION LOGIC ---
     // --- ================================================ ---
     function openMobileMenu() {
-        if (mobileNav) mobileNav.classList.add('is-open'); // Targets the correct mobile nav
-        if (overlay) overlay.classList.remove('hidden');
+        mainNav.classList.add('is-open');
+        overlay.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
 
     function closeMobileMenu() {
-        if (mobileNav) mobileNav.classList.remove('is-open'); // Targets the correct mobile nav
-        if (overlay) overlay.classList.add('hidden');
+        mainNav.classList.remove('is-open');
+        overlay.classList.add('hidden');
         document.body.style.overflow = '';
     }
 
@@ -38,10 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ROUTING & PAGE LOADING LOGIC ---
     // --- ================================================ ---
     function renderPage(page, options = {}) {
-        allNavLinks.forEach(link => {
+        navLinks.forEach(link => {
             link.classList.toggle('active', link.dataset.page === page);
         });
-        if(printButton) printButton.classList.toggle('hidden', page !== 'catalog');
+        printButton.classList.toggle('hidden', page !== 'catalog');
         
         switch (page) {
             case 'catalog':
@@ -316,9 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function showLoadingMessage(container) {
-        if(container) {
-            container.innerHTML = `<h2>${translations.loading || 'Loading...'}</h2>`;
-        }
+        container.innerHTML = `<h2>${translations.loading || 'Loading...'}</h2>`;
     }
 
     function showProductDetails(product) {
@@ -431,10 +426,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ---INITIALIZATION AND EVENT LISTENERS---
-    if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMobileMenu);
-    if (overlay) overlay.addEventListener('click', closeMobileMenu);
+    hamburgerBtn.addEventListener('click', openMobileMenu);
+    overlay.addEventListener('click', closeMobileMenu);
     
-    allNavLinks.forEach(link => {
+    navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             closeMobileMenu();
@@ -442,28 +437,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    if (langToggle) {
-        langToggle.addEventListener('change', async () => {
-            const newLang = langToggle.checked ? 'es' : 'en';
-            await loadLanguage(newLang);
-            const activeLink = document.querySelector('.nav-link.active');
-            if (activeLink) {
-                renderPage(activeLink.dataset.page);
-            }
-        });
-    }
+    langToggle.addEventListener('change', async () => {
+        const newLang = langToggle.checked ? 'es' : 'en';
+        await loadLanguage(newLang);
+        const activeLink = document.querySelector('.nav-link.active');
+        if (activeLink) {
+            renderPage(activeLink.dataset.page);
+        }
+    });
     
-    if (printButton) printButton.addEventListener('click', handlePrintRequest);
+    printButton.addEventListener('click', handlePrintRequest);
 
-    if (closeModal) {
-        closeModal.onclick = () => { 
-            if (modal) modal.style.display = 'none'; 
-            document.body.style.overflow = '';
-        };
-    }
+    closeModal.onclick = () => { 
+        modal.style.display = 'none'; 
+        document.body.style.overflow = '';
+    };
     window.onclick = (event) => { 
         if (event.target == modal) { 
-            if (modal) modal.style.display = 'none'; 
+            modal.style.display = 'none'; 
             document.body.style.overflow = '';
         } 
     };
@@ -471,6 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---APPLICATION START---
     async function startApp() {
         await loadLanguage(currentLanguage);
+        // THIS IS THE KEY FIX: Use a timeout to ensure the DOM is fully ready
         setTimeout(() => {
             renderPage('home');
         }, 0);
@@ -478,3 +470,4 @@ document.addEventListener('DOMContentLoaded', () => {
     
     startApp();
 });
+
