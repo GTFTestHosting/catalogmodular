@@ -1,4 +1,4 @@
-import { state, setHistory } from './state.js';
+import { state } from './state.js';
 import { hideBackButton, applyStaticTranslations, showLoadingMessage } from './ui.js';
 import { initializeCatalog } from './catalog.js';
 
@@ -55,3 +55,4 @@ function setupHomeNavTiles(appState) {
         });
     });
 }
+
