@@ -14,7 +14,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    position: relative;
+    /* REMOVED: The conflicting 'position: relative;' has been removed. */
     /* Animate the gap for a smooth collapse, instead of padding */
     transition: gap 0.3s ease;
 }
