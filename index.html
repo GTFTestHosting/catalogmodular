@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graciana Tortilla Factory</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -13,6 +13,7 @@
             <img src="images/logos/GTF_Logo.png" alt="Company Logo" class="logo">
         </div>
 
+        <!-- Hamburger button - will be shown only on mobile -->
         <button class="hamburger-btn" aria-label="Open navigation menu">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
@@ -39,7 +40,8 @@
             <button id="print-button" class="print-button hidden" data-lang-key="printButton">Print Catalog</button>
         </div>
     </header>
-    
+
+    <!-- Mobile Navigation Sidebar -->
     <nav class="mobile-nav">
         <ul>
             <li><a href="#" class="nav-link active" data-page="home" data-lang-key="navHome">Home</a></li>
@@ -76,7 +78,7 @@
         <p><span data-lang-key="footerContact">Contact us:</span> <a href="mailto:support@gracianatortilla.com">support@gracianatortilla.com</a></p>
     </footer>
 
-    <script src="js/main.js" type="module" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
 
