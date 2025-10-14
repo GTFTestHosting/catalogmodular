@@ -14,7 +14,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    position: relative;
+    /* REMOVED: The conflicting 'position: relative;' has been removed */
     /* Add transition for smooth padding change on scroll */
     transition: padding 0.3s ease;
 }
