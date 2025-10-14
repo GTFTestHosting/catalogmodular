@@ -536,6 +536,8 @@ input:checked + .slider:before { transform: translateX(20px); }
         gap: 16px;
     }
 
+    .header-content { order: 1; }
+
     /* Show hamburger, hide desktop nav & controls */
     .hamburger-btn {
         display: block;
@@ -545,10 +547,10 @@ input:checked + .slider:before { transform: translateX(20px); }
         order: 2;
         position: fixed;
         top: 0;
-        bottom: 0; /* This is the key change: Anchors the bottom of the menu to the bottom of the screen */
+        bottom: 0; /* This is the key fix */
         left: 0;
         width: 280px;
-        /* height: 100%; is no longer needed */
+        /* height: 100%; This is no longer needed */
         background-color: #fff;
         box-shadow: var(--card-shadow-hover);
         transform: translateX(-100%);
@@ -707,3 +709,4 @@ input:checked + .slider:before { transform: translateX(20px); }
         font-weight: bold;
     }
 }
+
