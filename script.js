@@ -478,4 +478,3 @@ document.addEventListener('DOMContentLoaded', () => {
     
     startApp();
 });
-
