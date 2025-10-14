@@ -6,10 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const langToggle = document.getElementById('lang-toggle-checkbox');
     const printButton = document.getElementById('print-button');
     const backButtonPlaceholder = document.getElementById('back-button-placeholder');
-    const navLinks = document.querySelectorAll('.nav-link');
     const hamburgerBtn = document.querySelector('.hamburger-btn');
-    const mainNav = document.querySelector('.main-nav');
     const overlay = document.querySelector('.overlay');
+
+    // Navigation elements are now separate
+    const mainNav = document.querySelector('.main-nav');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const allNavLinks = document.querySelectorAll('.nav-link'); // Get all links from both menus
 
     // ---STATE MANAGEMENT---
     let currentLanguage = 'en';
@@ -20,13 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- MOBILE NAVIGATION LOGIC ---
     // --- ================================================ ---
     function openMobileMenu() {
-        mainNav.classList.add('is-open');
+        mobileNav.classList.add('is-open');
         overlay.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
 
     function closeMobileMenu() {
-        mainNav.classList.remove('is-open');
+        mobileNav.classList.remove('is-open');
         overlay.classList.add('hidden');
         document.body.style.overflow = '';
     }
@@ -35,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ROUTING & PAGE LOADING LOGIC ---
     // --- ================================================ ---
     function renderPage(page, options = {}) {
-        navLinks.forEach(link => {
+        // Update active class on ALL nav links
+        allNavLinks.forEach(link => {
             link.classList.toggle('active', link.dataset.page === page);
         });
         printButton.classList.toggle('hidden', page !== 'catalog');
@@ -429,10 +433,11 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburgerBtn.addEventListener('click', openMobileMenu);
     overlay.addEventListener('click', closeMobileMenu);
     
-    navLinks.forEach(link => {
+    // Add listeners to ALL nav links
+    allNavLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            closeMobileMenu();
+            closeMobileMenu(); // This is safe to call even on desktop
             renderPage(link.dataset.page);
         });
     });
