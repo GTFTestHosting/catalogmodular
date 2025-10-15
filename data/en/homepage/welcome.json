@@ -1,6 +1,6 @@
 {
   "type": "promo",
-  "style": "wide",
+  "style": "extra-wide",
   "backgroundColor": "#ffedd5",
   "textColor": "#9a3412",
   "titleKey": "homeWelcomeTitle",
