@@ -1,9 +1,9 @@
 /* --- Modern Resets & Global Styles --- */
 :root {
     --header-height: 175px; /* Approximate height of the expanded header */
-    --bg-color: #f8f9fa;
+    --bg-color: white;
     --text-color: #1f2937;
-    --primary-color: #4f46e5;
+    --primary-color: #ff5919;
     --border-color: #e5e7eb;
     --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --card-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
