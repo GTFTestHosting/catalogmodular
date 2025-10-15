@@ -1,5 +1,9 @@
 {
+    "type": "text-block",
+    "style": "wide",
+    "backgroundColor": "#f3f4f6",
+    "textColor": "#1f2937",
     "header": "From the Source",
     "subheader": "Quality Ingredients",
-    "paragraph": "We partner with local farms to source the freshest, non-GMO ingredients for all our products, ensuring authentic flavor in every bite."
+    "paragraph": "We partner with local farms to source the freshest, non-GMO ingredients..."
 }
