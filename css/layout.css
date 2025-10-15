@@ -5,6 +5,10 @@
     display: flex;
     flex-direction: column;
 }
+/* This class is now used to reset padding for the full-width hero */
+.catalog-container.full-width {
+    padding: 0;
+}
 
 /* Make both main and sub containers flex columns */
 #main-categories, #sub-categories {
@@ -13,7 +17,6 @@
     flex-direction: column;
 }
 
-/* Wrappers for category and subcategory grids */
 .category-wrapper, .subcategory-wrapper {
     flex-grow: 1;
     display: grid;
@@ -33,13 +36,65 @@
     grid-auto-flow: dense;
 }
 
+/* --- UPDATED: Homepage Layout Styles --- */
+.hero-section {
+    position: relative;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    margin-top: calc(-1 * var(--header-height));
+    z-index: -1;
+    margin-left: -40px;
+    margin-right: -40px;
+}
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+}
+.hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+.hero-content {
+    padding: 0 24px;
+}
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0 0 16px 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+.hero-content p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+.home-grid-wrapper {
+    padding-top: 40px; /* THIS IS THE KEY FIX: Restore top padding */
+    background-color: var(--bg-color);
+    position: relative;
+}
 .home-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    grid-auto-rows: minmax(500px, auto);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-rows: minmax(280px, auto);
     gap: 24px;
 }
-
 
 /* --- Prose styles for new pages --- */
 .page-content-prose {
@@ -86,7 +141,22 @@
 
 /* --- Responsive Overrides for Layout --- */
 @media (max-width: 768px) {
-    .catalog-container { padding: 24px; }
+    .catalog-container { 
+        padding: 24px; 
+    }
+    .home-grid-wrapper {
+        padding-top: 24px; /* Adjust top padding for mobile */
+    }
+    .hero-section {
+        margin-left: -24px;
+        margin-right: -24px;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem; /* Smaller font for mobile */
+    }
+    .hero-content p {
+        font-size: 1.1rem; /* Smaller font for mobile */
+    }
     
     .category-container {
         flex-direction: column;
@@ -96,9 +166,8 @@
         gap: 16px; 
     }
     
-    /* THIS IS THE NEW RULE */
     .home-grid {
-        grid-template-columns: 1fr; /* Force a single column layout on mobile */
+        grid-template-columns: 1fr;
     }
     
     .product-grid {

@@ -1,6 +1,7 @@
 /* --- Modern Resets & Global Styles --- */
 :root {
-    --bg-color: #white;
+    --header-height: 175px; /* Approximate height of the expanded header */
+    --bg-color: #f8f9fa;
     --text-color: #1f2937;
     --primary-color: #4f46e5;
     --border-color: #e5e7eb;
@@ -24,8 +25,11 @@ main {
     flex-grow: 1;
     display: flex; 
     flex-direction: column;
+    position: relative; /* Establish a stacking context for z-index */
+    z-index: 1;
 }
 
 .hidden { 
     display: none !important; 
 }
+

@@ -8,28 +8,32 @@ export async function renderHomePage(appState) {
     showLoadingMessage(pageContentContainer, appState.translations);
 
     try {
-        // 1. Fetch the manifest file (the list of panel paths)
+        // 1. Fetch the new home.html shell
+        const shellResponse = await fetch('pages/home.html');
+        if (!shellResponse.ok) throw new Error('Home page shell not found');
+        const shellHtml = await shellResponse.text();
+        pageContentContainer.innerHTML = shellHtml;
+
+        // 2. Find the grid container within the new shell
+        const gridWrapper = pageContentContainer.querySelector('.home-grid');
+        if (!gridWrapper) throw new Error('.home-grid container not found in home.html');
+
+        // 3. Fetch the home page data manifest
         const manifestResponse = await fetch(`data/${appState.currentLanguage}/homepage/home.json`);
         if (!manifestResponse.ok) throw new Error('Home page manifest not found');
         const panelFiles = await manifestResponse.json();
 
-        // 2. Fetch all the individual panel JSON files concurrently
+        // 4. Fetch all the individual panel JSON files
         const panelPromises = panelFiles.map(file => fetch(file).then(res => res.json()));
         const panelsData = await Promise.all(panelPromises);
         
-        const gridWrapper = document.createElement('div');
-        gridWrapper.className = 'home-grid';
-
-        // 3. Build each panel from the fetched data
+        // 5. Build and append each panel to the grid wrapper
         panelsData.forEach(panelData => {
             const panel = buildPanel(panelData, appState);
             if (panel) {
                 gridWrapper.appendChild(panel);
             }
         });
-
-        pageContentContainer.innerHTML = '';
-        pageContentContainer.appendChild(gridWrapper);
 
         setupHomeNavTiles(appState);
         applyStaticTranslations(appState.translations);
@@ -40,7 +44,7 @@ export async function renderHomePage(appState) {
     }
 }
 
-// This function no longer needs to be async
+// This function builds a single panel based on its type from the fetched data
 function buildPanel(data, appState) {
     const panel = document.createElement('div');
     const { translations } = appState;

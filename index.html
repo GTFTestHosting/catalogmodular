@@ -64,21 +64,23 @@
 
     <main>
         <div id="page-content" class="catalog-container"></div>
-        <div id="product-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <img id="modal-img" src="" alt="Product Image">
-                <div id="modal-text">
-                    <h2 id="modal-title"></h2>
-                    <p id="modal-description"></p>
-                    <h3 data-lang-key="modalSpecs">Specifications</h3>
-                    <p id="modal-specs"></p>
-                    <h3 data-lang-key="modalShipping">Shipping Information</h3>
-                    <p id="modal-shipping"></p>
-                </div>
+    </main>
+
+    <!-- MOVED: The modal is now a direct child of the body -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img id="modal-img" src="" alt="Product Image">
+            <div id="modal-text">
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <h3 data-lang-key="modalSpecs">Specifications</h3>
+                <p id="modal-specs"></p>
+                <h3 data-lang-key="modalShipping">Shipping Information</h3>
+                <p id="modal-shipping"></p>
             </div>
         </div>
-    </main>
+    </div>
     
     <div id="print-view" class="print-container"></div>
 
