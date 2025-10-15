@@ -13,7 +13,7 @@
     flex-direction: column;
 }
 
-/* THIS IS THE KEY CHANGE: Both wrappers now use the same powerful grid layout */
+/* Wrappers for category and subcategory grids */
 .category-wrapper, .subcategory-wrapper {
     flex-grow: 1;
     display: grid;
@@ -32,6 +32,14 @@
     gap: 24px;
     grid-auto-flow: dense;
 }
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-auto-rows: minmax(500px, auto);
+    gap: 24px;
+}
+
 
 /* --- Prose styles for new pages --- */
 .page-content-prose {
@@ -84,8 +92,13 @@
         flex-direction: column;
     }
     
-    .subcategory-wrapper, .product-grid { 
+    .category-wrapper, .subcategory-wrapper, .product-grid, .home-grid { 
         gap: 16px; 
+    }
+    
+    /* THIS IS THE NEW RULE */
+    .home-grid {
+        grid-template-columns: 1fr; /* Force a single column layout on mobile */
     }
     
     .product-grid {

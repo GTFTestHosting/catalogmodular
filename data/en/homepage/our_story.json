@@ -1,6 +1,6 @@
 {
   "type": "promo",
-  "style": "wide",
+  "style": "extra-wide",
   "nav": { "page": "about" },
   "backgroundColor": "#e0e7ff",
   "textColor": "#3730a3",
