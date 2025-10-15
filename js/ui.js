@@ -3,7 +3,6 @@
  * This module contains all functions related to manipulating the DOM,
  * such as showing/hiding elements, updating content, and handling UI events.
  */
-
 // --- ELEMENT REFERENCES ---
 const mobileNav = document.querySelector('.mobile-nav');
 const overlay = document.querySelector('.overlay');
@@ -28,14 +27,14 @@ export function closeMobileMenu() {
 export function applyStaticTranslations(translations) {
     document.querySelectorAll('[data-lang-key]').forEach(elem => {
         const key = elem.getAttribute('data-lang-key');
-        if (translations && translations[key]) {
+        if (translations[key]) {
             elem.textContent = translations[key];
         }
     });
 }
 
 // --- BACK BUTTON (UPDATED) ---
-export function showBackButton(translations) {
+export function showBackButton() {
     // Function to create a single button instance
     function createButton() {
         const backButton = document.createElement('button');
@@ -78,11 +77,14 @@ export function showProductDetails(product, translations) {
         document.getElementById('modal-shipping').textContent = product.shipping;
         
         // Also translate static parts of the modal
-        if (translations) {
-            const specsTitle = modal.querySelector('[data-lang-key="modalSpecs"]');
-            const shippingTitle = modal.querySelector('[data-lang-key="modalShipping"]');
-            if (specsTitle) specsTitle.textContent = translations.modalSpecs || 'Specifications';
-            if (shippingTitle) shippingTitle.textContent = translations.modalShipping || 'Shipping Information';
+        const modalSpecsTitle = modal.querySelector('[data-lang-key="modalSpecs"]');
+        if (modalSpecsTitle && translations.modalSpecs) {
+            modalSpecsTitle.textContent = translations.modalSpecs;
+        }
+
+        const modalShippingTitle = modal.querySelector('[data-lang-key="modalShipping"]');
+        if (modalShippingTitle && translations.modalShipping) {
+            modalShippingTitle.textContent = translations.modalShipping;
         }
     }
 }
@@ -90,7 +92,7 @@ export function showProductDetails(product, translations) {
 // --- LOADING MESSAGE ---
 export function showLoadingMessage(container, translations) {
     if(container) {
-        container.innerHTML = `<h2>${translations ? (translations.loading || 'Loading...') : 'Loading...'}</h2>`;
+        container.innerHTML = `<h2>${translations.loading || 'Loading...'}</h2>`;
     }
 }
 

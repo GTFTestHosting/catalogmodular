@@ -51,6 +51,7 @@
     transition: opacity 0.3s ease;
 }
 
+
 /* --- Responsive Overrides for Navigation --- */
 @media (max-width: 768px) {
     /* Hide desktop nav */
@@ -111,3 +112,4 @@
         color: #fff;
     }
 }
+
