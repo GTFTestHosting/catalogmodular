@@ -9,12 +9,15 @@
 <body>
 
     <header class="site-header">
-        <!-- New wrapper for left-aligned mobile controls -->
+        <!-- Desktop Back Button -->
+        <div id="back-button-placeholder"></div>
+
+        <!-- NEW: Wrapper for left-aligned mobile controls -->
         <div class="mobile-left-controls">
             <button class="hamburger-btn" aria-label="Open navigation menu">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
-            <!-- New placeholder specifically for the mobile back button -->
+            <!-- NEW: Placeholder specifically for the mobile back button -->
             <div id="mobile-back-button-placeholder"></div>
         </div>
 
@@ -34,8 +37,6 @@
         </nav>
 
         <div class="header-controls">
-            <!-- The original back button placeholder for desktop -->
-            <div id="back-button-placeholder"></div>
             <div class="lang-toggle">
                 <span>EN</span>
                 <label class="switch">
@@ -47,6 +48,7 @@
             <button id="print-button" class="print-button hidden" data-lang-key="printButton">Print Catalog</button>
         </div>
     </header>
+
 
     <!-- Mobile Navigation Sidebar -->
     <nav class="mobile-nav">

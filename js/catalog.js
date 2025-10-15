@@ -38,7 +38,7 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
 
         // THIS IS THE KEY CHANGE: Create a dedicated wrapper for the grid
         const gridWrapper = document.createElement('div');
-        gridWrapper.className = 'category-wrapper'; // Use the class defined in layout.css
+        gridWrapper.className = 'category-wrapper';
 
         categories.forEach(category => {
             const cell = document.createElement('div');
@@ -70,6 +70,7 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
     }
 }
 
+// --- (rest of the file is unchanged) ---
 export async function displayCategoryLevel(filePath, appState) {
     showBackButton(appState.translations);
     const subCategoriesContainer = document.getElementById('sub-categories');

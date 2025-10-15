@@ -72,6 +72,37 @@
     margin: 0;
 }
 
+/* --- Text Block Panel Styles --- */
+.text-block-panel {
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: var(--card-shadow);
+    min-height: 280px;
+}
+.text-block-panel h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+}
+.text-block-panel h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #4b5563;
+    margin: 0 0 16px 0;
+}
+.text-block-panel p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #6b7280;
+    margin: 0;
+}
+
+
 /* --- Recipe Panel Styles --- */
 .recipe-panel {
     border-radius: 16px;
@@ -154,14 +185,15 @@
     font-weight: 500;
 }
 
-/* --- Panel Size Modifiers --- */
-.promo-panel.promo-wide, .recipe-panel.promo-wide {
+
+/* --- Promo Panel Size Modifiers --- */
+.promo-panel.promo-wide, .recipe-panel.promo-wide, .text-block-panel.promo-wide {
     grid-column: span 2;
 }
-.promo-panel.promo-tall, .recipe-panel.promo-tall {
+.promo-panel.promo-tall, .recipe-panel.promo-tall, .text-block-panel.promo-tall {
     grid-row: span 2;
 }
-.promo-panel.promo-large, .recipe-panel.promo-large {
+.promo-panel.promo-large, .recipe-panel.promo-large, .text-block-panel.promo-large {
     grid-column: span 2;
     grid-row: span 2;
 }

@@ -1,6 +1,7 @@
 import { state } from './state.js';
 import { hideBackButton, applyStaticTranslations, showLoadingMessage } from './ui.js';
 import { initializeCatalog } from './catalog.js';
+import { renderHomePage } from './home.js'; // Import the new home page renderer
 
 const pageContentContainer = document.getElementById('page-content');
 
@@ -16,15 +17,18 @@ export function renderPage(page, appState, options = {}) {
             initializeCatalog(appState, options.startCategory);
             break;
         case 'home':
+            renderHomePage(appState); // Use the new home page renderer
+            break;
         case 'about':
         case 'contact':
             loadHtmlContent(page, appState);
             break;
         default:
-            loadHtmlContent('home', appState);
+            renderHomePage(appState); // Default to home
     }
 }
 
+// This function now only handles simple HTML pages
 async function loadHtmlContent(page, appState) {
     hideBackButton();
     if(pageContentContainer) {
@@ -34,25 +38,11 @@ async function loadHtmlContent(page, appState) {
             if (!response.ok) throw new Error('Page not found');
             const html = await response.text();
             pageContentContainer.innerHTML = html;
-            
-            if (page === 'home') {
-                setupHomeNavTiles(appState);
-            }
             applyStaticTranslations(appState.translations); 
         } catch (error) {
             console.error(`Failed to load page ${page}:`, error);
             pageContentContainer.innerHTML = `<p>Error loading page content.</p>`;
         }
     }
-}
-
-function setupHomeNavTiles(appState) {
-    document.querySelectorAll('.home-nav-tile').forEach(tile => {
-        tile.addEventListener('click', () => {
-            const targetPage = tile.dataset.page;
-            const startCategory = tile.dataset.categoryStart;
-            renderPage(targetPage, appState, { startCategory });
-        });
-    });
 }
 
