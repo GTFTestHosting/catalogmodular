@@ -158,31 +158,32 @@ input:checked + .slider:before { transform: translateX(20px); }
 @media (max-width: 768px) {
     .site-header {
         padding: 16px 24px;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
-        gap: 16px;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
     }
 
     .header-content {
-        grid-column: 2;
-        grid-row: 1 / span 2;
-        justify-self: end;
+        order: 2; /* Moves the logo to the right */
     }
     
+    /* This rule is now in navigation.css, but we keep a placeholder */
+    /* for the hamburger button order */
+    .hamburger-btn {
+        order: 1; /* Moves the hamburger button to the left */
+    }
+
     .header-controls {
-        display: block;
-        position: static;
-        transform: none;
-        grid-column: 1;
-        grid-row: 2;
-    }
-    
-    .header-controls .lang-toggle, .header-controls .print-button {
         display: none;
     }
     
+    #back-button-placeholder {
+        position: static;
+        transform: none;
+        margin: 0;
+        /* The back button will be handled by the mobile nav grid */
+    }
+
     .back-button {
         background: none;
         border: none;
@@ -190,12 +191,5 @@ input:checked + .slider:before { transform: translateX(20px); }
         padding: 8px;
         margin: 0;
     }
-    
-    #back-button-placeholder {
-        position: static;
-        transform: none;
-        margin: 0;
-    }
 }
-
 

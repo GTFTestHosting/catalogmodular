@@ -59,10 +59,8 @@
     }
     .hamburger-btn {
         display: block;
-        grid-column: 1; /* Place in the first column */
-        grid-row: 1; /* Place in the first row */
+        order: 1; /* This moves the hamburger button to the left side */
     }
-    
     .mobile-nav {
         display: block;
         position: fixed;
