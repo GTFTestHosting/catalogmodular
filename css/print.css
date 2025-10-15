@@ -9,20 +9,13 @@
     }
 
     /* --- Hide Website Elements --- */
-    .site-header, main, .site-footer {
+    body:is(.is-printing) .site-header, 
+    body:is(.is-printing) .site-footer, 
+    body:is(.is-printing) .mobile-nav, 
+    body:is(.is-printing) .overlay {
         display: none !important;
     }
     
-    .print-container, .print-container * {
-        background: transparent !important;
-        color: #000 !important;
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-    .print-container {
-        display: block !important;
-    }
-
     /* --- General Print Typography --- */
     body {
         font-family: 'Times New Roman', serif;
@@ -45,11 +38,16 @@
     .print-cover-page h2 { font-size: 20pt; font-weight: normal; margin-bottom: 80px; }
     .print-cover-page p { font-size: 12pt; }
 
-    /* --- REMOVED: Table of Contents Styling --- */
+    /* --- THIS IS THE FIRST FIX --- */
+    /* Add a page break before each main category section */
+    .print-category {
+        page-break-before: always;
+    }
 
     /* --- Category Divider/Header Styling --- */
     .print-category-header {
-        page-break-before: always;
+        /* THIS IS THE SECOND FIX: Keep the banner and title together */
+        page-break-inside: avoid; 
         page-break-after: avoid;
         text-align: center;
         margin-bottom: 30px;
@@ -75,21 +73,15 @@
         break-after: avoid-column;
     }
 
-    /* --- Product "Modal" Styling --- */
+    /* --- Product "Modal" Styling (Text-Only) --- */
     .print-product {
-        display: grid !important;
-        grid-template-columns: 150px 1fr;
-        gap: 20px;
-        align-items: start;
         break-inside: avoid;
         margin-bottom: 25px;
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: 15px;
     }
     .print-product img {
-        display: block;
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 4px;
+        display: none !important; /* Hide the product images */
     }
     .print-product-details h3 {
         font-size: 14pt;
