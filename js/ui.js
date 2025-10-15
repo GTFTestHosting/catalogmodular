@@ -8,6 +8,7 @@
 const mobileNav = document.querySelector('.mobile-nav');
 const overlay = document.querySelector('.overlay');
 const backButtonPlaceholder = document.getElementById('back-button-placeholder');
+const mobileBackButtonPlaceholder = document.getElementById('mobile-back-button-placeholder'); // New
 const modal = document.getElementById('product-modal');
 
 // --- MOBILE NAVIGATION ---
@@ -33,24 +34,35 @@ export function applyStaticTranslations(translations) {
     });
 }
 
-// --- BACK BUTTON ---
+// --- BACK BUTTON (UPDATED) ---
 export function showBackButton(translations) {
-    if (backButtonPlaceholder) {
-        backButtonPlaceholder.innerHTML = '';
+    // Function to create a single button instance
+    function createButton() {
         const backButton = document.createElement('button');
         backButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>`;
         backButton.className = 'back-button';
-        // The goBack function is defined in main.js and exposed on the window object
-        if (window.app && window.app.goBack) {
-            backButton.onclick = window.app.goBack;
-        }
-        backButtonPlaceholder.appendChild(backButton);
+        backButton.onclick = window.app.goBack;
+        return backButton;
+    }
+
+    // Populate both desktop and mobile placeholders
+    if (backButtonPlaceholder) {
+        backButtonPlaceholder.innerHTML = '';
+        backButtonPlaceholder.appendChild(createButton());
+    }
+    if (mobileBackButtonPlaceholder) {
+        mobileBackButtonPlaceholder.innerHTML = '';
+        mobileBackButtonPlaceholder.appendChild(createButton());
     }
 }
 
 export function hideBackButton() {
+    // Hide both buttons
     if (backButtonPlaceholder) {
         backButtonPlaceholder.innerHTML = '';
+    }
+    if (mobileBackButtonPlaceholder) {
+        mobileBackButtonPlaceholder.innerHTML = '';
     }
 }
 

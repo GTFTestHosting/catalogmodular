@@ -159,26 +159,26 @@ input:checked + .slider:before { transform: translateX(20px); }
 @media (max-width: 768px) {
     .site-header {
         padding: 16px 24px;
-        /* THIS IS THE KEY FIX: Use a 3-column grid */
+        /* THIS IS THE KEY FIX: A stable, 3-column grid */
         display: grid;
-        grid-template-columns: 1fr auto 1fr; /* Left | Center | Right */
+        grid-template-columns: 1fr auto 1fr; /* Left | Center (auto-sized) | Right */
         align-items: center;
         gap: 16px;
     }
 
     .header-content {
-        grid-column: 2; /* Place logo in the center */
+        grid-column: 2; /* Place logo in the center column */
         justify-self: center;
-        order: 0; /* Reset order */
+        order: 0; /* Reset any previous order */
     }
     
     .header-controls {
-        display: flex; /* Make it visible again */
-        flex-direction: column; /* Stack the items inside */
-        align-items: flex-end; /* Align to the right */
+        display: flex;
+        flex-direction: column; 
+        align-items: flex-end; 
         position: static;
         transform: none;
-        grid-column: 3; /* Place in the right column */
+        grid-column: 3; /* Place controls in the right column */
         justify-self: end;
         gap: 8px;
     }
@@ -188,19 +188,13 @@ input:checked + .slider:before { transform: translateX(20px); }
         display: flex;
     }
 
-    /* Hide the back button by default and let JS show it */
+    /* Hide the desktop back button placeholder by default on mobile */
     #back-button-placeholder {
         display: none;
-        grid-column: 1; /* Place in the left column */
-        grid-row: 2;    /* Place in the second row */
-        justify-self: start;
-        margin: 0;
-    }
-    #back-button-placeholder:not(:empty) {
-        display: block; /* Only show it if the back button is inside */
     }
     
-    .back-button {
+    /* Style the mobile back button to look like an icon */
+    #mobile-back-button-placeholder .back-button {
         background: none;
         border: none;
         box-shadow: none;
