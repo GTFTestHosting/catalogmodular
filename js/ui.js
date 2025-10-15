@@ -4,10 +4,14 @@
  * such as showing/hiding elements, updating content, and handling UI events.
  */
 // --- ELEMENT REFERENCES ---
+import { state } from './state.js';
+import { renderPage } from './router.js';
+
+// --- ELEMENT REFERENCES ---
 const mobileNav = document.querySelector('.mobile-nav');
 const overlay = document.querySelector('.overlay');
 const backButtonPlaceholder = document.getElementById('back-button-placeholder');
-const mobileBackButtonPlaceholder = document.getElementById('mobile-back-button-placeholder'); // New
+const mobileBackButtonPlaceholder = document.getElementById('mobile-back-button-placeholder');
 const modal = document.getElementById('product-modal');
 
 // --- MOBILE NAVIGATION ---
@@ -33,9 +37,8 @@ export function applyStaticTranslations(translations) {
     });
 }
 
-// --- BACK BUTTON (UPDATED) ---
+// --- BACK BUTTON ---
 export function showBackButton() {
-    // Function to create a single button instance
     function createButton() {
         const backButton = document.createElement('button');
         backButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>`;
@@ -44,7 +47,6 @@ export function showBackButton() {
         return backButton;
     }
 
-    // Populate both desktop and mobile placeholders
     if (backButtonPlaceholder) {
         backButtonPlaceholder.innerHTML = '';
         backButtonPlaceholder.appendChild(createButton());
@@ -56,7 +58,6 @@ export function showBackButton() {
 }
 
 export function hideBackButton() {
-    // Hide both buttons
     if (backButtonPlaceholder) {
         backButtonPlaceholder.innerHTML = '';
     }
@@ -68,7 +69,7 @@ export function hideBackButton() {
 // --- MODAL ---
 export function showProductDetails(product, translations) {
     if (modal) {
-        modal.style.display = 'block';
+        modal.style.display = 'flex'; // THIS IS THE KEY CHANGE
         document.body.style.overflow = 'hidden';
         document.getElementById('modal-img').src = product.image;
         document.getElementById('modal-title').textContent = product.name;
@@ -76,16 +77,8 @@ export function showProductDetails(product, translations) {
         document.getElementById('modal-specs').textContent = product.specs;
         document.getElementById('modal-shipping').textContent = product.shipping;
         
-        // Also translate static parts of the modal
-        const modalSpecsTitle = modal.querySelector('[data-lang-key="modalSpecs"]');
-        if (modalSpecsTitle && translations.modalSpecs) {
-            modalSpecsTitle.textContent = translations.modalSpecs;
-        }
-
-        const modalShippingTitle = modal.querySelector('[data-lang-key="modalShipping"]');
-        if (modalShippingTitle && translations.modalShipping) {
-            modalShippingTitle.textContent = translations.modalShipping;
-        }
+        modal.querySelector('[data-lang-key="modalSpecs"]').textContent = translations.modalSpecs || 'Specifications';
+        modal.querySelector('[data-lang-key="modalShipping"]').textContent = translations.modalShipping || 'Shipping Information';
     }
 }
 

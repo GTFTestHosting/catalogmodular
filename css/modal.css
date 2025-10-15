@@ -1,6 +1,6 @@
 /* --- Modal --- */
 .modal {
-    display: none;
+    display: none; /* This is the key fix: hidden by default */
     position: fixed;
     z-index: 200;
     inset: 0;
@@ -8,11 +8,14 @@
     background-color: rgba(31, 41, 55, 0.7);
     backdrop-filter: blur(4px);
     padding: 40px;
+    /* Flexbox properties are applied when JS changes display to 'flex' */
+    align-items: center;
+    justify-content: center;
 }
 .modal-content {
     position: relative;
     background-color: #ffffff;
-    margin: auto;
+    margin: 0; /* Margin is no longer needed for centering */
     padding: 32px;
     width: 100%;
     max-width: 800px;
