@@ -13,7 +13,6 @@
     top: 0;
     z-index: 100;
     transition: gap 0.3s ease;
-    position: relative; 
 }
 .header-content {
     display: flex;

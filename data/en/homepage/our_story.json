@@ -1,0 +1,9 @@
+{
+  "type": "promo",
+  "style": "wide",
+  "nav": { "page": "about" },
+  "backgroundColor": "#e0e7ff",
+  "textColor": "#3730a3",
+  "titleKey": "homeAboutTitle",
+  "textKey": "homeAboutText"
+}
