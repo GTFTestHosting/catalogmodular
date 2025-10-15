@@ -1,7 +1,7 @@
 {
     "type": "text-block",
     "style": "wide",
-    "backgroundColor": "#f3f4f6",
+    "backgroundColor": "white",
     "textColor": "#1f2937",
     "header": "From the Source",
     "subheader": "Quality Ingredients",
