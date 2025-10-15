@@ -158,37 +158,41 @@ input:checked + .slider:before { transform: translateX(20px); }
 @media (max-width: 768px) {
     .site-header {
         padding: 16px 24px;
-        flex-direction: row;
-        justify-content: space-between;
+        /* THIS IS THE KEY CHANGE: Use Grid for a 3-column layout */
+        display: grid;
+        grid-template-columns: 1fr auto 1fr; /* Left (flexible) | Center (auto-sized) | Right (flexible) */
         align-items: center;
+        gap: 16px;
     }
 
     .header-content {
-        order: 2; /* Moves the logo to the right */
+        grid-column: 2; /* Place logo in the center column */
+        justify-self: center;
     }
     
-    /* This rule is now in navigation.css, but we keep a placeholder */
-    /* for the hamburger button order */
-    .hamburger-btn {
-        order: 1; /* Moves the hamburger button to the left */
-    }
-
+    /* Make the controls container visible again on mobile */
     .header-controls {
+        display: flex;
+        justify-content: flex-end; /* Align items to the right */
+        position: static;
+        transform: none;
+        grid-column: 3; /* Place in the right column */
+    }
+    
+    /* Hide the other buttons inside the container, but keep the back button placeholder */
+    .header-controls .lang-toggle, .header-controls .print-button {
         display: none;
     }
     
-    #back-button-placeholder {
-        position: static;
-        transform: none;
-        margin: 0;
-        /* The back button will be handled by the mobile nav grid */
-    }
-
     .back-button {
         background: none;
         border: none;
         box-shadow: none;
         padding: 8px;
+        margin: 0;
+    }
+    
+    #back-button-placeholder {
         margin: 0;
     }
 }
