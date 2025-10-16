@@ -60,37 +60,58 @@ function buildPanel(data, appState) {
                 panel.classList.add('has-bg-image');
             } else {
                 panel.style.backgroundColor = data.backgroundColor;
-                panel.style.color = data.textColor;
             }
 
-            // THIS IS THE NEW LOGIC: Prioritize direct text over keys
+            const promoTitleEl = document.createElement('h3');
             const promoTitle = data.title || (translations[data.titleKey] || '');
+            promoTitleEl.innerHTML = promoTitle;
+            if (data.titleColor) {
+                promoTitleEl.style.color = data.titleColor;
+            }
+
+            const promoTextEl = document.createElement('p');
             const promoText = data.text || (translations[data.textKey] || '');
+            promoTextEl.innerHTML = promoText;
+            if (data.paragraphColor) {
+                promoTextEl.style.color = data.paragraphColor;
+            } else if (data.textColor) { 
+                promoTextEl.style.color = data.textColor;
+            }
             
-            panel.innerHTML = `
-                <h3>${promoTitle}</h3>
-                <p>${promoText}</p>
-            `;
+            panel.appendChild(promoTitleEl);
+            panel.appendChild(promoTextEl);
             break;
 
         case 'text-block':
             panel.className = 'text-block-panel';
             if (data.style) panel.classList.add(`promo-${data.style}`);
             if (data.backgroundColor) panel.style.backgroundColor = data.backgroundColor;
-            if (data.textColor) panel.style.color = data.textColor;
             
-            let textContent = '';
-            if (data.header) textContent += `<h1>${data.header}</h1>`;
-            if (data.subheader) textContent += `<h2>${data.subheader}</h2>`;
-            if (data.paragraph) textContent += `<p>${data.paragraph}</p>`;
-            panel.innerHTML = textContent;
+            const headerEl = document.createElement('h1');
+            if (data.header) headerEl.innerHTML = data.header; // CHANGED
+            if (data.headerColor) headerEl.style.color = data.headerColor;
+
+            const subheaderEl = document.createElement('h2');
+            if (data.subheader) subheaderEl.innerHTML = data.subheader; // CHANGED
+            if (data.subheaderColor) subheaderEl.style.color = data.subheaderColor;
+            
+            const paragraphEl = document.createElement('p');
+            if (data.paragraph) paragraphEl.innerHTML = data.paragraph; // CHANGED
+            if (data.paragraphColor) {
+                paragraphEl.style.color = data.paragraphColor;
+            } else if (data.textColor) {
+                paragraphEl.style.color = data.textColor;
+            }
+
+            if(data.header) panel.appendChild(headerEl);
+            if(data.subheader) panel.appendChild(subheaderEl);
+            if(data.paragraph) panel.appendChild(paragraphEl);
             break;
 
         case 'tile':
             panel.className = 'tile';
             panel.style.backgroundImage = `url('${data.image}')`;
 
-            // THIS IS THE NEW LOGIC: Prioritize direct text over keys
             const tileTitle = data.title || (translations[data.titleKey] || '');
             panel.innerHTML = `<h2>${tileTitle}</h2>`;
             break;
