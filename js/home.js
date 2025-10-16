@@ -44,30 +44,32 @@ export async function renderHomePage(appState) {
     }
 }
 
-// This function builds a single panel based on its type from the fetched data
+// This function builds a single panel and now correctly handles external links
 function buildPanel(data, appState) {
     const panel = document.createElement('div');
     const { translations } = appState;
     
-    if (data.nav) {
-        panel.classList.add('home-nav-tile');
-        panel.dataset.page = data.nav.page;
-        if (data.nav.category) {
-            panel.dataset.categoryStart = data.nav.category;
-        }
-        panel.style.cursor = 'pointer';
-    }
-
+    // Build the panel's content based on its type
     switch (data.type) {
         case 'promo':
             panel.className = 'promo-panel';
             if (data.style) panel.classList.add(`promo-${data.style}`);
-            if(data.nav) panel.classList.add('home-nav-tile');
-            panel.style.backgroundColor = data.backgroundColor;
-            panel.style.color = data.textColor;
+            
+            if (data.backgroundImage) {
+                panel.style.backgroundImage = `url('${data.backgroundImage}')`;
+                panel.classList.add('has-bg-image');
+            } else {
+                panel.style.backgroundColor = data.backgroundColor;
+                panel.style.color = data.textColor;
+            }
+
+            // THIS IS THE NEW LOGIC: Prioritize direct text over keys
+            const promoTitle = data.title || (translations[data.titleKey] || '');
+            const promoText = data.text || (translations[data.textKey] || '');
+            
             panel.innerHTML = `
-                <h3 data-lang-key="${data.titleKey}">${translations[data.titleKey] || ''}</h3>
-                <p data-lang-key="${data.textKey}">${translations[data.textKey] || ''}</p>
+                <h3>${promoTitle}</h3>
+                <p>${promoText}</p>
             `;
             break;
 
@@ -85,9 +87,12 @@ function buildPanel(data, appState) {
             break;
 
         case 'tile':
-            panel.className = 'tile home-nav-tile';
+            panel.className = 'tile';
             panel.style.backgroundImage = `url('${data.image}')`;
-            panel.innerHTML = `<h2 data-lang-key="${data.titleKey}">${translations[data.titleKey] || ''}</h2>`;
+
+            // THIS IS THE NEW LOGIC: Prioritize direct text over keys
+            const tileTitle = data.title || (translations[data.titleKey] || '');
+            panel.innerHTML = `<h2>${tileTitle}</h2>`;
             break;
 
         case 'recipe':
@@ -107,6 +112,26 @@ function buildPanel(data, appState) {
             break;
         default:
             return null;
+    }
+
+    // Handle internal vs external links
+    if (data.nav) {
+        if (data.nav.href) {
+            const linkWrapper = document.createElement('a');
+            linkWrapper.href = data.nav.href;
+            linkWrapper.target = "_blank";
+            linkWrapper.rel = "noopener noreferrer";
+            linkWrapper.classList.add('panel-link');
+            linkWrapper.appendChild(panel);
+            return linkWrapper;
+        } else if (data.nav.page) {
+            panel.classList.add('home-nav-tile');
+            panel.dataset.page = data.nav.page;
+            if (data.nav.category) {
+                panel.dataset.categoryStart = data.nav.category;
+            }
+            panel.style.cursor = 'pointer';
+        }
     }
 
     return panel;

@@ -1,8 +1,8 @@
 [
     "data/en/homepage/from-the-source.json",
+    "data/en/homepage/open_acc.json",
     "data/en/homepage/explore_corn.json",
     "data/en/homepage/featured_dish.json",
-    "data/en/homepage/explore_spices.json",
     "data/en/homepage/welcome.json",
     "data/en/homepage/our_story.json"
 ]

@@ -4,6 +4,6 @@
   "nav": { "page": "about" },
   "backgroundColor": "#e0e7ff",
   "textColor": "#3730a3",
-  "titleKey": "homeAboutTitle",
-  "textKey": "homeAboutText"
+  "title": "Our Story",
+  "text": "Since 1980, we've been committed to quality and tradition. Learn more about our journey and the values that drive us."
 }
