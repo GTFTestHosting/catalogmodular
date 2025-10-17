@@ -95,11 +95,13 @@
 
 /* --- Text Block Panel Styles --- */
 .text-block-panel {
+    border-radius: 16px;
     padding: 32px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    box-shadow: var(--card-shadow);
     min-height: 280px;
 }
 .text-block-panel h1 {
@@ -120,6 +122,7 @@
     color: #6b7280;
     margin: 0;
 }
+
 
 /* --- Recipe Panel Styles --- */
 .recipe-panel {
@@ -293,16 +296,14 @@
     font-weight: 500;
 }
 
-
-
-/* --- NEW: Map Panel Styles --- */
+/* --- Map Panel Styles --- */
 .map-panel {
     position: relative;
     overflow: hidden;
     border-radius: 16px;
     box-shadow: var(--card-shadow);
     min-height: 280px;
-    background-color: var(--border-color); /* Fallback color while map loads */
+    background-color: var(--border-color);
 }
 .map-panel iframe {
     position: absolute;
@@ -322,24 +323,24 @@
     font-weight: 600;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
     z-index: 1;
-    pointer-events: none; /* Allows interacting with the map underneath */
+    pointer-events: none;
 }
 
 
-/* --- Promo Panel Size Modifiers (Updated) --- */
-[class*="-cell"].promo-thin, .map-panel.promo-thin {
+/* --- Panel Size Modifiers --- */
+[class*="-cell"].promo-thin {
     grid-column: span 1;
 }
-[class*="-cell"].promo-wide, .map-panel.promo-wide {
+[class*="-cell"].promo-wide {
     grid-column: span 2;
 }
-[class*="-cell"].promo-extra-wide, .map-panel.promo-extra-wide {
+[class*="-cell"].promo-extra-wide {
     grid-column: span 3;
 }
-[class*="-cell"].promo-tall, .map-panel.promo-tall {
+[class*="-cell"].promo-tall {
     grid-row: span 2;
 }
-[class*="-cell"].promo-large, .map-panel.promo-large {
+[class*="-cell"].promo-large {
     grid-column: span 2;
     grid-row: span 2;
 }
@@ -352,16 +353,17 @@
 
 
 /* --- Responsive Overrides for Tiles --- */
-@media (max-width: 1600px) {
+@media (max-width: 1919px) {
     [class*="-cell"].promo-extra-wide {
         grid-column: span 2;
     }
 }
 
 @media (max-width: 1100px) {
-    [class*="-cell"].promo-wide,
-    [class*="-cell"].promo-large,
-    [class*="-cell"].promo-extra-wide {
+    /* This rule only applies to the homepage grid now */
+    .home-grid [class*="-cell"].promo-wide,
+    .home-grid [class*="-cell"].promo-large,
+    .home-grid [class*="-cell"].promo-extra-wide {
         grid-column: span 1;
     }
 }
@@ -373,8 +375,17 @@
     .promo-panel, .text-block-panel, .recipe-panel, .carousel-panel {
         min-height: 220px;
     }
+
+    /* This ensures all wide panels span the full 2 columns in the product grid */
+    .product-grid [class*="-cell"].promo-wide,
+    .product-grid [class*="-cell"].promo-large,
+    .product-grid [class*="-cell"].promo-extra-wide {
+        grid-column: span 2;
+    }
+
     [class*="-cell"].promo-tall,
     [class*="-cell"].promo-large {
         grid-row: auto;
     }
 }
+
