@@ -168,6 +168,24 @@ function buildPanel(data, appState) {
             panel.appendChild(slidesContainer);
             break;
 
+        case 'map-panel':
+            panel.className = 'map-panel';
+            if (data.title) {
+                panel.innerHTML += `<h2>${data.title}</h2>`;
+            }
+            if (data.iframeSrc) {
+                const iframe = document.createElement('iframe');
+                iframe.src = data.iframeSrc;
+                iframe.width = "100%";
+                iframe.height = "100%";
+                iframe.style.border = "0";
+                iframe.allowFullscreen = true;
+                iframe.loading = "lazy";
+                iframe.referrerPolicy = "no-referrer-when-downgrade";
+                panel.appendChild(iframe);
+            }
+            break;
+
         default:
             return null;
     }
