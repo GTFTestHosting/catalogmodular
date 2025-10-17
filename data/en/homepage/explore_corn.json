@@ -1,5 +1,6 @@
 {
   "type": "tile",
+  "style": "thin",
   "nav": { "page": "catalog", "category": "corn-tortillas" },
   "image": "images/home/corn-tortillas.jpg",
   "titleKey": "homeExploreCorn"

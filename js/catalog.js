@@ -35,8 +35,6 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
         }
 
         mainCategoriesContainer.innerHTML = '';
-
-        // THIS IS THE KEY CHANGE: Create a dedicated wrapper for the grid
         const gridWrapper = document.createElement('div');
         gridWrapper.className = 'category-wrapper';
 
@@ -59,10 +57,10 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
             };
             
             cell.appendChild(tile);
-            gridWrapper.appendChild(cell); // Add cell to the new wrapper
+            gridWrapper.appendChild(cell);
         });
         
-        mainCategoriesContainer.appendChild(gridWrapper); // Add the wrapper to the main container
+        mainCategoriesContainer.appendChild(gridWrapper);
 
     } catch (error) {
         console.error("Error initializing catalog:", error);
@@ -70,7 +68,6 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
     }
 }
 
-// --- (rest of the file is unchanged) ---
 export async function displayCategoryLevel(filePath, appState) {
     showBackButton(appState.translations);
     const subCategoriesContainer = document.getElementById('sub-categories');
@@ -91,6 +88,7 @@ export async function displayCategoryLevel(filePath, appState) {
         items.forEach(item => {
             const cell = document.createElement('div');
             cell.className = 'subcategory-cell';
+
             const tile = document.createElement('div');
             tile.className = 'tile';
             tile.style.backgroundImage = `url("${item.image}")`;
@@ -119,6 +117,7 @@ export async function displayProductLevel(manifestFilePath, appState) {
     const subCategoriesContainer = document.getElementById('sub-categories');
     const mainCategoriesContainer = document.getElementById('main-categories');
     if (mainCategoriesContainer) mainCategoriesContainer.classList.add('hidden');
+    if (subCategoriesContainer) subCategoriesContainer.classList.remove('hidden');
 
     showLoadingMessage(subCategoriesContainer, appState.translations);
 
@@ -145,20 +144,40 @@ export async function displayProductLevel(manifestFilePath, appState) {
         gridWrapper.className = 'product-grid';
 
         products.forEach(product => {
-            const tile = document.createElement('div');
+            const cell = document.createElement('div');
+            cell.className = 'product-cell';
+
+            const panel = document.createElement('div');
+            
+            if (product.style) {
+                cell.classList.add(`promo-${product.style}`);
+            }
+
             if (product.type === 'promo-panel') {
-                tile.className = 'promo-panel';
-                if (product.style) tile.classList.add(`promo-${product.style}`);
-                if (product.backgroundColor) tile.style.backgroundColor = product.backgroundColor;
-                if (product.textColor) tile.style.color = product.textColor;
-                
-                let content = '';
-                if (product.title) content += `<h3>${product.title}</h3>`;
-                if (product.text) content += `<p>${product.text}</p>`;
-                tile.innerHTML = content;
+                panel.className = 'promo-panel';
+                if (product.backgroundImage) {
+                    panel.style.backgroundImage = `url('${product.backgroundImage}')`;
+                    panel.classList.add('has-bg-image');
+                } else {
+                    panel.style.backgroundColor = product.backgroundColor;
+                }
+                const promoTitle = product.title || (appState.translations[product.titleKey] || '');
+                const promoText = product.text || (appState.translations[product.textKey] || '');
+                const promoTitleEl = document.createElement('h3');
+                promoTitleEl.innerHTML = promoTitle;
+                if (product.titleColor) promoTitleEl.style.color = product.titleColor;
+                const promoTextEl = document.createElement('p');
+                promoTextEl.innerHTML = promoText;
+                if (product.paragraphColor) {
+                    promoTextEl.style.color = product.paragraphColor;
+                } else if (product.textColor) {
+                    promoTextEl.style.color = product.textColor;
+                }
+                panel.appendChild(promoTitleEl);
+                panel.appendChild(promoTextEl);
+
             } else if (product.type === 'recipe-panel') {
-                tile.className = 'recipe-panel';
-                if (product.style) tile.classList.add(`promo-${product.style}`);
+                panel.className = 'recipe-panel';
                 if (product.backgroundVideo) {
                     const video = document.createElement('video');
                     video.autoplay = true;
@@ -169,9 +188,9 @@ export async function displayProductLevel(manifestFilePath, appState) {
                     source.src = product.backgroundVideo;
                     source.type = 'video/mp4';
                     video.appendChild(source);
-                    tile.appendChild(video);
+                    panel.appendChild(video);
                 } else if (product.backgroundImage) {
-                    tile.style.backgroundImage = `url("${product.backgroundImage}")`;
+                    panel.style.backgroundImage = `url("${product.backgroundImage}")`;
                 }
                 const contentWrapper = document.createElement('div');
                 contentWrapper.className = 'recipe-panel-content';
@@ -188,14 +207,17 @@ export async function displayProductLevel(manifestFilePath, appState) {
                     content += '</ul>';
                 }
                 contentWrapper.innerHTML = content;
-                tile.appendChild(contentWrapper);
+                panel.appendChild(contentWrapper);
+
             } else {
-                tile.className = 'tile';
-                tile.style.backgroundImage = `url("${product.image}")`;
-                tile.innerHTML = `<h2>${product.name}</h2>`;
-                tile.onclick = () => showProductDetails(product, appState.translations);
+                panel.className = 'tile';
+                panel.style.backgroundImage = `url("${product.image}")`;
+                panel.innerHTML = `<h2>${product.name}</h2>`;
+                panel.onclick = () => showProductDetails(product, appState.translations);
             }
-            gridWrapper.appendChild(tile);
+            
+            cell.appendChild(panel);
+            gridWrapper.appendChild(cell);
         });
         subCategoriesContainer.appendChild(gridWrapper);
     } catch (error) {

@@ -1,5 +1,6 @@
 {
   "type": "recipe",
+  "stye": "wide",
   "image": "images/home/taco-showcase.jpg",
   "titleKey": "homeFeaturedRecipe",
   "descriptionKey": "homeFeaturedDesc",

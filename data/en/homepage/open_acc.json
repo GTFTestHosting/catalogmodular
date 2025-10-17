@@ -1,7 +1,7 @@
 {
   "type": "promo",
   "style": "thin",
-  "nav": {
+    "nav": {
     "href": "https://docs.google.com/forms/d/e/1FAIpQLSeKaWrB-7_QnxcNYfaGACZs7Byo9JGEbgJDK0XmXo4aHRgddQ/viewform?usp=sharing&ouid=105622567522695002328"
   },
   "backgroundImage": "/images/promo_panels/bg1.jpg",

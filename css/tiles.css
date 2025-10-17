@@ -1,4 +1,11 @@
 /* --- The Tile --- */
+.tile, .promo-panel, .text-block-panel, .recipe-panel {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    flex: 1;
+}
+
 .tile {
     background-size: cover;
     background-position: center;
@@ -12,10 +19,6 @@
     box-shadow: var(--card-shadow);
     overflow: hidden;
     position: relative;
-}
-.category-cell > .tile, .subcategory-cell > .tile {
-    width: 100%;
-    height: 100%;
 }
 .tile:hover {
     transform: translateY(-8px);
@@ -53,6 +56,26 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     min-height: 280px; 
 }
+.promo-panel.has-bg-image {
+    color: white;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+.promo-panel.has-bg-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+    pointer-events: none;
+}
+.promo-panel.has-bg-image h3,
+.promo-panel.has-bg-image p {
+    position: relative;
+    z-index: 1;
+}
 .promo-panel:hover {
     transform: translateY(-8px);
     box-shadow: var(--card-shadow-hover);
@@ -68,36 +91,16 @@
     font-style: italic;
     margin: 0;
 }
-.promo-panel.has-bg-image {
-    color: white;
-    justify-content: flex-end; /* Align text to bottom */
-    position: relative;
-    overflow: hidden;
-}
-
-/* Add the same gradient overlay */
-.promo-panel.has-bg-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
-    pointer-events: none;
-}
-
-/* Make sure the text is on top of the overlay */
-.promo-panel.has-bg-image h3,
-.promo-panel.has-bg-image p {
-    position: relative;
-    z-index: 1;
-}
 
 /* --- Text Block Panel Styles --- */
 .text-block-panel {
+    border-radius: 16px;
     padding: 32px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    box-shadow: var(--card-shadow);
     min-height: 280px;
 }
 .text-block-panel h1 {
@@ -118,6 +121,7 @@
     color: #6b7280;
     margin: 0;
 }
+
 
 /* --- Recipe Panel Styles --- */
 .recipe-panel {
@@ -203,49 +207,57 @@
 
 
 /* --- Promo Panel Size Modifiers --- */
-.promo-panel.promo-thin, .recipe-panel.promo-thin, .text-block-panel.promo-thin {
+.home-cell.promo-thin, .category-cell.promo-thin, .subcategory-cell.promo-thin, .product-cell.promo-thin {
     grid-column: span 1;
 }
-.promo-panel.promo-wide, .recipe-panel.promo-wide, .text-block-panel.promo-wide {
+.home-cell.promo-wide, .category-cell.promo-wide, .subcategory-cell.promo-wide, .product-cell.promo-wide {
     grid-column: span 2;
 }
-.promo-panel.promo-extra-wide, .recipe-panel.promo-extra-wide, .text-block-panel.promo-extra-wide {
+.home-cell.promo-extra-wide, .category-cell.promo-extra-wide, .subcategory-cell.promo-extra-wide, .product-cell.promo-extra-wide {
     grid-column: span 3;
 }
-.promo-panel.promo-tall, .recipe-panel.promo-tall, .text-block-panel.promo-tall {
+.home-cell.promo-tall, .category-cell.promo-tall, .subcategory-cell.promo-tall, .product-cell.promo-tall {
     grid-row: span 2;
 }
-.promo-panel.promo-large, .recipe-panel.promo-large, .text-block-panel.promo-large {
+.home-cell.promo-large, .category-cell.promo-large, .subcategory-cell.promo-large, .product-cell.promo-large {
     grid-column: span 2;
     grid-row: span 2;
 }
-
-/* NEW: Style for the link wrapper */
 .panel-link {
     text-decoration: none;
     color: inherit;
-    display: block; /* Ensures the link takes up the full grid cell */
+    display: flex;
+    flex: 1;
 }
 
 
-/* --- Responsive Overrides for Tiles --- */
+/* --- THIS IS THE CORRECTED RESPONSIVE LOGIC --- */
+/* On screens that can likely only fit 2 columns, constrain extra-wide panels to span 2 */
+@media (max-width: 1599px) {
+    .home-cell.promo-extra-wide, .category-cell.promo-extra-wide, .subcategory-cell.promo-extra-wide, .product-cell.promo-extra-wide {
+        grid-column: span 2;
+    }
+}
+
+/* On screens that can likely only fit 1 column, constrain all wide panels to span 1 */
+@media (max-width: 1100px) {
+    .home-cell.promo-wide, .category-cell.promo-wide, .subcategory-cell.promo-wide, .product-cell.promo-wide,
+    .home-cell.promo-large, .category-cell.promo-large, .subcategory-cell.promo-large, .product-cell.promo-large,
+    .home-cell.promo-extra-wide, .category-cell.promo-extra-wide, .subcategory-cell.promo-extra-wide, .product-cell.promo-extra-wide {
+        grid-column: span 1;
+    }
+}
+
 @media (max-width: 768px) {
     .tile { 
         min-height: 220px; 
     }
-
-    .promo-panel, .text-block-panel {
-        min-height: auto;
+    .promo-panel, .text-block-panel, .recipe-panel {
+        min-height: 220px;
     }
-
-    .promo-panel.promo-wide, .recipe-panel.promo-wide, .text-block-panel.promo-wide,
-    .promo-panel.promo-large, .recipe-panel.promo-large, .text-block-panel.promo-large,
-    .promo-panel.promo-extra-wide, .recipe-panel.promo-extra-wide, .text-block-panel.promo-extra-wide {
-        grid-column: span 1;
-    }
-
-    .promo-panel.promo-tall, .recipe-panel.promo-tall, .text-block-panel.promo-tall,
-    .promo-panel.promo-large, .recipe-panel.promo-large, .text-block-panel.promo-large {
+    .home-cell.promo-tall, .category-cell.promo-tall, .subcategory-cell.promo-tall, .product-cell.promo-tall,
+    .home-cell.promo-large, .category-cell.promo-large, .subcategory-cell.promo-large, .product-cell.promo-large {
         grid-row: auto;
     }
 }
+
