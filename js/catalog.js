@@ -41,6 +41,9 @@ export async function initializeCatalog(appState, startCategorySlug = null) {
         categories.forEach(category => {
             const cell = document.createElement('div');
             cell.className = 'category-cell';
+            if (category.style) {
+                cell.classList.add(`promo-${category.style}`);
+            }
 
             const tile = document.createElement('div');
             tile.className = 'tile';
@@ -88,6 +91,9 @@ export async function displayCategoryLevel(filePath, appState) {
         items.forEach(item => {
             const cell = document.createElement('div');
             cell.className = 'subcategory-cell';
+            if (item.style) {
+                cell.classList.add(`promo-${item.style}`);
+            }
 
             const tile = document.createElement('div');
             tile.className = 'tile';
@@ -118,6 +124,7 @@ export async function displayProductLevel(manifestFilePath, appState) {
     const mainCategoriesContainer = document.getElementById('main-categories');
     if (mainCategoriesContainer) mainCategoriesContainer.classList.add('hidden');
     if (subCategoriesContainer) subCategoriesContainer.classList.remove('hidden');
+
 
     showLoadingMessage(subCategoriesContainer, appState.translations);
 
@@ -208,7 +215,6 @@ export async function displayProductLevel(manifestFilePath, appState) {
                 }
                 contentWrapper.innerHTML = content;
                 panel.appendChild(contentWrapper);
-
             } else {
                 panel.className = 'tile';
                 panel.style.backgroundImage = `url("${product.image}")`;

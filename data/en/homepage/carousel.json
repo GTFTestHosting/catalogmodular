@@ -1,0 +1,21 @@
+{
+  "type": "carousel-panel",
+  "style": "large",
+  "slides": [
+    {
+    "backgroundVideo": "videos/asada-tacos.mp4",
+    "title": "Carne Asada Tacos",
+    "restaurant": "Tres Hermanos Bar & Grill",
+    "description": "Classic street style tacos featuring diced pieces of grilled steak over two yellow corn tortillas.",
+    "featuredProducts": "5\" Yellow Taco Tortillas"
+    },
+    {
+    "type": "recipe-panel",
+    "style": "wide",
+    "backgroundImage": "images/promo_panels/torta.jpg",
+    "title": "Blood Orange Paloma",
+    "description": "A spin on the iconic paloma that utilizes tequila, grapefruit, and blood orange soda to give a vibrant pop of color.",
+    "featuredProducts": "Dehydrated Blood Orange"
+    }
+  ]
+}

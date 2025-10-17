@@ -26,7 +26,6 @@ export async function renderHomePage(appState) {
         panelsData.forEach(panelData => {
             const cell = document.createElement('div');
             cell.className = 'home-cell';
-            // THIS IS THE KEY CHANGE: Apply the style class to the cell
             if (panelData.style) {
                 cell.classList.add(`promo-${panelData.style}`);
             }
@@ -37,6 +36,8 @@ export async function renderHomePage(appState) {
                 gridWrapper.appendChild(cell);
             }
         });
+        
+        document.querySelectorAll('.carousel-panel').forEach(initCarousel);
 
         setupHomeNavTiles(appState);
         applyStaticTranslations(appState.translations);
@@ -54,7 +55,6 @@ function buildPanel(data, appState) {
     switch (data.type) {
         case 'promo':
             panel.className = 'promo-panel';
-            // The style class is no longer added here
             if (data.backgroundImage) {
                 panel.style.backgroundImage = `url('${data.backgroundImage}')`;
                 panel.classList.add('has-bg-image');
@@ -79,7 +79,6 @@ function buildPanel(data, appState) {
 
         case 'text-block':
             panel.className = 'text-block-panel';
-            // The style class is no longer added here
             if (data.backgroundColor) panel.style.backgroundColor = data.backgroundColor;
             const headerEl = document.createElement('h1');
             if (data.header) headerEl.innerHTML = data.header;
@@ -101,7 +100,6 @@ function buildPanel(data, appState) {
 
         case 'tile':
             panel.className = 'tile';
-            // The style class is no longer added here
             panel.style.backgroundImage = `url('${data.image}')`;
             const tileTitle = data.title || (translations[data.titleKey] || '');
             panel.innerHTML = `<h2>${tileTitle}</h2>`;
@@ -109,7 +107,6 @@ function buildPanel(data, appState) {
 
         case 'recipe':
             panel.className = 'recipe-panel';
-            // The style class is no longer added here
             if (data.backgroundImage) panel.style.backgroundImage = `url('${data.backgroundImage}')`;
             const ingredientsHtml = data.featuredProducts.map(item => `<li>${item}</li>`).join('');
             panel.innerHTML = `
@@ -120,6 +117,57 @@ function buildPanel(data, appState) {
                     <ul>${ingredientsHtml}</ul>
                 </div>`;
             break;
+        
+        case 'carousel-panel':
+            panel.className = 'carousel-panel';
+            
+            const slidesContainer = document.createElement('div');
+            slidesContainer.className = 'carousel-slides-container';
+
+            data.slides.forEach((slide, index) => {
+                const slideEl = document.createElement('div');
+                slideEl.className = 'carousel-slide';
+                if (index === 0) {
+                    slideEl.classList.add('is-active');
+                }
+
+                if (slide.backgroundVideo) {
+                    const video = document.createElement('video');
+                    video.autoplay = true;
+                    video.loop = true;
+                    video.muted = true;
+                    video.playsInline = true;
+                    const source = document.createElement('source');
+                    source.src = slide.backgroundVideo;
+                    source.type = 'video/mp4';
+                    video.appendChild(source);
+                    slideEl.appendChild(video);
+                } else if (slide.image || slide.backgroundImage) { // Now checks for both
+                    slideEl.style.backgroundImage = `url('${slide.image || slide.backgroundImage}')`;
+                }
+
+                const contentEl = document.createElement('div');
+                contentEl.className = 'carousel-content';
+
+                let content = '';
+                if (slide.title) content += `<h3>${slide.title}</h3>`;
+                if (slide.restaurant) content += `<p class="restaurant-name">${slide.restaurant}</p>`;
+                if (slide.description) content += `<p class="recipe-description">${slide.description}</p>`;
+                if (slide.featuredProducts) {
+                    const featuredTitle = translations.featuredProductsTitle || 'Featured Products:';
+                    content += `<h4 class="featured-products-title">${featuredTitle}</h4>`;
+                    const products = Array.isArray(slide.featuredProducts) ? slide.featuredProducts : [slide.featuredProducts];
+                    content += `<ul>${products.map(p => `<li>${p}</li>`).join('')}</ul>`;
+                }
+                contentEl.innerHTML = content;
+                
+                slideEl.appendChild(contentEl);
+                slidesContainer.appendChild(slideEl);
+            });
+
+            panel.appendChild(slidesContainer);
+            break;
+
         default:
             return null;
     }
@@ -154,5 +202,18 @@ function setupHomeNavTiles(appState) {
             renderPage(targetPage, appState, { startCategory });
         });
     });
+}
+
+function initCarousel(carouselPanel) {
+    const slides = carouselPanel.querySelectorAll('.carousel-slide');
+    let currentIndex = 0;
+
+    if (slides.length <= 1) return;
+
+    setInterval(() => {
+        if(slides[currentIndex]) slides[currentIndex].classList.remove('is-active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        if(slides[currentIndex]) slides[currentIndex].classList.add('is-active');
+    }, 5000);
 }
 
