@@ -1,8 +1,9 @@
 {
-  "type": "promo",
-  "style": "extra-wide",
-  "backgroundColor": "#ffedd5",
-  "textColor": "#9a3412",
-  "titleKey": "homeWelcomeTitle",
-  "textKey": "homeWelcomeText"
+    "type": "text-block",
+    "style": "wide",
+    "backgroundColor": "white",
+    "headerColor": "#ff5919",
+    "textColor": "#1f2937",
+    "header": "Welcome to Graciana Tortilla Factory",
+    "paragraph": "At Graciana, every tortilla begins with a story rooted in heritage, family, and the timeless craft of authentic Mexican cooking. What started as a humble dedication to quality and tradition has grown into a brand built on passion, care, and pride in every detail. From sourcing the finest ingredients to preserving artisanal methods passed down through generations, our goal has always been to create food that feels as good as it tastes — honest, nourishing, and made with heart. <br><br>As we continue to grow, our commitment remains unchanged. We honor the flavors of our past while embracing the possibilities of tomorrow. Through innovation, consistency, and a deep respect for tradition, we’re proud to share our love for authentic tortillas and to be part of every meal that brings people together."
 }

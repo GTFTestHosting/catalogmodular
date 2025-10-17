@@ -6,16 +6,14 @@
     "backgroundVideo": "videos/asada-tacos.mp4",
     "title": "Carne Asada Tacos",
     "restaurant": "Tres Hermanos Bar & Grill",
-    "description": "Classic street style tacos featuring diced pieces of grilled steak over two yellow corn tortillas.",
     "featuredProducts": "5\" Yellow Taco Tortillas"
     },
     {
     "type": "recipe-panel",
     "style": "wide",
-    "backgroundImage": "images/promo_panels/torta.jpg",
+    "backgroundVideo": "videos/cocktail-orange.mp4",
     "title": "Zcatecas Mezcal",
     "restaurant": "Tres Hermanos Bar & Grill",
-    "description": "Mezcal",
     "featuredProducts": "Dehydrated Blood Orange"
     }
   ]
