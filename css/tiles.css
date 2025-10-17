@@ -351,7 +351,7 @@
 
 
 /* --- Responsive Overrides for Tiles --- */
-@media (max-width: 1919px) {
+@media (max-width: 1600px) {
     [class*="-cell"].promo-extra-wide {
         grid-column: span 2;
     }
