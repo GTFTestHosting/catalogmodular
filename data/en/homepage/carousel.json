@@ -13,8 +13,9 @@
     "type": "recipe-panel",
     "style": "wide",
     "backgroundImage": "images/promo_panels/torta.jpg",
-    "title": "Blood Orange Paloma",
-    "description": "A spin on the iconic paloma that utilizes tequila, grapefruit, and blood orange soda to give a vibrant pop of color.",
+    "title": "Zcatecas Mezcal",
+    "restaurant": "Tres Hermanos Bar & Grill",
+    "description": "Mezcal",
     "featuredProducts": "Dehydrated Blood Orange"
     }
   ]
