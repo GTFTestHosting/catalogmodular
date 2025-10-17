@@ -95,13 +95,11 @@
 
 /* --- Text Block Panel Styles --- */
 .text-block-panel {
-    border-radius: 16px;
     padding: 32px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    box-shadow: var(--card-shadow);
     min-height: 280px;
 }
 .text-block-panel h1 {
