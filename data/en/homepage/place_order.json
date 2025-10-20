@@ -1,8 +1,10 @@
 {
   "type": "promo",
   "style": "thin",
-  "nav": { "page": "catalog", "category": "prepared-products" },
-  "backgroundImage": "images/promo_panels/chile_relleno_tile.jpg",
+  "nav": {
+    "href": "https://script.google.com/a/macros/gracianatortilla.com/s/AKfycbwSjXExCyduSXKQjB0tigg3mk-R4-BTgleKXz2eepDMc0lCZfPN_uosiekLjYTW_x4UpA/exec"
+  },
+  "backgroundImage": "images/promo_panels/Order.jpg",
   "title": "Place an Order",
   "text": "Click here to place your order."
 }
