@@ -6,6 +6,6 @@
   },
   "backgroundImage": "images/promo_panels/bg1.jpg",
   "textColor": "white",
-  "titleKey": "homeOpenAccTitle",
-  "textKey": "homeOpenAcc"
+  "title": "Become a Member",
+  "text": "Click here to open a business account."
 }

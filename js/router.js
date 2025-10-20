@@ -1,7 +1,8 @@
 import { state } from './state.js';
 import { hideBackButton, applyStaticTranslations, showLoadingMessage } from './ui.js';
 import { initializeCatalog } from './catalog.js';
-import { renderHomePage } from './home.js'; // Import the new home page renderer
+import { renderHomePage } from './home.js';
+import { renderBentoPage } from './page-renderer.js'; // Import the new renderer
 
 const pageContentContainer = document.getElementById('page-content');
 
@@ -17,14 +18,14 @@ export function renderPage(page, appState, options = {}) {
             initializeCatalog(appState, options.startCategory);
             break;
         case 'home':
-            renderHomePage(appState); // Use the new home page renderer
+            renderHomePage(appState);
             break;
         case 'about':
-        case 'contact':
-            loadHtmlContent(page, appState);
+        case 'contact': // You can add more pages here
+            renderBentoPage(page, appState); // Use the new generic renderer
             break;
         default:
-            renderHomePage(appState); // Default to home
+            renderHomePage(appState);
     }
 }
 

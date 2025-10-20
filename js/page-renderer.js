@@ -1,24 +1,23 @@
-import { renderPage } from './router.js';
 import { showLoadingMessage, applyStaticTranslations, hideBackButton } from './ui.js';
 import { buildPanel, setupHomeNavTiles } from './panel-builder.js'; // Import from the new module
 
 const pageContentContainer = document.getElementById('page-content');
 
-export async function renderHomePage(appState) {
+export async function renderBentoPage(page, appState) {
     hideBackButton();
     showLoadingMessage(pageContentContainer, appState.translations);
 
     try {
-        const shellResponse = await fetch('pages/home.html');
-        if (!shellResponse.ok) throw new Error('Home page shell not found');
+        const shellResponse = await fetch('pages/bento-shell.html');
+        if (!shellResponse.ok) throw new Error('bento-shell.html not found');
         const shellHtml = await shellResponse.text();
         pageContentContainer.innerHTML = shellHtml;
 
-        const gridWrapper = pageContentContainer.querySelector('.home-grid');
-        if (!gridWrapper) throw new Error('.home-grid container not found in home.html');
+        const gridWrapper = pageContentContainer.querySelector('.bento-grid');
+        if (!gridWrapper) throw new Error('.bento-grid container not found in shell');
 
-        const manifestResponse = await fetch(`data/${appState.currentLanguage}/homepage/home.json`);
-        if (!manifestResponse.ok) throw new Error('Home page manifest not found');
+        const manifestResponse = await fetch(`data/${appState.currentLanguage}/${page}/${page}.json`);
+        if (!manifestResponse.ok) throw new Error(`${page}.json manifest not found`);
         const panelFiles = await manifestResponse.json();
 
         const panelPromises = panelFiles.map(file => fetch(file).then(res => res.json()));
@@ -26,7 +25,7 @@ export async function renderHomePage(appState) {
         
         panelsData.forEach(panelData => {
             const cell = document.createElement('div');
-            cell.className = 'home-cell';
+            cell.className = `${page}-cell`; 
             if (panelData.style) {
                 cell.classList.add(`promo-${panelData.style}`);
             }
@@ -38,27 +37,12 @@ export async function renderHomePage(appState) {
             }
         });
         
-        document.querySelectorAll('.carousel-panel').forEach(initCarousel);
-
         setupHomeNavTiles(appState);
         applyStaticTranslations(appState.translations);
 
     } catch (error) {
-        console.error("Failed to load home page:", error);
+        console.error(`Failed to load page ${page}:`, error);
         pageContentContainer.innerHTML = `<p>Error loading page content.</p>`;
     }
-}
-
-function initCarousel(carouselPanel) {
-    const slides = carouselPanel.querySelectorAll('.carousel-slide');
-    let currentIndex = 0;
-
-    if (slides.length <= 1) return;
-
-    setInterval(() => {
-        if(slides[currentIndex]) slides[currentIndex].classList.remove('is-active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        if(slides[currentIndex]) slides[currentIndex].classList.add('is-active');
-    }, 5000);
 }
 
