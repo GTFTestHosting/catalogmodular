@@ -7,12 +7,27 @@ export function buildPanel(data, appState) {
     switch (data.type) {
         case 'promo':
             panel.className = 'promo-panel';
-            if (data.backgroundImage) {
+            
+            // --- THIS IS THE NEW LOGIC ---
+            if (data.backgroundVideo) {
+                const video = document.createElement('video');
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.playsInline = true;
+                const source = document.createElement('source');
+                source.src = data.backgroundVideo;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+                panel.appendChild(video);
+                panel.classList.add('has-bg-video'); // Add a class for styling
+            } else if (data.backgroundImage) {
                 panel.style.backgroundImage = `url('${data.backgroundImage}')`;
                 panel.classList.add('has-bg-image');
             } else {
                 panel.style.backgroundColor = data.backgroundColor;
             }
+            // --- END OF NEW LOGIC ---
             const promoTitle = data.title || (translations[data.titleKey] || '');
             const promoText = data.text || (translations[data.textKey] || '');
             const promoTitleEl = document.createElement('h3');

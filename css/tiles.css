@@ -56,26 +56,43 @@
     box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     min-height: 280px; 
+    position: relative; 
+    overflow: hidden; 
 }
-.promo-panel.has-bg-image {
+.promo-panel.has-bg-image,
+.promo-panel.has-bg-video { 
     color: white;
     justify-content: flex-end;
-    position: relative;
-    overflow: hidden;
     background-size: cover;
     background-position: center;
 }
-.promo-panel.has-bg-image::after {
+.promo-panel.has-bg-image::after,
+.promo-panel.has-bg-video::after { 
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
     pointer-events: none;
+    z-index: 1;
 }
 .promo-panel.has-bg-image h3,
-.promo-panel.has-bg-image p {
+.promo-panel.has-bg-image p,
+.promo-panel.has-bg-video h3, 
+.promo-panel.has-bg-video p { 
     position: relative;
-    z-index: 1;
+    z-index: 2;
+}
+.promo-panel video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0; 
+    pointer-events: none;
 }
 .promo-panel:hover {
     transform: translateY(-8px);
@@ -342,6 +359,38 @@
     grid-column: span 2;
     grid-row: span 2;
 }
+[class*="-cell"].promo-hero {
+    grid-column: span 3;
+    grid-row: span 3;
+    width: 110vw;
+    margin-left: calc(50% - 55vw);
+}
+[class*="-cell"].promo-herotext {
+    grid-column: span 3;
+    grid-row: span 2;
+    justify-content: center;
+    align-items: center;
+}
+[class*="-cell"].promo-herotext .text-block-panel {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* --- NEW: Hero Text Sizing --- */
+[class*="-cell"].promo-herotext .text-block-panel h1 {
+    font-size: 5.75rem; /* ~60px */
+    line-height: 1.1;
+}
+[class*="-cell"].promo-herotext .text-block-panel h2 {
+    font-size: 2.5rem; /* ~24px */
+}
+[class*="-cell"].promo-herotext .text-block-panel p {
+    font-size: 2.125rem; /* ~18px */
+    max-width: 60ch; /* Limit line length for readability */
+}
+
+
 .panel-link {
     text-decoration: none;
     color: inherit;
@@ -352,16 +401,24 @@
 
 /* --- Responsive Overrides for Tiles --- */
 @media (max-width: 1600px) {
-    [class*="-cell"].promo-extra-wide {
+    [class*="-cell"].promo-extra-wide,
+    [class*="-cell"].promo-herotext { 
         grid-column: span 2;
     }
 }
 
 @media (max-width: 1100px) {
-    /* This rule only applies to the homepage grid now */
+    /* THIS IS THE KEY FIX: Apply this rule to .bento-grid as well */
     .home-grid [class*="-cell"].promo-wide,
     .home-grid [class*="-cell"].promo-large,
-    .home-grid [class*="-cell"].promo-extra-wide {
+    .home-grid [class*="-cell"].promo-extra-wide,
+    .bento-grid [class*="-cell"].hero,
+    .home-grid [class*="-cell"].promo-herotext,
+    .bento-grid [class*="-cell"].promo-wide,
+    .bento-grid [class*="-cell"].promo-large,
+    .bento-grid [class*="-cell"].promo-extra-wide,
+    .bento-grid [class*="-cell"].promo-hero,
+    .bento-grid [class*="-cell"].promo-herotext {
         grid-column: span 1;
     }
 }
@@ -382,7 +439,8 @@
     }
 
     [class*="-cell"].promo-tall,
-    [class*="-cell"].promo-large {
+    [class*="-cell"].promo-large,
+    [class*="-cell"].promo-herotext {
         grid-row: auto;
     }
 }

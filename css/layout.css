@@ -25,21 +25,21 @@
     gap: 24px;
 }
 
-.category-cell, .subcategory-cell, .home-cell {
+.category-cell, .subcategory-cell, .home-cell, .product-cell, .about-cell, .contact-cell {
     display: flex;
 }
 .product-grid {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: 1fr;
     gap: 24px;
-    grid-auto-flow: dense;
 }
 
 /* Homepage Layout Styles */
 .hero-section {
     position: relative;
-    height: 83vh;
+    height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,12 +84,14 @@
     margin: 0 auto;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
-.home-grid-wrapper {
+.home-grid-wrapper, .page-grid-wrapper {
     padding-top: 40px;
     background-color: var(--bg-color);
     position: relative;
 }
-.home-grid {
+
+/* Apply grid styles to both .home-grid and .bento-grid */
+.home-grid, .bento-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(512px, 1fr));
     grid-auto-rows: 1fr;
@@ -142,7 +144,7 @@
 
 /* --- Large Desktop Overrides --- */
 @media (min-width: 1600px) {
-    .home-grid {
+    .home-grid, .bento-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -153,9 +155,8 @@
     .catalog-container { 
         padding: 24px; 
     }
-    .home-grid-wrapper {
-        /* THIS IS THE KEY FIX: Remove side/bottom padding, keep the top space */
-        padding: 24px 0 0 0;
+    .home-grid-wrapper, .page-grid-wrapper {
+        padding: 24px 0 0 0; /* Keep top padding, remove side padding */
     }
     .hero-section {
         margin-left: -24px;
@@ -172,11 +173,12 @@
         flex-direction: column;
     }
     
-    .category-wrapper, .subcategory-wrapper, .product-grid, .home-grid { 
+    .category-wrapper, .subcategory-wrapper, .product-grid, .home-grid, .bento-grid { 
         gap: 16px; 
     }
     
-    .home-grid {
+    /* THIS IS THE KEY FIX: Added .bento-grid to this rule */
+    .home-grid, .bento-grid {
         grid-template-columns: 1fr;
         grid-auto-rows: auto;
     }
