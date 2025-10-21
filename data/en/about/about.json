@@ -1,9 +1,9 @@
 [
-    "data/en/about/about_hero.json",
-    "data/en/about/story_hero.json",
-    "data/en/about/storyp1.json",
-    "data/en/about/p2_image.json",
-    "data/en/about/storyp2.json",
-    "data/en/about/storyp3.json",
-    "data/en/about/p3_image.json"
+    "data/en/about/about_text_hero.json",
+    "data/en/about/origins_hero.json",
+    "data/en/about/origins.json",
+    "data/en/about/craft_image.json",
+    "data/en/about/craft.json",
+    "data/en/about/promise.json",
+    "data/en/about/promise_image.json"
 ]
