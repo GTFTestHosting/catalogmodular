@@ -67,9 +67,27 @@ export function buildPanel(data, appState) {
 
         case 'tile':
             panel.className = 'tile';
-            panel.style.backgroundImage = `url('${data.image}')`;
+            
+            // --- THIS IS THE UPDATED TILE LOGIC ---
+            if (data.backgroundVideo) {
+                const video = document.createElement('video');
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.playsInline = true;
+                const source = document.createElement('source');
+                source.src = data.backgroundVideo;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+                panel.appendChild(video);
+                panel.classList.add('has-bg-video'); // Add a class for styling
+            } else if (data.backgroundImage) {
+                panel.style.backgroundImage = `url('${data.backgroundImage}')`;
+            }
+            // --- END OF UPDATED LOGIC ---
+
             const tileTitle = data.title || (translations[data.titleKey] || '');
-            panel.innerHTML = `<h2>${tileTitle}</h2>`;
+            panel.innerHTML += `<h2>${tileTitle}</h2>`; // Use += to append the title
             break;
 
         case 'recipe':

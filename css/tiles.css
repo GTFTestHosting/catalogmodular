@@ -73,14 +73,28 @@
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
     pointer-events: none;
+    z-index: 2;
+}
+[class*="-cell"].promo-hero .promo-panel.has-bg-image::before,
+[class*="-cell"].promo-hero .promo-panel.has-bg-video::before { 
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #ff5919;
+    mix-blend-mode: hard-light;
+    pointer-events: none;
     z-index: 1;
+}
+[class*="-cell"].promo-hero .promo-panel.has-bg-image::after,
+[class*="-cell"].promo-hero .promo-panel.has-bg-video::after { 
+    display: none;
 }
 .promo-panel.has-bg-image h3,
 .promo-panel.has-bg-image p,
 .promo-panel.has-bg-video h3, 
 .promo-panel.has-bg-video p { 
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 .promo-panel video {
     position: absolute;
@@ -377,7 +391,7 @@
     text-align: center;
 }
 
-/* --- NEW: Hero Text Sizing --- */
+/* --- Hero Text Sizing --- */
 [class*="-cell"].promo-herotext .text-block-panel h1 {
     font-size: 5.75rem; /* ~60px */
     line-height: 1.1;
@@ -388,6 +402,27 @@
 [class*="-cell"].promo-herotext .text-block-panel p {
     font-size: 2.125rem; /* ~18px */
     max-width: 60ch; /* Limit line length for readability */
+}
+
+/* --- Hero Text Sizing for Promo Panels --- */
+[class*="-cell"].promo-hero .promo-panel {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+[class*="-cell"].promo-hero .promo-panel h3 {
+    font-size: 5.75rem;
+    line-height: 1.1;
+}
+[class*="-cell"].promo-hero .promo-panel p {
+    font-size: 2.125rem;
+    max-width: 60ch;
+    font-style: normal; /* Override default italic */
+}
+
+[class*="-cell"].promo-hero .promo-panel:hover {
+    transform: none;
+    box-shadow: var(--card-shadow);
 }
 
 
@@ -402,13 +437,16 @@
 /* --- Responsive Overrides for Tiles --- */
 @media (max-width: 1600px) {
     [class*="-cell"].promo-extra-wide,
-    [class*="-cell"].promo-herotext { 
+    [class*="-cell"].promo-herotext,
+    [class*="-cell"].promo-hero {
         grid-column: span 2;
     }
+    
+    /* REMOVED: The rule forcing .promo-thin to span 2 is gone */
 }
 
 @media (max-width: 1100px) {
-    /* THIS IS THE KEY FIX: Apply this rule to .bento-grid as well */
+    /* This rule only applies to the homepage grid now */
     .home-grid [class*="-cell"].promo-wide,
     .home-grid [class*="-cell"].promo-large,
     .home-grid [class*="-cell"].promo-extra-wide,
@@ -418,7 +456,9 @@
     .bento-grid [class*="-cell"].promo-large,
     .bento-grid [class*="-cell"].promo-extra-wide,
     .bento-grid [class*="-cell"].promo-hero,
-    .bento-grid [class*="-cell"].promo-herotext {
+    .bento-grid [class*="-cell"].promo-herotext,
+    .home-grid [class*="-cell"].promo-thin,
+    .bento-grid [class*="-cell"].promo-thin {
         grid-column: span 1;
     }
 }
@@ -442,6 +482,19 @@
     [class*="-cell"].promo-large,
     [class*="-cell"].promo-herotext {
         grid-row: auto;
+    }
+
+    /* NEW: Responsive font sizes for hero text panels */
+    [class*="-cell"].promo-herotext .text-block-panel h1,
+    [class*="-cell"].promo-hero .promo-panel h3 {
+        font-size: 2.5rem; /* Smaller hero font for mobile */
+    }
+    [class*="-cell"].promo-herotext .text-block-panel h2 {
+        font-size: 1.5rem;
+    }
+    [class*="-cell"].promo-herotext .text-block-panel p,
+    [class*="-cell"].promo-hero .promo-panel p {
+        font-size: 1.1rem;
     }
 }
 
