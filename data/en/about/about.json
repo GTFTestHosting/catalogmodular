@@ -9,5 +9,8 @@
     "data/en/about/usda_image.json",
     "data/en/about/usda.json",
     "data/en/about/haccp_image.json",
-    "data/en/about/haccp.json"
+    "data/en/about/haccp.json",
+    "data/en/about/audit_image.json",
+    "data/en/about/audit.json",
+    "data/en/about/bakersfield_text_hero.json"
 ]

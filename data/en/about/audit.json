@@ -1,8 +1,8 @@
 {
     "type": "text-block",
-    "style": "extra-wide",
+    "style": "wide",
     "headerColor": "#ff5919",
     "textColor": "#1f2937",
-    "header": "Milestones",
-    "paragraph": ""
+    "header": "Third-Party Audits",
+    "subheader": "After months of work and preparation, we successfully completed our first-ever third-party audit, officially earning HACCP certification."
 }
