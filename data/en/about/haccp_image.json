@@ -1,7 +1,5 @@
 {
-  "type": "promo",
+  "type": "tile",
   "style": "thin",
-  "backgroundImage": "images/promo_panels/order.jpg",
-  "title": "Place an Order",
-  "text": "Click here to place your order."
+  "backgroundImage": "images/promo_panels/HACCP.png"
 }

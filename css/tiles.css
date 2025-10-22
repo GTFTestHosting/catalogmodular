@@ -13,24 +13,10 @@
     color: white;
     padding: 0;
     border-radius: 16px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     min-height: 280px;
     display: flex;
-    box-shadow: var(--card-shadow);
     overflow: hidden;
     position: relative;
-}
-.tile:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--card-shadow-hover);
-}
-.tile::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
-    pointer-events: none;
 }
 .tile h2 {
     margin: 0;
