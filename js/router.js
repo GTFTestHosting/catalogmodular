@@ -24,6 +24,12 @@ export function renderPage(page, appState, options = {}) {
         case 'contact': // You can add more pages here
             renderBentoPage(page, appState); // Use the new generic renderer
             break;
+        case 'find-our-products':
+            renderBentoPage(page, appState);
+            break;
+        case 'faq':
+            renderBentoPage(page, appState);
+            break;
         default:
             renderHomePage(appState);
     }
