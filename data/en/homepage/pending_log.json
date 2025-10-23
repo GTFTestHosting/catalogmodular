@@ -1,0 +1,10 @@
+{
+    "type": "text-block",
+    "style": "thin",
+    "backgroundColor": "white",
+    "headerColor": "#ff5919",
+    "textColor": "#1f2937",
+    "header": " (Current) Pending Changes",
+    "paragraph": 
+    "-better writing for home & about page content<br>-translating pages to spanish<br>-medium screen responsiveness(1100px-1600px)<br>-better storefront photos<br>-dish showcase photos need to be shot"
+}
