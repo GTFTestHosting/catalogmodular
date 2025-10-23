@@ -1,8 +1,0 @@
-{
-  "type": "promo",
-  "style": "extra-wide",
-  "backgroundColor": "#ffedd5",
-  "textColor": "#9a3412",
-  "titleKey": "homeWelcomeTitle",
-  "textKey": "homeWelcomeText"
-}

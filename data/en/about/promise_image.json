@@ -1,7 +1,5 @@
 {
-  "type": "promo",
+  "type": "image-panel",
   "style": "thin",
-  "backgroundImage": "images/promo_panels/order.jpg",
-  "title": "Place an Order",
-  "text": "Click here to place your order."
+  "backgroundImage": "images/promo_panels/trucks.jpg"
 }

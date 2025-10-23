@@ -8,7 +8,6 @@ export function buildPanel(data, appState) {
         case 'promo':
             panel.className = 'promo-panel';
             
-            // --- THIS IS THE NEW LOGIC ---
             if (data.backgroundVideo) {
                 const video = document.createElement('video');
                 video.autoplay = true;
@@ -27,7 +26,6 @@ export function buildPanel(data, appState) {
             } else {
                 panel.style.backgroundColor = data.backgroundColor;
             }
-            // --- END OF NEW LOGIC ---
             const promoTitle = data.title || (translations[data.titleKey] || '');
             const promoText = data.text || (translations[data.textKey] || '');
             const promoTitleEl = document.createElement('h3');
@@ -67,8 +65,6 @@ export function buildPanel(data, appState) {
 
         case 'tile':
             panel.className = 'tile';
-            
-            // --- THIS IS THE UPDATED TILE LOGIC ---
             if (data.backgroundVideo) {
                 const video = document.createElement('video');
                 video.autoplay = true;
@@ -80,14 +76,12 @@ export function buildPanel(data, appState) {
                 source.type = 'video/mp4';
                 video.appendChild(source);
                 panel.appendChild(video);
-                panel.classList.add('has-bg-video'); // Add a class for styling
+                panel.classList.add('has-bg-video');
             } else if (data.backgroundImage) {
                 panel.style.backgroundImage = `url('${data.backgroundImage}')`;
             }
-            // --- END OF UPDATED LOGIC ---
-
             const tileTitle = data.title || (translations[data.titleKey] || '');
-            panel.innerHTML += `<h2>${tileTitle}</h2>`; // Use += to append the title
+            panel.innerHTML += `<h2>${tileTitle}</h2>`;
             break;
 
         case 'recipe':
@@ -127,7 +121,7 @@ export function buildPanel(data, appState) {
                     source.type = 'video/mp4';
                     video.appendChild(source);
                     slideEl.appendChild(video);
-                } else if (slide.image || slide.backgroundImage) { // Now checks for both
+                } else if (slide.image || slide.backgroundImage) {
                     slideEl.style.backgroundImage = `url('${slide.image || slide.backgroundImage}')`;
                 }
 
@@ -168,6 +162,16 @@ export function buildPanel(data, appState) {
                 iframe.loading = "lazy";
                 iframe.referrerPolicy = "no-referrer-when-downgrade";
                 panel.appendChild(iframe);
+            }
+            break;
+
+        // --- THIS IS THE NEW CASE ---
+        case 'image-panel':
+            panel.className = 'image-panel';
+            if (data.backgroundImage) {
+                panel.style.backgroundImage = `url('${data.backgroundImage}')`;
+            } else if (data.image) { // Also support "image" for consistency with "tile"
+                panel.style.backgroundImage = `url('${data.image}')`;
             }
             break;
 
