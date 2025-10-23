@@ -1,5 +1,12 @@
 {
-  "type": "promo",
+  "type": "carousel-panel",
   "style": "hero",
-  "backgroundImage": "images/promo_panels/bakersfield_storefront.jpg"
+  "slides": [
+    {
+    "backgroundVideo": "videos/asada-tacos.mp4"
+    },
+    {
+    "backgroundVideo": "videos/cocktail-orange.mp4"
+    }
+  ]
 }

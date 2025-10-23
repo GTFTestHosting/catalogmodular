@@ -386,8 +386,20 @@
 [class*="-cell"].promo-hero {
     grid-column: span 3;
     grid-row: span 3;
-    width: 110vw;
-    margin-left: calc(50% - 55vw);
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    border-radius: 0px;
+}
+/* --- THIS IS THE NEW RULE --- */
+/* It targets any panel *inside* the .promo-hero cell */
+[class*="-cell"].promo-hero .tile,
+[class*="-cell"].promo-hero .promo-panel,
+[class*="-cell"].promo-hero .text-block-panel,
+[class*="-cell"].promo-hero .recipe-panel,
+[class*="-cell"].promo-hero .carousel-panel,
+[class*="-cell"].promo-hero .map-panel,
+[class*="-cell"].promo-hero .image-panel {
+    border-radius: 0;
 }
 [class*="-cell"].promo-herotext {
     grid-column: span 3;
