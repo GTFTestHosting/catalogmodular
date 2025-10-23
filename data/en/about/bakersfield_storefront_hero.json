@@ -1,12 +1,5 @@
 {
-  "type": "carousel-panel",
-  "style": "hero",
-  "slides": [
-    {
-    "backgroundVideo": "videos/asada-tacos.mp4"
-    },
-    {
-    "backgroundVideo": "videos/cocktail-orange.mp4"
-    }
-  ]
+  "type": "image-panel",
+  "style":"extra-large",
+  "backgroundImage": "images/about/bakersfield.jpg"
 }

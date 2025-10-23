@@ -1,6 +1,6 @@
 import { renderPage } from './router.js';
 import { showLoadingMessage, applyStaticTranslations, hideBackButton } from './ui.js';
-import { buildPanel, setupHomeNavTiles } from './panel-builder.js';
+import { buildPanel, setupHomeNavTiles } from './panel-builder.js'; 
 
 const pageContentContainer = document.getElementById('page-content');
 
@@ -16,7 +16,6 @@ export async function renderBentoPage(page, appState) {
         pageContentContainer.innerHTML = shellHtml;
 
         // 2. Find the grid container within the shell
-        // THIS IS THE KEY FIX: It now correctly looks for ".bento-grid"
         const gridWrapper = pageContentContainer.querySelector('.bento-grid');
         if (!gridWrapper) throw new Error('.bento-grid container not found in shell');
 
@@ -44,6 +43,9 @@ export async function renderBentoPage(page, appState) {
                 gridWrapper.appendChild(cell);
             }
         });
+
+        // THIS IS THE KEY FIX: Find all carousels and initialize them
+        document.querySelectorAll('.carousel-panel').forEach(initCarousel);
         
         // Re-use the nav tile setup function
         setupHomeNavTiles(appState);
@@ -53,5 +55,19 @@ export async function renderBentoPage(page, appState) {
         console.error(`Failed to load page ${page}:`, error);
         pageContentContainer.innerHTML = `<p>Error loading page content.</p>`;
     }
+}
+
+// THIS IS THE SECOND KEY FIX: The helper function for the animation
+function initCarousel(carouselPanel) {
+    const slides = carouselPanel.querySelectorAll('.carousel-slide');
+    let currentIndex = 0;
+
+    if (slides.length <= 1) return; // Don't start if there's only one slide
+
+    setInterval(() => {
+        if(slides[currentIndex]) slides[currentIndex].classList.remove('is-active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        if(slides[currentIndex]) slides[currentIndex].classList.add('is-active');
+    }, 5000); // Change slide every 5 seconds
 }
 

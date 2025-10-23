@@ -1,0 +1,21 @@
+{
+  "type": "carousel-panel",
+  "style": "extra-large",
+  "slides": [
+    {
+    "backgroundImage": "images/fire/fire1.jpg"
+    },
+    {
+    "backgroundImage": "images/fire/fire2.jpg"
+    },
+    {
+    "backgroundImage": "images/fire/fire3.jpg"
+    },
+    {
+    "backgroundImage": "images/fire/fire4.jpg"
+    },
+    {
+    "backgroundImage": "images/fire/fire5.jpg"
+    }
+  ]
+}

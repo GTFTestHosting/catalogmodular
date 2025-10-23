@@ -38,6 +38,7 @@ export async function renderHomePage(appState) {
             }
         });
         
+        // THIS IS THE KEY FIX: Find all carousels and initialize them
         document.querySelectorAll('.carousel-panel').forEach(initCarousel);
 
         setupHomeNavTiles(appState);
@@ -49,16 +50,17 @@ export async function renderHomePage(appState) {
     }
 }
 
+// THIS IS THE SECOND KEY FIX: The helper function for the animation
 function initCarousel(carouselPanel) {
     const slides = carouselPanel.querySelectorAll('.carousel-slide');
     let currentIndex = 0;
 
-    if (slides.length <= 1) return;
+    if (slides.length <= 1) return; // Don't start if there's only one slide
 
     setInterval(() => {
         if(slides[currentIndex]) slides[currentIndex].classList.remove('is-active');
         currentIndex = (currentIndex + 1) % slides.length;
         if(slides[currentIndex]) slides[currentIndex].classList.add('is-active');
-    }, 5000);
+    }, 5000); // Change slide every 5 seconds
 }
 

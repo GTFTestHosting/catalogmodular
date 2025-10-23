@@ -1,3 +1,30 @@
+/* --- Panel Style Modifier Reference ---
+ *
+ * Use these class names in the "style" property of your panel's JSON file
+ * (e.g., "style": "wide"). The 'promo-' prefix is added automatically
+ * by the JavaScript, so you only need to use the name after the dash.
+ *
+ * --- Standard Sizes ---
+ * .promo-thin:          Spans 1 column.
+ * .promo-wide:          Spans 2 columns.
+ * .promo-extra-wide:    Spans 3 columns.
+ * .promo-tall:          Spans 2 rows.
+ * .promo-large:         Spans 2 columns and 2 rows.
+ * .promo-extra-large:   Spans 3 columns and 2 rows.
+ *
+ * --- Special Text Layouts ---
+ * .promo-herotext:      Spans 3x2. Centers text and applies hero font sizing.
+ * (Used for .text-block-panel and .carousel-panel)
+ * .promo-text-highlight: Spans 2x1. Vertically centers text, keeps it left-aligned.
+ *
+ * --- Full-Width Hero Modifiers ---
+ * .promo-hero:          Spans 3x3 (full-width). Applies color overlay,
+ * centers text, and uses hero font sizing.
+ * .promo-hero-plain:    Spans 3x3 (full-width). Same as .promo-hero but
+ * with NO color overlay.
+ *
+ * ------------------------------------------------- */
+
 /* --- A unified rule for all panel types to ensure they fill their parent cell --- */
 .tile, .promo-panel, .text-block-panel, .recipe-panel, .carousel-panel, .map-panel, .image-panel {
     width: 100%;
@@ -355,7 +382,7 @@
     pointer-events: none;
 }
 
-/* --- NEW: Image Panel Styles --- */
+/* --- Image Panel Styles --- */
 .image-panel {
     border-radius: 16px;
     min-height: 280px;
@@ -383,6 +410,10 @@
     grid-column: span 2;
     grid-row: span 2;
 }
+[class*="-cell"].promo-extra-large {
+    grid-column: span 3;
+    grid-row: span 2;
+}
 [class*="-cell"].promo-hero {
     grid-column: span 3;
     grid-row: span 3;
@@ -390,8 +421,6 @@
     margin-left: calc(50% - 50vw);
     border-radius: 0px;
 }
-/* --- THIS IS THE NEW RULE --- */
-/* It targets any panel *inside* the .promo-hero cell */
 [class*="-cell"].promo-hero .tile,
 [class*="-cell"].promo-hero .promo-panel,
 [class*="-cell"].promo-hero .text-block-panel,
@@ -401,6 +430,24 @@
 [class*="-cell"].promo-hero .image-panel {
     border-radius: 0;
 }
+
+[class*="-cell"].promo-hero-plain {
+    grid-column: span 3;
+    grid-row: span 3;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    border-radius: 0px;
+}
+[class*="-cell"].promo-hero-plain .tile,
+[class*="-cell"].promo-hero-plain .promo-panel,
+[class*="-cell"].promo-hero-plain .text-block-panel,
+[class*="-cell"].promo-hero-plain .recipe-panel,
+[class*="-cell"].promo-hero-plain .carousel-panel,
+[class*="-cell"].promo-hero-plain .map-panel,
+[class*="-cell"].promo-hero-plain .image-panel {
+    border-radius: 0;
+}
+
 [class*="-cell"].promo-herotext {
     grid-column: span 3;
     grid-row: span 2;
@@ -412,6 +459,19 @@
     align-items: center;
     text-align: center;
 }
+
+/* --- NEW: Left-Center Aligned Text Block --- */
+[class*="-cell"].promo-text-highlight {
+    grid-column: span 2;
+    justify-content: center;
+    align-items: flex-start;
+}
+[class*="-cell"].promo-text-highlight .text-block-panel {
+    justify-content: center; 
+    align-items: flex-start; 
+    text-align: left; 
+}
+
 
 /* --- Hero Text Sizing --- */
 [class*="-cell"].promo-herotext .text-block-panel h1 {
@@ -427,24 +487,52 @@
 }
 
 /* --- Hero Text Sizing for Promo Panels --- */
-[class*="-cell"].promo-hero .promo-panel {
+[class*="-cell"].promo-hero .promo-panel,
+[class*="-cell"].promo-hero-plain .promo-panel { 
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-[class*="-cell"].promo-hero .promo-panel h3 {
+[class*="-cell"].promo-hero .promo-panel h3,
+[class*="-cell"].promo-hero-plain .promo-panel h3 { 
     font-size: 5.75rem;
     line-height: 1.1;
 }
-[class*="-cell"].promo-hero .promo-panel p {
+[class*="-cell"].promo-hero .promo-panel p,
+[class*="-cell"].promo-hero-plain .promo-panel p { 
     font-size: 2.125rem;
     max-width: 60ch;
-    font-style: normal; /* Override default italic */
+    font-style: normal;
 }
 
-[class*="-cell"].promo-hero .promo-panel:hover {
+[class*="-cell"].promo-hero .promo-panel:hover,
+[class*="-cell"].promo-hero-plain .promo-panel:hover { 
     transform: none;
     box-shadow: var(--card-shadow);
+}
+
+/* --- Hero Text Sizing for Carousel Panels --- */
+[class*="-cell"].promo-herotext .carousel-slide {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+[class*="-cell"].promo-herotext .carousel-content h3 {
+    font-size: 5.75rem;
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+[class*="-cell"].promo-herotext .carousel-content .restaurant-name {
+    font-size: 2.125rem;
+    max-width: 60ch;
+    font-style: normal;
+    opacity: 1;
+}
+/* Hide other carousel text elements if they exist */
+[class*="-cell"].promo-herotext .carousel-content .recipe-description,
+[class*="-cell"].promo-herotext .carousel-content .featured-products-title,
+[class*="-cell"].promo-herotext .carousel-content ul {
+    display: none;
 }
 
 
@@ -459,26 +547,33 @@
 /* --- Responsive Overrides for Tiles --- */
 @media (max-width: 1600px) {
     [class*="-cell"].promo-extra-wide,
+    [class*="-cell"].promo-extra-large,
     [class*="-cell"].promo-herotext,
-    [class*="-cell"].promo-hero { 
+    [class*="-cell"].promo-hero,
+    [class*="-cell"].promo-hero-plain,
+    [class*="-cell"].promo-text-highlight {
         grid-column: span 2;
     }
 }
 
 @media (max-width: 1100px) {
-    /* This rule only applies to the homepage grid now */
+    /* This rule applies to both homepage and bento grids */
     .home-grid [class*="-cell"].promo-wide,
     .home-grid [class*="-cell"].promo-large,
+    .home-grid [class*="-cell"].promo-extra-large,
     .home-grid [class*="-cell"].promo-extra-wide,
-    .bento-grid [class*="-cell"].hero,
     .home-grid [class*="-cell"].promo-herotext,
+    .bento-grid [class*="-cell"].hero,
     .bento-grid [class*="-cell"].promo-wide,
     .bento-grid [class*="-cell"].promo-large,
+    .bento-grid [class*="-cell"].promo-extra-large,
     .bento-grid [class*="-cell"].promo-extra-wide,
     .bento-grid [class*="-cell"].promo-hero,
     .bento-grid [class*="-cell"].promo-herotext,
     .home-grid [class*="-cell"].promo-thin,
-    .bento-grid [class*="-cell"].promo-thin {
+    .bento-grid [class*="-cell"].promo-thin,
+    .bento-grid [class*="-cell"].promo-hero-plain,
+    .bento-grid [class*="-cell"].promo-text-highlight {
         grid-column: span 1;
     }
 }
@@ -494,26 +589,34 @@
     /* This ensures all wide panels span the full 2 columns in the product grid */
     .product-grid [class*="-cell"].promo-wide,
     .product-grid [class*="-cell"].promo-large,
+    .product-grid [class*="-cell"].promo-extra-large,
     .product-grid [class*="-cell"].promo-extra-wide {
         grid-column: span 2;
     }
 
     [class*="-cell"].promo-tall,
     [class*="-cell"].promo-large,
-    [class*="-cell"].promo-herotext {
+    [class*="-cell"].promo-extra-large,
+    [class*="-cell"].promo-herotext,
+    [class*="-cell"].promo-hero-plain,
+    [class*="-cell"].promo-text-highlight {
         grid-row: auto;
     }
 
     /* NEW: Responsive font sizes for hero text panels */
     [class*="-cell"].promo-herotext .text-block-panel h1,
-    [class*="-cell"].promo-hero .promo-panel h3 {
+    [class*="-cell"].promo-hero .promo-panel h3,
+    [class*="-cell"].promo-hero-plain .promo-panel h3,
+    [class*="-cell"].promo-herotext .carousel-content h3 {
         font-size: 2.5rem; /* Smaller hero font for mobile */
     }
     [class*="-cell"].promo-herotext .text-block-panel h2 {
         font-size: 1.5rem;
     }
     [class*="-cell"].promo-herotext .text-block-panel p,
-    [class*="-cell"].promo-hero .promo-panel p {
+    [class*="-cell"].promo-hero .promo-panel p,
+    [class*="-cell"].promo-hero-plain .promo-panel p,
+    [class*="-cell"].promo-herotext .carousel-content .restaurant-name {
         font-size: 1.1rem;
     }
 }
