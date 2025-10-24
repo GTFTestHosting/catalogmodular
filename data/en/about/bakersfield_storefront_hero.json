@@ -1,5 +1,5 @@
 {
   "type": "image-panel",
-  "style":"extra-large",
+  "style":"hero",
   "backgroundImage": "images/about/bakersfield.jpg"
 }
