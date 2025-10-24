@@ -30,6 +30,9 @@ export function renderPage(page, appState, options = {}) {
         case 'faq':
             renderBentoPage(page, appState);
             break;
+        case 'blog':
+            renderBentoPage(page, appState);
+            break;
         default:
             renderHomePage(appState);
     }
