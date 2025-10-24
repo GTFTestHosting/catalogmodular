@@ -1,6 +1,7 @@
 import { renderPage } from './router.js';
 import { showLoadingMessage, applyStaticTranslations, hideBackButton } from './ui.js';
 import { buildPanel, setupHomeNavTiles } from './panel-builder.js'; // Import from the new module
+import { initParallax } from './parallax.js'; // Import the parallax module
 
 const pageContentContainer = document.getElementById('page-content');
 
@@ -43,6 +44,8 @@ export async function renderHomePage(appState) {
 
         setupHomeNavTiles(appState);
         applyStaticTranslations(appState.translations);
+        
+        initParallax();
 
     } catch (error) {
         console.error("Failed to load home page:", error);

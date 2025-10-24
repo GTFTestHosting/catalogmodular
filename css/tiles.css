@@ -31,6 +31,7 @@
     height: 100%;
     box-sizing: border-box;
     flex: 1; 
+    /* will-change is now set by parallax.js */
 }
 
 /* --- The Tile --- */
@@ -159,6 +160,12 @@
     justify-content: flex-start;
     align-items: flex-start;
     min-height: 280px;
+    position: relative; /* Added for parallax */
+    overflow: hidden; /* Added for parallax */
+}
+/* This ensures the hero text override doesn't get the fade */
+[class*="-cell"].promo-herotext .text-block-panel {
+    opacity: 1; 
 }
 .text-block-panel h1 {
     font-size: 2rem;
@@ -195,6 +202,8 @@
     background-size: cover;
     background-position: center;
     color: white;
+    position: relative;
+    overflow: hidden;
 }
 .recipe-panel video {
     position: absolute;
@@ -420,6 +429,7 @@
     width: 100vw;
     margin-left: calc(50% - 50vw);
     border-radius: 0px;
+    z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
 }
 [class*="-cell"].promo-hero .tile,
 [class*="-cell"].promo-hero .promo-panel,
@@ -437,6 +447,7 @@
     width: 100vw;
     margin-left: calc(50% - 50vw);
     border-radius: 0px;
+    z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
 }
 [class*="-cell"].promo-hero-plain .tile,
 [class*="-cell"].promo-hero-plain .promo-panel,
@@ -453,6 +464,7 @@
     grid-row: span 2;
     justify-content: center;
     align-items: center;
+    z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
 }
 [class*="-cell"].promo-herotext .text-block-panel {
     justify-content: center;
@@ -535,6 +547,22 @@
     display: none;
 }
 
+/* --- NEW: Parallax Effect Hooks --- */
+/* Apply masking and performance optimization ONLY to the cells that are animated */
+[class*="-cell"].promo-herotext,
+[class*="-cell"].promo-hero,
+[class*="-cell"].promo-hero-plain,
+[class*="-cell"]:has(.text-block-panel):not(.promo-herotext) {
+    overflow: hidden;
+}
+[class*="-cell"].promo-herotext .panel,
+[class*="-cell"].promo-hero .panel,
+[class*="-cell"].promo-hero-plain .panel {
+    will-change: opacity;
+}
+[class*="-cell"]:has(.text-block-panel):not(.promo-herotext) .panel {
+    will-change: transform, opacity;
+}
 
 .panel-link {
     text-decoration: none;

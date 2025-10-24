@@ -3,6 +3,7 @@ import { openMobileMenu, closeMobileMenu, applyStaticTranslations } from './ui.j
 import { renderPage } from './router.js';
 import { handlePrintRequest } from './print.js';
 import { displayCategoryLevel } from './catalog.js';
+import { initParallax } from './parallax.js'; // 1. Import the new module
 
 // --- ELEMENT REFERENCES ---
 const siteHeader = document.querySelector('.site-header');
@@ -16,7 +17,6 @@ const closeModal = document.querySelector('.close-button');
 
 // --- SCROLL LOGIC ---
 function handleHeaderScroll() {
-    // THIS IS THE KEY CHANGE: Threshold is now 1px
     if (window.scrollY > 1) {
         siteHeader.classList.add('is-scrolled');
     } else {
@@ -100,6 +100,9 @@ async function startApp() {
     setTimeout(() => {
         renderPage('home', state);
     }, 0);
+    
+    // 2. Call the init function to start the effect
+    initParallax();
 }
 
 startApp();

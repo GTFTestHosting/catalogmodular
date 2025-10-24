@@ -1,6 +1,7 @@
 import { renderPage } from './router.js';
 import { showLoadingMessage, applyStaticTranslations, hideBackButton } from './ui.js';
 import { buildPanel, setupHomeNavTiles } from './panel-builder.js'; 
+import { initParallax } from './parallax.js'; // Import the parallax module
 
 const pageContentContainer = document.getElementById('page-content');
 
@@ -50,7 +51,9 @@ export async function renderBentoPage(page, appState) {
         // Re-use the nav tile setup function
         setupHomeNavTiles(appState);
         applyStaticTranslations(appState.translations);
-
+        
+        initParallax();
+        
     } catch (error) {
         console.error(`Failed to load page ${page}:`, error);
         pageContentContainer.innerHTML = `<p>Error loading page content.</p>`;

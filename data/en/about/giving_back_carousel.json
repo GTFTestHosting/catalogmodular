@@ -1,6 +1,6 @@
 {
   "type": "carousel-panel",
-  "style": "extra-large",
+  "style": "hero-plain",
   "slides": [
     {
     "backgroundImage": "images/fire/fire1.jpg"
