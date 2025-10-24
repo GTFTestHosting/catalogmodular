@@ -5,9 +5,5 @@
     "data/en/homepage/featured_items.json",
     "data/en/homepage/explore_tortillas.json",
     "data/en/homepage/place_order.json",
-    "data/en/homepage/store_locator.json",
-    "data/en/homepage/dev_log.json",
-    "data/en/homepage/pending_log.json",
-    "data/en/homepage/planned_features.json"
+    "data/en/homepage/store_locator.json"
 ]
-
