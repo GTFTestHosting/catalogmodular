@@ -53,7 +53,7 @@
 
 
 /* --- Responsive Overrides for Navigation --- */
-@media (max-width: 1100px) {
+@media (max-width: 1190px) {
     /* Hide desktop nav */
     .main-nav {
        display: none;

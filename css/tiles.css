@@ -584,27 +584,19 @@
     }
 }
 
-@media (max-width: 1100px) {
-    /* This rule applies to both homepage and bento grids */
-    .home-grid [class*="-cell"].promo-wide,
-    .home-grid [class*="-cell"].promo-large,
-    .home-grid [class*="-cell"].promo-extra-large,
-    .home-grid [class*="-cell"].promo-extra-wide,
-    .home-grid [class*="-cell"].promo-herotext,
-    .bento-grid [class*="-cell"].hero,
-    .bento-grid [class*="-cell"].promo-wide,
-    .bento-grid [class*="-cell"].promo-large,
-    .bento-grid [class*="-cell"].promo-extra-large,
-    .bento-grid [class*="-cell"].promo-extra-wide,
-    .bento-grid [class*="-cell"].promo-hero,
-    .bento-grid [class*="-cell"].promo-herotext,
-    .home-grid [class*="-cell"].promo-thin,
-    .bento-grid [class*="-cell"].promo-thin,
-    .bento-grid [class*="-cell"].promo-hero-plain,
-    .bento-grid [class*="-cell"].promo-text-highlight {
-        grid-column: span 1;
+@media (max-width: 1599px) {
+    .home-grid [class*="-cell"].promo-thin:last-child:nth-child(odd),
+    .bento-grid [class*="-cell"].promo-thin:last-child:nth-child(odd) {
+        grid-column: span 2;
     }
+    .home-grid [class*="-cell"]:nth-child(2) {
+    grid-column: 1 / -1;
+  }
 }
+
+/* REMOVED: The conflicting @media (max-width: 1100px) block 
+  was here and has been deleted.
+*/
 
 @media (max-width: 768px) {
     .tile { 
@@ -612,6 +604,12 @@
     }
     .promo-panel, .text-block-panel, .recipe-panel, .carousel-panel, .image-panel {
         min-height: 220px;
+    }
+
+    /* This ensures all panels span 1 column on mobile bento/home grids */
+    .home-grid [class*="-cell"],
+    .bento-grid [class*="-cell"] {
+        grid-column: span 1 !important;
     }
 
     /* This ensures all wide panels span the full 2 columns in the product grid */
@@ -648,4 +646,3 @@
         font-size: 1.1rem;
     }
 }
-

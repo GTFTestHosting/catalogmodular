@@ -92,7 +92,7 @@
     position: relative;
 }
 
-/* Apply grid styles to both .home-grid and .bento-grid */
+/* THIS IS THE KEY FIX: Default to 3 explicit columns */
 .home-grid, .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -154,7 +154,7 @@
 
 /* --- Responsive Overrides for Layout --- */
 @media (max-width: 768px) {
-    .catalog-container, .home-grid-wrapper, .page-grid-wrapper { 
+    .catalog-container, .page-grid-wrapper { 
         padding: 24px; 
     }
     .home-grid-wrapper, .page-grid-wrapper {
@@ -188,3 +188,4 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
