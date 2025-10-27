@@ -140,7 +140,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 
 /* --- DESKTOP SCROLL EFFECTS --- */
-@media (min-width: 769px) {
+@media (min-width: 1190px) {
     .site-header.is-scrolled {
         gap: 0;
     }
