@@ -32,3 +32,16 @@ main {
 .hidden { 
     display: none !important; 
 }
+
+/* --- Hyperlink Styles --- */
+a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none; /* This removes the default underline */
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--text-color);
+    text-decoration: underline; /* This adds the underline back on hover */
+}
