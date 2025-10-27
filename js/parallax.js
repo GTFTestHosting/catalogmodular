@@ -14,10 +14,10 @@ const PARALLAX_FACTOR_HERO_PLAIN = 0.5; // New speed for promo-hero-plain
 
 // Fade In settings (based on panel TOP)
 const FADE_IN_START_VH = 1.0; // Start fading in when TOP is at 100% of viewport height
-const FADE_IN_END_VH = 0.7;  // Fully faded in when TOP is at 75% of viewport height
+const FADE_IN_END_VH = 0.45;  // Fully faded in when TOP is at 75% of viewport height
 
 // Fade Out settings (based on panel BOTTOM)
-const FADE_OUT_START_VH = 0.3; // Start fading out when BOTTOM is 25% from viewport top
+const FADE_OUT_START_VH = 0.5; // Start fading out when BOTTOM is 25% from viewport top
 const FADE_OUT_END_VH = 0.0;   // Fully faded out when BOTTOM is at the viewport top
 
 
@@ -151,4 +151,3 @@ export function initParallax() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Run once on load
 }
-
