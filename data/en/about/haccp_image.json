@@ -1,4 +1,5 @@
 {
   "type": "image-panel",
+  "style": "badge",
   "backgroundImage": "images/about/HACCP.png"
 }

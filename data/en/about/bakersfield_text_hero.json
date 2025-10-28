@@ -2,6 +2,7 @@
     "type": "text-block",
     "style": "herotext",
     "headerColor": "#ff5919",
+    "textColor": "#1f2937",
     "header": "Opening a Second Location",
-    "subheader": "December, 2023<br>Graciana opened a new door—our Bakersfield location."
+    "paragraph": "December, 2023<br>Graciana opened a new door—our Bakersfield location."
 }

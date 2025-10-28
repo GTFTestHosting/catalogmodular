@@ -399,8 +399,13 @@
     background-position: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-/* No :hover or ::after, as requested */
-
+/* Modifier for badges */
+[class*="-cell"].promo-badge .image-panel {
+    background-size: 40% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: content-box; /* make padding inset the image */
+}
 
 /* --- Panel Size Modifiers --- */
 [class*="-cell"].promo-thin {
@@ -580,6 +585,7 @@
     [class*="-cell"].promo-hero,
     [class*="-cell"].promo-hero-plain,
     [class*="-cell"].promo-text-highlight,
+    [class*="-cell"].promo-badge,
     [class*="-cell"]:has(.image-panel):not([class*="promo-"]) {
         grid-column: span 2;
     }
