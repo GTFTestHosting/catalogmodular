@@ -1,13 +1,24 @@
 /* --- Layout --- */
 .catalog-container {
-    padding: 40px;
-    flex-grow: 1; 
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    padding-top: 40px;
+    padding-bottom: 40px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
+
 /* This class is now used to reset padding for the full-width hero */
 .catalog-container.full-width {
     padding: 0;
+}
+.catalog-container > [class*="-cell"].promo-hero,
+.catalog-container > [class*="-cell"].promo-hero-plain {
+    position: relative;
+    margin-left: calc(-1 * var(--container-padding));
+    margin-right: calc(-1 * var(--container-padding));
+    width: auto;
 }
 
 /* Make both main and sub containers flex columns */
@@ -90,6 +101,7 @@
     padding-top: 40px;
     background-color: var(--bg-color);
     position: relative;
+    overflow-x: clip;
 }
 
 /* THIS IS THE KEY FIX: Default to 3 explicit columns */
@@ -98,6 +110,15 @@
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
     gap: 24px;
+}
+.home-grid > [class*="-cell"].promo-hero,
+.home-grid > [class*="-cell"].promo-hero-plain {
+    position: relative;
+    grid-column: 1 / -1; /* span all columns */
+    width: calc(100% + 2 * var(--container-padding));
+    margin-left: calc(-1 * var(--container-padding));
+    margin-right: calc(-1 * var(--container-padding));
+    z-index: 1; /* make sure it’s on top/back as needed */
 }
 
 

@@ -203,7 +203,6 @@
     background-position: center;
     color: white;
     position: relative;
-    overflow: hidden;
 }
 .recipe-panel video {
     position: absolute;
@@ -431,7 +430,9 @@
 [class*="-cell"].promo-hero {
     grid-column: span 3;
     grid-row: span 3;
-    margin: -40px;
+    margin-left: calc(-1 * var(--container-padding));
+    margin-right: calc(-1 * var(--container-padding));
+    width: calc(100% + 2 * var(--container-padding));
     margin-top: -24px;
     margin-bottom: -24px;
     border-radius: 0px;
@@ -450,7 +451,9 @@
 [class*="-cell"].promo-hero-plain {
     grid-column: span 3;
     grid-row: span 3;
-    margin: -40px;
+    margin-left: calc(-1 * var(--container-padding));
+    margin-right: calc(-1 * var(--container-padding));
+    width: calc(100% + 2 * var(--container-padding));
     margin-top: -24px;
     margin-bottom: -24px;
     border-radius: 0px;
@@ -628,6 +631,13 @@
     [class*="-cell"].promo-hero-plain,
     [class*="-cell"].promo-text-highlight {
         grid-row: auto;
+    }
+
+    /* Target the wrapper containing only hero cells */
+    .home-grid-wrapper > [class*="-cell"].promo-hero,
+    .home-grid-wrapper > [class*="-cell"].promo-hero-plain {
+    padding-left: 0;
+    padding-right: 0;
     }
     /* NEW: Responsive font sizes for hero text panels */
     [class*="-cell"].promo-herotext .text-block-panel h1,
