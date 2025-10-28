@@ -1,6 +1,6 @@
 {
     "type": "text-block",
-    "style": "wide",
+    "style": "text-highlight",
     "headerColor": "#ff5919",
     "textColor": "#1f2937",
     "header": "Third-Party Audits",
