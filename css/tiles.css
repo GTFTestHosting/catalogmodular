@@ -400,10 +400,10 @@
 }
 /* Modifier for badges */
 [class*="-cell"].promo-badge .image-panel {
-    background-size: 40% auto;
     background-repeat: no-repeat;
     background-position: center;
-    background-clip: content-box; /* make padding inset the image */
+    background-clip: content-box; /* respect padding */
+    background-size: auto 60%; /* scale to fit container while keeping aspect ratio */
 }
 
 /* --- Panel Size Modifiers --- */
