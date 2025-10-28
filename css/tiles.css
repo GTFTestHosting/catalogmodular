@@ -426,8 +426,10 @@
 [class*="-cell"].promo-hero {
     grid-column: span 3;
     grid-row: span 3;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    margin-left: -40px;
+    margin-right: -40px;
+    margin-top: -24px;
+    margin-bottom: -24px;
     border-radius: 0px;
     z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
 }
@@ -444,8 +446,10 @@
 [class*="-cell"].promo-hero-plain {
     grid-column: span 3;
     grid-row: span 3;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    margin-left: -40px;
+    margin-right: -40px;
+    margin-top: -24px;
+    margin-bottom: -24px;
     border-radius: 0px;
     z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
 }
@@ -606,7 +610,7 @@
     .promo-panel, .text-block-panel, .recipe-panel, .carousel-panel, .image-panel {
         min-height: 220px;
     }
-    
+
     /* This ensures all panels span 1 column on mobile bento/home grids */
     .home-grid [class*="-cell"],
     .bento-grid [class*="-cell"] {
