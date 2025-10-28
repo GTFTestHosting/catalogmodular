@@ -466,12 +466,19 @@
     align-items: center;
     z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
 }
+
 [class*="-cell"].promo-herotext .text-block-panel {
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-
+/* Retail Locator Map Styling */
+[class*="-cell"].promo-map-locator {
+    margin-left: 0px;
+    margin-right: 0px;
+    grid-column: span 3;
+    min-height: 78vh;
+}
 /* --- NEW: Left-Center Aligned Text Block --- */
 [class*="-cell"].promo-text-highlight {
     grid-column: span 2;
@@ -582,9 +589,6 @@
     [class*="-cell"].promo-text-highlight {
         grid-column: span 2;
     }
-}
-
-@media (max-width: 1599px) {
     .home-grid [class*="-cell"].promo-thin:last-child:nth-child(odd),
     .bento-grid [class*="-cell"].promo-thin:last-child:nth-child(odd) {
         grid-column: span 2;
@@ -594,9 +598,6 @@
   }
 }
 
-/* REMOVED: The conflicting @media (max-width: 1100px) block 
-  was here and has been deleted.
-*/
 
 @media (max-width: 768px) {
     .tile { 
@@ -605,7 +606,7 @@
     .promo-panel, .text-block-panel, .recipe-panel, .carousel-panel, .image-panel {
         min-height: 220px;
     }
-
+    
     /* This ensures all panels span 1 column on mobile bento/home grids */
     .home-grid [class*="-cell"],
     .bento-grid [class*="-cell"] {
@@ -628,7 +629,6 @@
     [class*="-cell"].promo-text-highlight {
         grid-row: auto;
     }
-
     /* NEW: Responsive font sizes for hero text panels */
     [class*="-cell"].promo-herotext .text-block-panel h1,
     [class*="-cell"].promo-hero .promo-panel h3,

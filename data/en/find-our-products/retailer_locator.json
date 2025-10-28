@@ -1,5 +1,5 @@
 {
   "type": "map-panel",
-  "style": "hero",
+  "style": "map-locator",
   "iframeSrc": "https://www.google.com/maps/d/u/0/embed?mid=1DSrqe3h0fGULACu4E0x9MJCQru1_vPc&ehbc=2E312F&noprof=1"
 }
