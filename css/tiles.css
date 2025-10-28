@@ -426,8 +426,7 @@
 [class*="-cell"].promo-hero {
     grid-column: span 3;
     grid-row: span 3;
-    margin-left: -40px;
-    margin-right: -40px;
+    margin: -40px;
     margin-top: -24px;
     margin-bottom: -24px;
     border-radius: 0px;
@@ -446,8 +445,7 @@
 [class*="-cell"].promo-hero-plain {
     grid-column: span 3;
     grid-row: span 3;
-    margin-left: -40px;
-    margin-right: -40px;
+    margin: -40px;
     margin-top: -24px;
     margin-bottom: -24px;
     border-radius: 0px;
