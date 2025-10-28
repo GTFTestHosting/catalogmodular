@@ -451,15 +451,6 @@
     border-radius: 0px;
     z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
 }
-[class*="-cell"].promo-hero-plain .tile,
-[class*="-cell"].promo-hero-plain .promo-panel,
-[class*="-cell"].promo-hero-plain .text-block-panel,
-[class*="-cell"].promo-hero-plain .recipe-panel,
-[class*="-cell"].promo-hero-plain .carousel-panel,
-[class*="-cell"].promo-hero-plain .map-panel,
-[class*="-cell"].promo-hero-plain .image-panel {
-    border-radius: 0;
-}
 
 [class*="-cell"].promo-herotext {
     grid-column: span 3;
@@ -588,7 +579,8 @@
     [class*="-cell"].promo-herotext,
     [class*="-cell"].promo-hero,
     [class*="-cell"].promo-hero-plain,
-    [class*="-cell"].promo-text-highlight {
+    [class*="-cell"].promo-text-highlight,
+    [class*="-cell"]:has(.image-panel):not([class*="promo-"]) {
         grid-column: span 2;
     }
     .home-grid [class*="-cell"].promo-thin:last-child:nth-child(odd),
@@ -597,7 +589,7 @@
     }
     .home-grid [class*="-cell"]:nth-child(2) {
     grid-column: 1 / -1;
-  }
+    }
 }
 
 
