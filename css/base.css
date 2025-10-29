@@ -1,6 +1,6 @@
-/* --- Modern Resets & Global Styles --- */
+/* --- Global Styles --- */
 :root {
-    --header-height: 175px; /* Approximate height of the expanded header */
+    --header-height: 175px;
     --bg-color: white;
     --text-color: #1f2937;
     --primary-color: #ff5919;
@@ -29,7 +29,7 @@ main {
     flex-grow: 1;
     display: flex; 
     flex-direction: column;
-    position: relative; /* Establish a stacking context for z-index */
+    position: relative;
     z-index: 1;
 }
 
@@ -41,11 +41,11 @@ main {
 a {
     color: var(--primary-color);
     font-weight: 600;
-    text-decoration: none; /* This removes the default underline */
+    text-decoration: none; 
     transition: color 0.2s ease;
 }
 
 a:hover {
     color: var(--text-color);
-    text-decoration: underline; /* This adds the underline back on hover */
+    text-decoration: underline;
 }

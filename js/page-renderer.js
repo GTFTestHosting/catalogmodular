@@ -1,7 +1,10 @@
+/**
+ * This module renders the all general pages except for the home page.
+ */
 import { renderPage } from './router.js';
 import { showLoadingMessage, applyStaticTranslations, hideBackButton } from './ui.js';
-import { buildPanel, setupHomeNavTiles } from './panel-builder.js'; 
-import { initParallax } from './parallax.js'; // Import the parallax module
+import { buildPanel, setupHomeNavTiles, initCarousel } from './panel-builder.js';
+import { initParallax } from './parallax.js';
 
 const pageContentContainer = document.getElementById('page-content');
 
@@ -32,7 +35,7 @@ export async function renderBentoPage(page, appState) {
         // 5. Build and append each panel to the grid wrapper
         panelsData.forEach(panelData => {
             const cell = document.createElement('div');
-            // Use the page name to create a specific cell class for potential styling hooks
+            
             cell.className = `${page}-cell`; 
             if (panelData.style) {
                 cell.classList.add(`promo-${panelData.style}`);
@@ -45,10 +48,8 @@ export async function renderBentoPage(page, appState) {
             }
         });
 
-        // THIS IS THE KEY FIX: Find all carousels and initialize them
+        // Initializes carousel panels
         document.querySelectorAll('.carousel-panel').forEach(initCarousel);
-        
-        // Re-use the nav tile setup function
         setupHomeNavTiles(appState);
         applyStaticTranslations(appState.translations);
         
@@ -59,18 +60,3 @@ export async function renderBentoPage(page, appState) {
         pageContentContainer.innerHTML = `<p>Error loading page content.</p>`;
     }
 }
-
-// THIS IS THE SECOND KEY FIX: The helper function for the animation
-function initCarousel(carouselPanel) {
-    const slides = carouselPanel.querySelectorAll('.carousel-slide');
-    let currentIndex = 0;
-
-    if (slides.length <= 1) return; // Don't start if there's only one slide
-
-    setInterval(() => {
-        if(slides[currentIndex]) slides[currentIndex].classList.remove('is-active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        if(slides[currentIndex]) slides[currentIndex].classList.add('is-active');
-    }, 5000); // Change slide every 5 seconds
-}
-

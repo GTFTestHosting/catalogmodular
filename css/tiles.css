@@ -403,8 +403,8 @@
 [class*="-cell"].promo-badge .image-panel {
     background-repeat: no-repeat;
     background-position: center;
-    background-clip: content-box; /* respect padding */
-    background-size: auto 60%; /* scale to fit container while keeping aspect ratio */
+    background-clip: content-box;
+    background-size: auto 60%;
 }
 
 /* --- Panel Size Modifiers --- */
@@ -437,7 +437,7 @@
     margin-top: -24px;
     margin-bottom: -24px;
     border-radius: 0px;
-    z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
+    z-index: 1;
 }
 [class*="-cell"].promo-hero .tile,
 [class*="-cell"].promo-hero .promo-panel,
@@ -458,7 +458,7 @@
     margin-top: -24px;
     margin-bottom: -24px;
     border-radius: 0px;
-    z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
+    z-index: 1;
 }
 
 [class*="-cell"].promo-herotext {
@@ -466,7 +466,7 @@
     grid-row: span 2;
     justify-content: center;
     align-items: center;
-    z-index: 1; /* KEY CHANGE: Puts hero panel in the back */
+    z-index: 1;
 }
 
 [class*="-cell"].promo-herotext .text-block-panel {
@@ -474,14 +474,14 @@
     align-items: center;
     text-align: center;
 }
-/* Retail Locator Map Styling */
+/* Retail Locator (Large Map Widget) */
 [class*="-cell"].promo-map-locator {
     margin-left: 0px;
     margin-right: 0px;
     grid-column: span 3;
     min-height: 78vh;
 }
-/* --- NEW: Left-Center Aligned Text Block --- */
+/* --- Centered Text Block --- */
 [class*="-cell"].promo-text-highlight {
     grid-column: span 2;
     justify-content: center;
@@ -496,18 +496,18 @@
 
 /* --- Hero Text Sizing --- */
 [class*="-cell"].promo-herotext .text-block-panel h1 {
-    font-size: 5.75rem; /* ~60px */
+    font-size: 5.75rem;
     line-height: 1.1;
 }
 [class*="-cell"].promo-herotext .text-block-panel h2 {
-    font-size: 2.5rem; /* ~24px */
+    font-size: 2.5rem;
 }
 [class*="-cell"].promo-herotext .text-block-panel p {
-    font-size: 2.125rem; /* ~18px */
-    max-width: 60ch; /* Limit line length for readability */
+    font-size: 2.125rem;
+    max-width: 60ch;
 }
 
-/* --- Hero Text Sizing for Promo Panels --- */
+/* --- Hero Text for Promo Panels --- */
 [class*="-cell"].promo-hero .promo-panel,
 [class*="-cell"].promo-hero-plain .promo-panel { 
     justify-content: center;
@@ -532,7 +532,7 @@
     box-shadow: var(--card-shadow);
 }
 
-/* --- Hero Text Sizing for Carousel Panels --- */
+/* --- Hero Text for Carousel Panels --- */
 [class*="-cell"].promo-herotext .carousel-slide {
     justify-content: center;
     align-items: center;
@@ -556,8 +556,7 @@
     display: none;
 }
 
-/* --- NEW: Parallax Effect Hooks --- */
-/* Apply masking and performance optimization ONLY to the cells that are animated */
+/* --- Parallax Effect Hooks --- */
 [class*="-cell"].promo-herotext,
 [class*="-cell"].promo-hero,
 [class*="-cell"].promo-hero-plain,
@@ -581,7 +580,7 @@
 }
 
 
-/* --- Responsive Overrides for Tiles --- */
+/* --- Medium Screen Overrides --- */
 @media (max-width: 1600px) {
     [class*="-cell"].promo-extra-wide,
     [class*="-cell"].promo-extra-large,
@@ -611,13 +610,11 @@
         min-height: 220px;
     }
 
-    /* This ensures all panels span 1 column on mobile bento/home grids */
     .home-grid [class*="-cell"],
     .bento-grid [class*="-cell"] {
         grid-column: span 1 !important;
     }
 
-    /* This ensures all wide panels span the full 2 columns in the product grid */
     .product-grid [class*="-cell"].promo-wide,
     .product-grid [class*="-cell"].promo-large,
     .product-grid [class*="-cell"].promo-extra-large,
@@ -634,18 +631,17 @@
         grid-row: auto;
     }
 
-    /* Target the wrapper containing only hero cells */
     .home-grid-wrapper > [class*="-cell"].promo-hero,
     .home-grid-wrapper > [class*="-cell"].promo-hero-plain {
     padding-left: 0;
     padding-right: 0;
     }
-    /* NEW: Responsive font sizes for hero text panels */
+
     [class*="-cell"].promo-herotext .text-block-panel h1,
     [class*="-cell"].promo-hero .promo-panel h3,
     [class*="-cell"].promo-hero-plain .promo-panel h3,
     [class*="-cell"].promo-herotext .carousel-content h3 {
-        font-size: 2.5rem; /* Smaller hero font for mobile */
+        font-size: 2.5rem;
     }
     [class*="-cell"].promo-herotext .text-block-panel h2 {
         font-size: 1.5rem;

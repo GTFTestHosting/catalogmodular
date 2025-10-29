@@ -27,7 +27,7 @@
     color: #fff;
 }
 
-/* --- Hamburger Button & Mobile Nav (Hidden by Default) --- */
+/* --- Hamburger Button & Nav Sidebar --- */
 .hamburger-btn, .mobile-nav, .mobile-left-controls {
     display: none;
 }
@@ -52,26 +52,25 @@
 }
 
 
-/* --- Responsive Overrides for Navigation --- */
+/* --- Medium & Mobile Screen Nav Sidebar --- */
 @media (max-width: 1190px) {
     /* Hide desktop nav */
     .main-nav {
        display: none;
     }
     
-    /* Show mobile-specific elements */
     .hamburger-btn, .mobile-nav, .mobile-left-controls {
         display: flex;
     }
 
     .mobile-left-controls {
-        grid-column: 1; /* Place this container in the left column */
+        grid-column: 1;
         justify-self: start;
         flex-direction: column;
         align-items: center;
     }
 
-    /* Mobile Nav Sidebar Styles */
+    /* Nav Sidebar Styles */
     .mobile-nav {
         display: block;
         position: fixed;

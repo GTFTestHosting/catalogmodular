@@ -1,7 +1,10 @@
+/**
+ * This module ties all the other modules together.
+ */
 import { renderPage } from './router.js';
 import { showLoadingMessage, applyStaticTranslations, hideBackButton } from './ui.js';
-import { buildPanel, setupHomeNavTiles } from './panel-builder.js'; // Import from the new module
-import { initParallax } from './parallax.js'; // Import the parallax module
+import { buildPanel, setupHomeNavTiles, initCarousel } from './panel-builder.js';
+import { initParallax } from './parallax.js'; 
 
 const pageContentContainer = document.getElementById('page-content');
 
@@ -51,19 +54,5 @@ export async function renderHomePage(appState) {
         console.error("Failed to load home page:", error);
         pageContentContainer.innerHTML = `<p>Error loading page content.</p>`;
     }
-}
-
-// THIS IS THE SECOND KEY FIX: The helper function for the animation
-function initCarousel(carouselPanel) {
-    const slides = carouselPanel.querySelectorAll('.carousel-slide');
-    let currentIndex = 0;
-
-    if (slides.length <= 1) return; // Don't start if there's only one slide
-
-    setInterval(() => {
-        if(slides[currentIndex]) slides[currentIndex].classList.remove('is-active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        if(slides[currentIndex]) slides[currentIndex].classList.add('is-active');
-    }, 5000); // Change slide every 5 seconds
 }
 

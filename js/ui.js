@@ -1,5 +1,4 @@
 /**
- * ui.js
  * This module contains all functions related to manipulating the DOM,
  * such as showing/hiding elements, updating content, and handling UI events.
  */
@@ -69,7 +68,7 @@ export function hideBackButton() {
 // --- MODAL ---
 export function showProductDetails(product, translations) {
     if (modal) {
-        modal.style.display = 'flex'; // THIS IS THE KEY CHANGE
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         document.getElementById('modal-img').src = product.image;
         document.getElementById('modal-title').textContent = product.name;

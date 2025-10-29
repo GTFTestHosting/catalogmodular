@@ -1,3 +1,6 @@
+/**
+ * This module renders the catalog into a printable html page.
+ */
 import { state } from './state.js';
 import { renderPage } from './router.js';
 
@@ -10,19 +13,19 @@ export async function handlePrintRequest(appState) {
     printButton.textContent = 'Generating...';
     printButton.disabled = true;
 
-    // Store the current page to restore it later
+    // Stores the current page to restore it later
     const activeLink = document.querySelector('.nav-link.active');
     originalPage = activeLink ? activeLink.dataset.page : 'home';
 
     try {
-        // Fetch all data recursively
+        // Fetches all data recursively
         const fullCatalogData = await fetchAllData(`data/${appState.currentLanguage}/categories.json`);
         
-        // Build and inject the special print-only HTML into the main container
+        // Builds and injects the special print-only HTML into the main container
         const printHtml = buildPrintHtml(fullCatalogData, appState.translations);
         pageContentContainer.innerHTML = printHtml;
         
-        // Add a class to the body to trigger print-specific styles
+        // Adds a class to the body to trigger print-specific styles
         document.body.classList.add('is-printing');
 
         // Trigger the browser's print dialog
@@ -33,7 +36,6 @@ export async function handlePrintRequest(appState) {
         alert("Sorry, there was an error generating the catalog for printing.");
         restoreOriginalContent(); // Restore content on error
     } 
-    // The finally block is removed; restoration is now handled by the 'afterprint' event
 }
 
 // Event listener to restore the page after printing is done or cancelled
@@ -56,7 +58,6 @@ function restoreOriginalContent() {
         printButton.disabled = false;
     }
 }
-
 
 // Recursive function to fetch the entire catalog data structure
 async function fetchAllData(filePath) {
@@ -103,7 +104,7 @@ function buildPrintHtml(data, translations) {
 
     // 2. Build Main Content Pages
     function renderProducts(products) {
-        // Filter out the special panels before mapping
+        // Filters out the promo and recipe panels before mapping
         return products
             .filter(product => product.type !== 'promo-panel' && product.type !== 'recipe-panel')
             .map(product => `

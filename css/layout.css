@@ -9,10 +9,6 @@
     flex-direction: column;
 }
 
-/* This class is now used to reset padding for the full-width hero */
-.catalog-container.full-width {
-    padding: 0;
-}
 .catalog-container > [class*="-cell"].promo-hero,
 .catalog-container > [class*="-cell"].promo-hero-plain {
     position: relative;
@@ -21,7 +17,6 @@
     width: auto;
 }
 
-/* Make both main and sub containers flex columns */
 #main-categories, #sub-categories {
     flex-grow: 1;
     display: flex;
@@ -38,8 +33,8 @@
 
 .category-cell, .subcategory-cell, .home-cell, .product-cell, .about-cell, .contact-cell {
     display: flex;
-    position: relative; /* Set stacking context */
-    z-index: 2; /* Default layer for all standard cells */
+    position: relative;
+    z-index: 2;
 }
 .product-grid {
     flex-grow: 1;
@@ -104,7 +99,6 @@
     overflow-x: clip;
 }
 
-/* THIS IS THE KEY FIX: Default to 3 explicit columns */
 .home-grid, .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -114,33 +108,11 @@
 .home-grid > [class*="-cell"].promo-hero,
 .home-grid > [class*="-cell"].promo-hero-plain {
     position: relative;
-    grid-column: 1 / -1; /* span all columns */
+    grid-column: 1 / -1;
     width: calc(100% + 2 * var(--container-padding));
     margin-left: calc(-1 * var(--container-padding));
     margin-right: calc(-1 * var(--container-padding));
-    z-index: 1; /* make sure it’s on top/back as needed */
-}
-
-
-/* --- Prose styles for new pages --- */
-.page-content-prose {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-.page-content-prose h2 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: 24px;
-}
-.page-content-prose p, .page-content-prose li {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: #4b5563;
-}
-.page-content-prose a {
-    color: var(--primary-color);
-    font-weight: 600;
+    z-index: 1;
 }
 
 /* --- Footer --- */
@@ -173,7 +145,7 @@
 }
 
 
-/* --- Responsive Overrides for Layout --- */
+/* --- Mobile Overrides --- */
 @media (max-width: 768px) {
     .catalog-container, .page-grid-wrapper { 
         padding: 24px; 

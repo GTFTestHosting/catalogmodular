@@ -1,44 +1,40 @@
+/**
+ * This module handles routing logic for the pages and nav bar.
+ */
 import { state } from './state.js';
 import { hideBackButton, applyStaticTranslations, showLoadingMessage } from './ui.js';
 import { initializeCatalog } from './catalog.js';
-import { renderHomePage } from './home.js';
-import { renderBentoPage } from './page-renderer.js'; // Import the new renderer
+import { renderHomePage } from './home.js'; //
+import { renderBentoPage } from './page-renderer.js';
 
 const pageContentContainer = document.getElementById('page-content');
 
 export function renderPage(page, appState, options = {}) {
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('active', link.dataset.page === page);
-    });
+    // Toggle active nav links
+    document.querySelectorAll('.nav-link').forEach(link =>
+        link.classList.toggle('active', link.dataset.page === page)
+    );
+
+    // Show/hide print button
     const printButton = document.getElementById('print-button');
-    if(printButton) printButton.classList.toggle('hidden', page !== 'catalog');
-    
-    switch (page) {
-        case 'catalog':
-            initializeCatalog(appState, options.startCategory);
-            break;
-        case 'home':
-            renderHomePage(appState);
-            break;
-        case 'about':
-        case 'contact': // You can add more pages here
-            renderBentoPage(page, appState); // Use the new generic renderer
-            break;
-        case 'find-our-products':
-            renderBentoPage(page, appState);
-            break;
-        case 'faq':
-            renderBentoPage(page, appState);
-            break;
-        case 'blog':
-            renderBentoPage(page, appState);
-            break;
-        default:
-            renderHomePage(appState);
+    if (printButton) printButton.classList.toggle('hidden', page !== 'catalog');
+
+    // Define simple routing map
+    const bentoPages = ['about', 'contact', 'find-our-products', 'faq', 'blog'];
+
+    if (page === 'catalog') {
+        initializeCatalog(appState, options.startCategory);
+    } else if (page === 'home') {
+        renderHomePage(appState);
+    } else if (bentoPages.includes(page)) {
+        renderBentoPage(page, appState);
+    } else {
+        renderHomePage(appState); // fallback
     }
 }
 
-// This function now only handles simple HTML pages
+
+// This function handles simple HTML pages
 async function loadHtmlContent(page, appState) {
     hideBackButton();
     if(pageContentContainer) {

@@ -1,0 +1,32 @@
+10/9/25:
+-Catalog completed
+
+10/7/25:
+-Converted to a website, home page added, site header created
+-Modularized all the functions into their own files
+
+10/22/25:
+-About and home page completed
+-Dish showcase carousel created
+-Online ordering web app created
+
+10/23/25:
+-About page completed
+-Map widget for retail locator created
+
+10/24/25:
+-FAQ page completed and created
+
+10/28/25:
+-Parallax animations created
+-Populated remaining pages (Contact, FAQ, etc)
+
+10/28/25:
+-Bento grid responsiveness fixes for mobile and medium screens
+-Reworked hero panel rendering (overflow and bleeding styling/logic)
+-Fixed UI layout responsiveness for the site header
+-Small tweaks to iframe (color matched markers)
+
+PENDING:
+-Translated Spanish pages
+-

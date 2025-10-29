@@ -1,3 +1,6 @@
+/**
+ * This module builds the different panel types and their corresponding functions.
+ */
 import { renderPage } from './router.js';
 
 export function buildPanel(data, appState) {
@@ -19,7 +22,7 @@ export function buildPanel(data, appState) {
                 source.type = 'video/mp4';
                 video.appendChild(source);
                 panel.appendChild(video);
-                panel.classList.add('has-bg-video'); // Add a class for styling
+                panel.classList.add('has-bg-video');
             } else if (data.backgroundImage) {
                 panel.style.backgroundImage = `url('${data.backgroundImage}')`;
                 panel.classList.add('has-bg-image');
@@ -165,12 +168,11 @@ export function buildPanel(data, appState) {
             }
             break;
 
-        // --- THIS IS THE NEW CASE ---
         case 'image-panel':
             panel.className = 'image-panel';
             if (data.backgroundImage) {
                 panel.style.backgroundImage = `url('${data.backgroundImage}')`;
-            } else if (data.image) { // Also support "image" for consistency with "tile"
+            } else if (data.image) {
                 panel.style.backgroundImage = `url('${data.image}')`;
             }
             break;
@@ -210,4 +212,16 @@ export function setupHomeNavTiles(appState) {
         });
     });
 }
+//--Initalizes Carousel--
+export function initCarousel(carouselPanel) {
+    const slides = carouselPanel.querySelectorAll('.carousel-slide');
+    let currentIndex = 0;
 
+    if (slides.length <= 1) return;
+
+    setInterval(() => {
+        if(slides[currentIndex]) slides[currentIndex].classList.remove('is-active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        if(slides[currentIndex]) slides[currentIndex].classList.add('is-active');
+    }, 5000);
+}

@@ -1,3 +1,6 @@
+/**
+ * This module handles the logic for rendering the catalog section.
+ */
 import { pushHistory } from './state.js';
 import { showBackButton, hideBackButton, showLoadingMessage, showProductDetails } from './ui.js';
 import { createSlug } from './utils.js';

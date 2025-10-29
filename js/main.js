@@ -1,3 +1,6 @@
+/**
+ * This module ties all the other modules together.
+ */
 import { state, setLanguage, setTranslations, popHistory } from './state.js';
 import { openMobileMenu, closeMobileMenu, applyStaticTranslations } from './ui.js';
 import { renderPage } from './router.js';
